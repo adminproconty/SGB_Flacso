@@ -12,6 +12,7 @@
 	$active_facturas="active";
 	$active_productos="";
 	$active_clientes="";
+	$active_tarjetas="";
 	$active_usuarios="";
 	$active_reportes="";	
 	$title="Editar Factura | Simple Invoice";

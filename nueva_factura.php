@@ -7,6 +7,7 @@
 	$active_facturas="active";
 	$active_productos="";
 	$active_clientes="";
+	$active_tarjetas="";
 	$active_usuarios="";	
 	$active_reportes="";
 	$title="SGB | Registro de Breaks";
@@ -152,6 +153,7 @@
 	<script>
 		$(function() {
 						$("#nombre_cliente").autocomplete({
+							alert('funciona');
 							source: "./ajax/autocomplete/clientes.php",
 							minLength: 2,
 							select: function(event, ui) {

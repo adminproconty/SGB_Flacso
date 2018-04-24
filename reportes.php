@@ -11,6 +11,7 @@
 	$active_facturas="";
 	$active_productos="";
 	$active_clientes="";
+	$active_tarjetas="";
 	$active_usuarios="";
 	$active_reportes="active";
 	$title="Reportes | SGB";

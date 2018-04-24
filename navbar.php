@@ -62,6 +62,8 @@
 
 			<li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Clientes</a></li>
 
+			<li class="<?php echo $active_tarjetas;?>"><a href="tarjetas.php"><i class='glyphicon glyphicon-credit-card'></i> Tarjetas</a></li>
+
 			<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
 
 			<li class="<?php echo $active_reportes;?>"><a href="reportes.php"><i  class='glyphicon glyphicon-paste'></i> Reportes</a></li>

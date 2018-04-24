@@ -12,11 +12,11 @@
 	
 	$active_facturas="";
 	$active_productos="";
-	$active_clientes="active";
-	$active_tarjetas="";
+	$active_clientes="";
+	$active_tarjetas="active";
 	$active_usuarios="";	
 	$active_reportes="";
-	$title="Clientes | SGB";
+	$title="Tarjetas | SGB";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,17 +32,20 @@
 	<div class="panel panel-info">
 		<div class="panel-heading">
 		    <div class="btn-group pull-right">
-				<button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoCliente"><span class="glyphicon glyphicon-plus" ></span> Nuevo Cliente</button>
+				<button type='button' class="btn btn-info" data-toggle="modal" 
+                        data-target="#nuevaTarjeta">
+                    <span class="glyphicon glyphicon-plus" ></span> 
+                    Nueva Tarjeta
+                </button>
 			</div>
-			<h4><i class='glyphicon glyphicon-search'></i> Buscar Clientes</h4>
+			<h4><i class='glyphicon glyphicon-search'></i> Buscar Tarjeta</h4>
 		</div>
 		<div class="panel-body">
 		
 			
 			
 			<?php
-				include("modal/registro_clientes.php");
-				include("modal/editar_clientes.php");
+				include("modal/registro_tarjeta.php");
 			?>
 			<form class="form-horizontal" role="form" id="datos_cotizacion">
 				
@@ -77,7 +80,9 @@
 	<hr>
 	<?php
 	include("footer.php");
-	?>
-	<script type="text/javascript" src="js/clientes.js"></script>
+	?>	
+    <script type="text/javascript" src="js/tarjetas.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   </body>
 </html>
