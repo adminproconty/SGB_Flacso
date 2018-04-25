@@ -84,5 +84,22 @@
     <script type="text/javascript" src="js/tarjetas.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$("#input_cliente").autocomplete({
+				source: "./ajax/autocomplete/clientes.php?term="+$("#input_cliente").val(),
+				minLength: 2,
+				select: function(event, ui) {
+					event.preventDefault();
+					$('#id_cliente').val(ui.item.id_cliente);
+					$('#nombre_cliente').val(ui.item.nombre_cliente);
+					$('#tel1').val(ui.item.telefono_cliente);
+					$('#mail').val(ui.item.email_cliente);
+					$('#saldo_cliente').val(ui.item.saldo_cliente);
+					$('#documento_cli').val(ui.item.documento_cliente);
+				}
+			});
+		});
+	</script>
   </body>
 </html>

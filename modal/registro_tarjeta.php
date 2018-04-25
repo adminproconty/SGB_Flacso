@@ -16,58 +16,18 @@
 			  <div class="form-group">
 				<label for="nombre" class="col-sm-3 control-label">Cliente</label>
 				<div class="col-sm-8">
-                <input type="text" class="form-control" id="nombre_cliente" placeholder="Selecciona un cliente" required>
-					<input id="id_cliente" type='hidden' name="id_cliente">	
+                <input type="text" class="form-control" id="input_cliente" placeholder="Selecciona un cliente" required>
+								<input id="id_cliente" type='hidden' name="id_cliente">	
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label for="documento" class="col-sm-3 control-label">Cédula</label>
+				<label for="documento" class="col-sm-3 control-label">Monto($)</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="documento" name="documento" >
+				  <input type="number" class="form-control" id="monto" name="monto" >
 				</div>
 			  </div>
-			  <div class="form-group">
-				<label for="telefono" class="col-sm-3 control-label">Teléfono</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="telefono" name="telefono" >
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="email" class="col-sm-3 control-label">Email</label>
-				<div class="col-sm-8">
-					<input type="email" class="form-control" id="email" name="email" >
-				  
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="direccion" class="col-sm-3 control-label">Dirección</label>
-				<div class="col-sm-8">
-					<textarea class="form-control" id="direccion" name="direccion"   maxlength="255" ></textarea>
-				  
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="saldo" class="col-sm-3 control-label">Cupo</label>
-				<div class="col-sm-8">
-					<input type="number" class="form-control" id="saldo" name="saldo" >
-				  
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="estado" class="col-sm-3 control-label">Estado</label>
-				<div class="col-sm-8">
-				 <select class="form-control" id="estado" name="estado" required>
-					<option value="">-- Selecciona estado --</option>
-					<option value="1" selected>Activo</option>
-					<option value="0">Inactivo</option>
-				  </select>
-				</div>
-			  </div>
-              <div class="form-group">
+        
+				<div class="form-group">
 				<label for="codigo" class="col-sm-3 control-label">Código Tarjeta</label>
 				<div class="col-sm-8">
 				  <input type="text" class="form-control" id="codigo" name="codigo" required disabled>

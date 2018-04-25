@@ -153,7 +153,6 @@
 	<script>
 		$(function() {
 						$("#nombre_cliente").autocomplete({
-							alert('funciona');
 							source: "./ajax/autocomplete/clientes.php",
 							minLength: 2,
 							select: function(event, ui) {
