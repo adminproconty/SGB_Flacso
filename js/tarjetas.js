@@ -18,8 +18,6 @@ function load(page) {
     })
 }
 
-
-
 function eliminar(id) {
     var q = $("#q").val();
     if (confirm("¿Realmente deseas cancelar la subscripción de esta tarjeta?, no podrá acceder a estos fondos nuevamente")) {
@@ -38,8 +36,6 @@ function eliminar(id) {
         });
     }
 }
-
-
 
 $("#guardar_tarjeta").submit(function(event) {
     $('#guardar_datos').attr("disabled", true);
@@ -61,20 +57,35 @@ $("#guardar_tarjeta").submit(function(event) {
     event.preventDefault();
 })
 
-$("#editar_cliente").submit(function(event) {
-    $('#actualizar_datos').attr("disabled", true);
+function obtener_datos(id) {
+    var id_tarjetas = $("#id_tarjetas" + id).val();
+    var codigo_tarjetas = $("#codigo_tarjetas" + id).val();
+    var nombre_cliente = $("#nombre_cliente" + id).val();
+    var monto_tarjetas = $("#monto_tarjetas" + id).val();
+    var estatus_tarjetas = $("#estatus_tarjetas" + id).val();
+    var nombre_estatus = $("#nombre_estatus" + id).val();
+
+    $("#mod_id_tarjetas").val(id_tarjetas);
+    $("#mod_codigo").val(codigo_tarjetas);
+    $("#mod_cliente").val(nombre_cliente);
+    $("#mod_monto").val(monto_tarjetas);
+    $("#mod_estado").val(estatus_tarjetas);
+}
+
+$("#editar_tarjeta").submit(function(event) {
+    $('#actualizar_tarjeta').attr("disabled", true);
 
     var parametros = $(this).serialize();
     $.ajax({
         type: "POST",
-        url: "ajax/editar_cliente.php",
+        url: "ajax/editar_tarjeta.php",
         data: parametros,
         beforeSend: function(objeto) {
             $("#resultados_ajax2").html("Mensaje: Cargando...");
         },
         success: function(datos) {
             $("#resultados_ajax2").html(datos);
-            $('#actualizar_datos').attr("disabled", false);
+            $('#actualizar_tarjeta').attr("disabled", false);
             load(1);
         }
     });

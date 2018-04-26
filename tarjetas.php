@@ -46,6 +46,7 @@
 			
 			<?php
 				include("modal/registro_tarjeta.php");
+				include("modal/editar_tarjeta.php");
 			?>
 			<form class="form-horizontal" role="form" id="datos_cotizacion">
 				

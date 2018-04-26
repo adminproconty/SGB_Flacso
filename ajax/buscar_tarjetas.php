@@ -18,7 +18,7 @@
 
 		$id_tarjetas=intval($_GET['id']);
 
-		$query=mysqli_query($con, "SELECT * FROM `tarjetas` WHERE `id_tarjetas` = ".$id_tarjetas);
+		$query=mysqli_query($con, "SELECT * FROM `log_tarjeta` WHERE `tarjeta_id`  = ".$id_tarjetas);
 
 		$count=mysqli_num_rows($query);
 
@@ -60,17 +60,38 @@
 
 		} else {
 
-			?>
 
-			<div class="alert alert-danger alert-dismissible" role="alert">
+			if ($delete1=mysqli_query($con,"DELETE FROM `tarjetas` WHERE `id_tarjetas` = ".$id_tarjetas)){
 
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-			  <strong>Error!</strong> No se pudo cancelar esta tarjeta
-
-			</div>
-
-			<?php
+				?>
+	
+				<div class="alert alert-success alert-dismissible" role="alert">
+	
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	
+				  <strong>Aviso!</strong> Tarjeta Eliminada exitosamente, sus fondos fueron suspendidos.
+	
+				</div>
+	
+				<?php 
+	
+			}else {
+	
+				?>
+	
+				<div class="alert alert-danger alert-dismissible" role="alert">
+	
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	
+				  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+	
+				</div>
+	
+				<?php
+	
+				
+	
+			}
 
 		}
 
@@ -199,16 +220,16 @@
 					?>
 
 					<input type="hidden" value="<?php echo $id_tarjetas;?>" id="id_tarjetas<?php echo $id_tarjetas;?>">
-					<input type="hidden" value="<?php echo $codigo_tarjetas;?>" id="id_tarjetas<?php echo $codigo_tarjetas;?>">
-					<input type="hidden" value="<?php echo $cliente_id;?>" id="id_tarjetas<?php echo $cliente_id;?>">
-					<input type="hidden" value="<?php echo $documento_cliente;?>" id="id_tarjetas<?php echo $documento_cliente;?>">
-					<input type="hidden" value="<?php echo $nombre_cliente?>" id="id_tarjetas<?php echo $nombre_cliente?>">
-					<input type="hidden" value="<?php echo $telefono_cliente?>" id="id_tarjetas<?php echo $telefono_cliente?>">
-					<input type="hidden" value="<?php echo $email_cliente?>" id="id_tarjetas<?php echo $email_cliente?>">
-					<input type="hidden" value="<?php echo $monto_tarjetas?>" id="id_tarjetas<?php echo $monto_tarjetas?>">
-					<input type="hidden" value="<?php echo $fecha_solicitud_Tarjetas?>" id="id_tarjetas<?php echo $fecha_solicitud_Tarjetas?>">
-					<input type="hidden" value="<?php echo $estatus_tarjetas?>" id="id_tarjetas<?php echo $estatus_tarjetas?>">
-					<input type="hidden" value="<?php echo $nombre_estatus?>" id="id_tarjetas<?php echo $nombre_estatus?>">
+					<input type="hidden" value="<?php echo $codigo_tarjetas;?>" id="codigo_tarjetas<?php echo $id_tarjetas;?>">
+					<input type="hidden" value="<?php echo $cliente_id;?>" id="cliente_id<?php echo $id_tarjetas;?>">
+					<input type="hidden" value="<?php echo $documento_cliente;?>" id="documento_cliente<?php echo $id_tarjetas;?>">
+					<input type="hidden" value="<?php echo $nombre_cliente?>" id="nombre_cliente<?php echo $id_tarjetas?>">
+					<input type="hidden" value="<?php echo $telefono_cliente?>" id="telefono_cliente<?php echo $id_tarjetas?>">
+					<input type="hidden" value="<?php echo $email_cliente?>" id="email_clientes<?php echo $id_tarjetas?>">
+					<input type="hidden" value="<?php echo $monto_tarjetas?>" id="monto_tarjetas<?php echo $id_tarjetas?>">
+					<input type="hidden" value="<?php echo $fecha_solicitud_Tarjetas?>" id="fecha_solicitud_Tarjetas<?php echo $id_tarjetas?>">
+					<input type="hidden" value="<?php echo $estatus_tarjetas?>" id="estatus_tarjetas<?php echo $id_tarjetas?>">
+					<input type="hidden" value="<?php echo $nombre_estatus?>" id="nombre_estatus<?php echo $id_tarjetas?>">
 
 					
 
@@ -227,7 +248,7 @@
 					    <td >
                             <span class="pull-right">
 
-					            <a href="#" class='btn btn-default' title='Editar tarjeta' onclick="obtener_datos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal2">
+					            <a href="#" class='btn btn-default' title='Editar tarjeta' onclick="obtener_datos('<?php echo $id_tarjetas;?>');" data-toggle="modal" data-target="#updateTarjeta">
                                     <i class="glyphicon glyphicon-edit"></i>
                                 </a> 
 
