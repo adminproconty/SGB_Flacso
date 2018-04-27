@@ -55,10 +55,9 @@
 			  </div>
 			  
 			  <div class="form-group">
-				<label for="saldo" class="col-sm-3 control-label">Cupo</label>
+				<label for="descuento" class="col-sm-3 control-label">Descuento</label>
 				<div class="col-sm-8">
-					<input type="number" class="form-control" id="saldo" name="saldo" >
-				  
+					<input type="number" min="0.1" step="0.1" class="form-control" id="descuento" name="descuento" >
 				</div>
 			  </div>
 			  
