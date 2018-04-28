@@ -125,12 +125,19 @@ $( "#editar_producto" ).submit(function( event ) {
 	function obtener_datos(id){
 			var codigo_producto = $("#codigo_producto"+id).val();
 			var nombre_producto = $("#nombre_producto"+id).val();
+			var id_categorias = $("#id_categorias"+id).val();
 			var estado = $("#estado"+id).val();
 			var precio_producto = $("#precio_producto"+id).val();
+			var precio_flacso = $("#precio_flacso"+id).val();
+			var precio_publico = $("#precio_publico"+id).val();
+			
 			$("#mod_id").val(id);
 			$("#mod_codigo").val(codigo_producto);
 			$("#mod_nombre").val(nombre_producto);
+			$("#mod_categoria").val(id_categorias);
 			$("#mod_precio").val(precio_producto);
+			$("#mod_flacso").val(precio_flacso);
+			$("#mod_publico").val(precio_publico);
 			$("#mod_estado").val(estado);
 		}
 </script>

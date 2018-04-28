@@ -219,7 +219,9 @@
 
 						$documento_cliente=$row['documento_cliente'];
 
-						$empresa_cliente=$row['nombre_empresas'];
+						$nombre_empresas=$row['nombre_empresas'];
+
+						$id_empresas=$row['id_empresas'];
 
 						$direccion_cliente=$row['direccion_cliente'];
 
@@ -251,7 +253,9 @@
 
 					<input type="hidden" value="<?php echo $direccion_cliente;?>" id="direccion_cliente<?php echo $id_cliente;?>">
 
-					<input type="hidden" value="<?php echo $empresa_cliente;?>" id="empresa_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $nombre_empresas;?>" id="nombre_empresas<?php echo $id_cliente;?>">
+
+					<input type="hidden" value="<?php echo $id_empresas;?>" id="id_empresas<?php echo $id_cliente;?>">
 
 					<input type="hidden" value="<?php echo $status_cliente;?>" id="status_cliente<?php echo $id_cliente;?>">
 
@@ -273,7 +277,7 @@
 
 						<td><?php echo $documento_cliente;?></td>
 
-						<td><?php echo $empresa_cliente;?></td>
+						<td><?php echo $nombre_empresas;?></td>
 
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
 

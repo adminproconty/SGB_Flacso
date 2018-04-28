@@ -87,7 +87,7 @@
 		    var telefono_cliente = $("#telefono_cliente" + id).val();
 		    var email_cliente = $("#email_cliente" + id).val();
 			//var direccion_cliente = $("#direccion_cliente" + id).val();
-			var empresa_cliente = $("#empresa_cliente" + id).val();
+			var id_empresas = $("#id_empresas" + id).val();
 		    var status_cliente = $("#status_cliente" + id).val();
 		    var saldo_cliente = $("#saldo_cliente" + id).val();
 		    var documento_cliente = $("#documento_cliente" + id).val();
@@ -98,7 +98,7 @@
 		    $("#mod_nombre").val(nombre_cliente);
 		    $("#mod_telefono").val(telefono_cliente);
 			$("#mod_email").val(email_cliente);
-			$("#mod_empresa").val(empresa_cliente);
+			$("#mod_empresa").val(id_empresas);
 		    //$("#mod_direccion").val(direccion_cliente);
 		    $("#mod_estado").val(status_cliente);
 		    $("#mod_saldo").val(saldo_cliente);
