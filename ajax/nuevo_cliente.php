@@ -26,7 +26,7 @@
 
 		$email=mysqli_real_escape_string($con,(strip_tags($_POST["email"],ENT_QUOTES)));
 
-		$direccion=mysqli_real_escape_string($con,(strip_tags($_POST["direccion"],ENT_QUOTES)));
+		$empresa=mysqli_real_escape_string($con,(strip_tags($_POST["empresa"],ENT_QUOTES)));
 
 		$estado=intval($_POST['estado']);
 
@@ -42,9 +42,11 @@
 
 		$descuento = number_format($descuento,2);
 
+		$direccion = "na";
+
 		$sql="INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, 
 				`telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, 
-				`date_added`, `codigo`, `saldo_cliente`, `descuento`) VALUES (
+				`date_added`, `codigo`, `saldo_cliente`, `descuento`,`empresa_cliente`) VALUES (
 					'".$nombre."',
 					'".$documento_cliente."',
 					'".$telefono."',
@@ -54,7 +56,8 @@
 					'".$date_added."',
 					'".$codigo."',
 					".$saldo.",
-					".$descuento."
+					".$descuento.",
+					".$empresa."
 				)";
 
 		$query_new_insert = mysqli_query($con,$sql);
@@ -65,7 +68,7 @@
 
 			} else{
 
-				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
+				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".$sql;
 
 			}
 

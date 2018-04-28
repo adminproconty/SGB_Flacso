@@ -92,7 +92,7 @@
 
 		 $aColumns = array('codigo_producto', 'nombre_producto');//Columnas de busqueda
 
-		 $sTable = "products";
+		 $sTable = "products, categorias";
 
 		 $sWhere = "";
 
@@ -112,11 +112,18 @@
 
 			$sWhere = substr_replace( $sWhere, "", -3 );
 
-			$sWhere .= ')';
+			$sWhere .= ') and categoria_id = id_categorias';
 
 		}
 
-		$sWhere.=" order by id_producto desc";
+		//valido Where para categorias
+		if ($sWhere != ''){
+			$sWhere.=" order by id_producto desc";
+		} else {
+			$sWhere.=" where categoria_id = id_categorias order by id_producto desc";
+		
+		}
+		
 
 		include 'pagination.php'; //include pagination file
 
@@ -166,6 +173,8 @@
 
 					<th>Producto</th>
 
+					<th>Categoría</th>
+
 					<th>Estado</th>
 
 					<th class='text-right'>Precio</th>
@@ -196,6 +205,8 @@
 
 						$precio_producto=$row['precio_producto'];
 
+						$nombre_categoria=$row['nombre_categoria'];
+
 					?>
 
 					
@@ -208,6 +219,8 @@
 
 					<input type="hidden" value="<?php echo number_format($precio_producto,2,'.','');?>" id="precio_producto<?php echo $id_producto;?>">
 
+					<input type="hidden" value="<?php echo $nombre_categoria;?>" id="nombre_categoria<?php echo $id_producto;?>">
+
 					<tr>
 
 						
@@ -215,6 +228,8 @@
 						<td><?php echo $codigo_producto; ?></td>
 
 						<td ><?php echo $nombre_producto; ?></td>
+
+						<td ><?php echo $nombre_categoria; ?></td>
 
 						<td><?php echo $estado;?></td>
 

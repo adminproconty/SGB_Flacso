@@ -92,7 +92,7 @@
 		    var saldo_cliente = $("#saldo_cliente" + id).val();
 		    var documento_cliente = $("#documento_cliente" + id).val();
 		    var descuento = $("#descuento" + id).val();
-		    alert('TIPO ' + empresa_cliente);
+		    //alert('TIPO ' + empresa_cliente);
 
 		    $("#mod_codigo").val(codigo);
 		    $("#mod_nombre").val(nombre_cliente);
