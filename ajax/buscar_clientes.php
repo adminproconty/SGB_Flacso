@@ -107,7 +107,7 @@
 
 		 $aColumns = array('codigo', 'nombre_cliente','documento_cliente');//Columnas de busqueda
 
-		 $sTable = "clientes";
+		 $sTable = "clientes, empresas";
 
 		 $sWhere = "";
 
@@ -127,12 +127,16 @@
 
 			$sWhere = substr_replace( $sWhere, "", -3 );
 
-			$sWhere .= ')';
+			$sWhere .= ') and empresa_cliente = id_empresas ';
 
 		}
 
-		$sWhere.=" order by nombre_cliente";
-
+		//valido Where para empresas
+		if ($sWhere != ''){
+			$sWhere.=" order by nombre_cliente";	
+		} else {
+			$sWhere.=" where empresa_cliente = id_empresas order by nombre_cliente";
+		}
 		include 'pagination.php'; //include pagination file
 
 		//pagination variables
@@ -183,11 +187,11 @@
 
 					<th>Cedula</th>
 
-					<th>Dirección</th>
+					<th>Tipo</th>
 
 					<th>Estado</th>
 
-					<th>Cupo</th>
+					<th>Saldo</th>
 
 					<th>
 						<span class='pull-right'>Descuento(%)</span>
@@ -214,6 +218,8 @@
 						$email_cliente=$row['email_cliente'];
 
 						$documento_cliente=$row['documento_cliente'];
+
+						$empresa_cliente=$row['nombre_empresas'];
 
 						$direccion_cliente=$row['direccion_cliente'];
 
@@ -245,6 +251,8 @@
 
 					<input type="hidden" value="<?php echo $direccion_cliente;?>" id="direccion_cliente<?php echo $id_cliente;?>">
 
+					<input type="hidden" value="<?php echo $empresa_cliente;?>" id="empresa_cliente<?php echo $id_cliente;?>">
+
 					<input type="hidden" value="<?php echo $status_cliente;?>" id="status_cliente<?php echo $id_cliente;?>">
 
 					<input type="hidden" value="<?php echo $saldo_cliente;?>" id="saldo_cliente<?php echo $id_cliente;?>">
@@ -265,7 +273,7 @@
 
 						<td><?php echo $documento_cliente;?></td>
 
-						<td><?php echo $direccion_cliente;?></td>
+						<td><?php echo $empresa_cliente;?></td>
 
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
 
