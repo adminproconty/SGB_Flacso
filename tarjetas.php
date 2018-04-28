@@ -31,13 +31,6 @@
     <div class="container">
 	<div class="panel panel-info">
 		<div class="panel-heading">
-		    <div class="btn-group pull-right">
-				<button type='button' class="btn btn-info" data-toggle="modal" 
-                        data-target="#nuevaTarjeta">
-                    <span class="glyphicon glyphicon-plus" ></span> 
-                    Nueva Tarjeta
-                </button>
-			</div>
 			<h4><i class='glyphicon glyphicon-search'></i> Buscar Tarjeta</h4>
 		</div>
 		<div class="panel-body">
@@ -45,7 +38,6 @@
 			
 			
 			<?php
-				include("modal/registro_tarjeta.php");
 				include("modal/editar_tarjeta.php");
 			?>
 			<form class="form-horizontal" role="form" id="datos_cotizacion">

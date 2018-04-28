@@ -20,10 +20,12 @@ if ($con)
 		$row_array['nombre_cliente']=$row['nombre_cliente'];
 		$row_array['telefono_cliente']=$row['telefono_cliente'];
 		$row_array['email_cliente']=$row['email_cliente'];
-		$row_array['saldo_cliente']=$row['saldo_cliente'];
+		$row_array['saldo_cliente']=getCupo($row['id_cliente'], $con);
 		$row_array['documento_cliente']=$row['documento_cliente'];
+		$row_array['descuento']=$row['descuento'];
 		array_push($return_arr,$row_array);
-    }
+	}
+	
 	
 }
 
@@ -33,5 +35,16 @@ mysqli_close($con);
 /* Toss back results as json encoded array. */
 echo json_encode($return_arr);
 
+}
+
+function getCupo($idcliente, $conexion){
+	$fetch = mysqli_query($conexion,"SELECT SUM(`monto_tarjetas`) as suma FROM `tarjetas` 
+				WHERE `cliente_id` = ".$idcliente." AND `estatus_tarjetas` = 1");
+	$row= mysqli_fetch_array($fetch);
+	if($row['suma'] > 0){
+		return $row['suma'];
+	}else{
+		return 0;
+	}
 }
 ?>

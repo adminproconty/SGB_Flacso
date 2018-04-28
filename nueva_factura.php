@@ -31,6 +31,11 @@
     <div class="container">
 	<div class="panel panel-info">
 		<div class="panel-heading">
+			<div class="btn-group pull-right">
+				<button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevaTarjeta">
+					<span class="glyphicon glyphicon-plus" ></span> Comprar Tarjeta
+				</button>
+			</div>
 			<h4><i class='glyphicon glyphicon-edit'></i> Nuevo Comsumo</h4>
 		</div>
 		<div class="panel-body">
@@ -39,6 +44,7 @@
 			include("modal/registro_clientes.php");
 			include("modal/registro_productos.php");
 			include("modal/consulta_productos.php");
+			include("modal/registro_tarjeta.php");
 		?>
 			<form class="form-horizontal" role="form" id="datos_factura" method="get" action="./pdf/documentos/factura_pdf.php">
 				<div class="form-group row">
@@ -91,7 +97,7 @@
 							<label for="tel2" class="col-md-1 control-label">Fecha</label>
 							<div class="col-md-2">
 								<input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
-							</div>
+							</div>							
 							<!--
 							<label for="email" class="col-md-1 control-label">Pago</label>
 							-->
@@ -104,8 +110,8 @@
 								</select>
 							</div>
 							
+							
 						</div>
-				
 				
 				<div class="col-md-12">
 					<div class="pull-right">
@@ -152,21 +158,20 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script>
 		$(function() {
-						$("#nombre_cliente").autocomplete({
-							source: "./ajax/autocomplete/clientes.php",
-							minLength: 2,
-							select: function(event, ui) {
-								event.preventDefault();
-								$('#id_cliente').val(ui.item.id_cliente);
-								$('#nombre_cliente').val(ui.item.nombre_cliente);
-								$('#tel1').val(ui.item.telefono_cliente);
-								$('#mail').val(ui.item.email_cliente);
-								$('#saldo_cliente').val(ui.item.saldo_cliente);
-								$('#documento_cli').val(ui.item.documento_cliente);
-																
-								
-							 }
-						});
+			$("#nombre_cliente").autocomplete({
+				source: "./ajax/autocomplete/clientes.php",
+				minLength: 2,
+				select: function(event, ui) {
+					event.preventDefault();
+					$('#id_cliente').val(ui.item.id_cliente);
+					$('#nombre_cliente').val(ui.item.nombre_cliente);
+					$('#tel1').val(ui.item.telefono_cliente);
+					$('#mail').val(ui.item.email_cliente);
+					$('#saldo_cliente').val(ui.item.saldo_cliente);
+					$('#documento_cli').val(ui.item.documento_cliente);
+					localStorage.setItem('descuento', ui.item.descuento);
+				}
+		});
 						 
 						
 					});
