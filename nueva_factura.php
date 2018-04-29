@@ -121,13 +121,13 @@
                      </div>
 					 <label for="aplica_descuento" class="col-md-1 control-label">Aplica Descuento</label>
                      <div class="form-check">
-						<input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_si" onclick="actualiza_dsco(1)">
+						<input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_si" onclick="actualiza_dsco(0)">
 						<label class="form-check-label" for="exampleRadios1">
 							Si
 						</label>
 						</div>
 						<div class="form-check">
-						<input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_no" value=0 checked onclick="actualiza_dsco(1)">
+						<input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_no" value=0 checked onclick="actualiza_dsco(0)">
 						<label class="form-check-label" for="exampleRadios2">
 							No
 						</label>

@@ -16,13 +16,17 @@
 
 	if($action == 'ajax'){
 
+		//Trae tipo de cliente para seleccionar precio
+	
+		$nombre_empresas = $_GET['nombre_empresas'];
+
 		// escaping, additionally removing everything that could be (html/javascript-) code
 
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 
-		 $aColumns = array('codigo_producto', 'nombre_producto');//Columnas de busqueda
+		 $aColumns = array('codigo_producto', 'nombre_producto', 'nombre_categoria');//Columnas de busqueda
 
-		 $sTable = "products";
+		 $sTable = "products, categorias";
 
 		 $sWhere = "";
 
@@ -45,8 +49,16 @@
 
 			$sWhere = substr_replace( $sWhere, "", -3 );
 
-			$sWhere .= ')';
+			$sWhere .= ') and categoria_id = id_categorias';
 
+		}
+
+		//valido Where para categorias
+		if ($sWhere != ''){
+			$sWhere.=" order by id_producto desc";
+		} else {
+			$sWhere.=" where categoria_id = id_categorias order by id_producto desc";
+		
 		}
 
 		include 'pagination.php'; //include pagination file
@@ -96,6 +108,7 @@
 					<th>Código</th>
 
 					<th>Producto</th>
+					<th>Categoría</th>
 
 					<th><span class="pull-right">Precio</span></th>
 
@@ -112,10 +125,17 @@
 					$id_producto=$row['id_producto'];
 
 					$nombre_producto=$row['nombre_producto'];
+					$nombre_categoria=$row['nombre_categoria'];
+
+					if ($nombre_empresas == 'EXTERNO'){
+						$precio_venta=$row["precio_publico"];
+					} elseif ($nombre_empresas == 'FLACSO'){
+						$precio_venta=$row["precio_flacso"];
+					} else {
+						$precio_venta=$row["precio_producto"];
+					}
 
 					$codigo_producto=$row['codigo_producto'];
-
-					$precio_venta=$row["precio_producto"];
 
 					$precio_venta=number_format($precio_venta,2,'.','');
 
@@ -132,6 +152,7 @@
 						<td><?php echo $codigo_producto; ?></td>
 
 						<td><?php echo $nombre_producto; ?></td>
+						<td><?php echo $nombre_categoria; ?></td>
 
 						<td>
 						
