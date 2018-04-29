@@ -84,7 +84,7 @@
                <div class="form-group">
                   <label for="mod_descuento" class="col-sm-3 control-label">Descuento(%)</label>
                   <div class="col-sm-8">
-                     <input type="text" class="form-control" id="mod_descuento" name="mod_descuento" required pattern="^[0-9]{1,5}(\.[0-9]{0,2})?$" title="Ingresa sólo números con 0 ó 2 decimales" maxlength="8" disabled>
+                     <input type="text" class="form-control" id="mod_descuento" name="mod_descuento" required pattern="^[0-9]{1,5}(\.[0-9]{0,2})?$" title="Ingresa sólo números con 0 ó 2 decimales" maxlength="8">
                   </div>
                </div>
                <div class="form-group">

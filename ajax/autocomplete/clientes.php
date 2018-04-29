@@ -7,7 +7,7 @@ $return_arr = array();
 if ($con)
 {
 	
-	$fetch = mysqli_query($con,"SELECT * FROM clientes where nombre_cliente 
+	$fetch = mysqli_query($con,"SELECT * FROM clientes, empresas where empresa_cliente = id_empresas and nombre_cliente 
 				like '%" . mysqli_real_escape_string($con,($_GET['term'])) . "%' 
 				OR `documento_cliente` like '%" . mysqli_real_escape_string($con,($_GET['term'])) . "%'  
 				LIMIT 0 ,50"); 
@@ -23,6 +23,8 @@ if ($con)
 		$row_array['saldo_cliente']=getCupo($row['id_cliente'], $con);
 		$row_array['documento_cliente']=$row['documento_cliente'];
 		$row_array['descuento']=$row['descuento'];
+		$row_array['id_empresas']=$row['id_empresas'];
+		$row_array['nombre_empresas']=$row['nombre_empresas'];
 		array_push($return_arr,$row_array);
 	}
 	

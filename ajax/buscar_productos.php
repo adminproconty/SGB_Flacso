@@ -63,7 +63,7 @@
    
           $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
    
-    $aColumns = array('codigo_producto', 'nombre_producto');//Columnas de busqueda
+    $aColumns = array('codigo_producto', 'nombre_producto', 'nombre_categoria');//Columnas de busqueda
    
     $sTable = "products, categorias";
    

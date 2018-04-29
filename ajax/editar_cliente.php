@@ -52,11 +52,13 @@
 
 		$empresa=mysqli_real_escape_string($con,(strip_tags($_POST["mod_empresa"],ENT_QUOTES)));
 
-		
+		$descuento=mysqli_real_escape_string($con,(strip_tags($_POST["mod_descuento"],ENT_QUOTES)));
+
+		$descuento=number_format($descuento/100,2);//Precio total formateado
 
 		$id_cliente=intval($_POST['mod_id']);
 
-		$sql="UPDATE clientes SET nombre_cliente='".$nombre."', documento_cliente='".$documento."', telefono_cliente='".$telefono."', email_cliente='".$email."', empresa_cliente='".$empresa."', status_cliente='".$estado."' , saldo_cliente='".$saldo."' WHERE id_cliente='".$id_cliente."'";
+		$sql="UPDATE clientes SET nombre_cliente='".$nombre."', documento_cliente='".$documento."', telefono_cliente='".$telefono."', email_cliente='".$email."', empresa_cliente='".$empresa."', status_cliente='".$estado."' , saldo_cliente='".$saldo."', descuento='".$descuento."' WHERE id_cliente='".$id_cliente."'";
 
 		$query_update = mysqli_query($con,$sql);
 

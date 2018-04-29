@@ -9,7 +9,7 @@ function load(page) {
     var q = $("#q").val();
     $("#loader").fadeIn('slow');
     $.ajax({
-        url: './ajax/productos_factura.php?action=ajax&page=' + page + '&q=' + q,
+        url: './ajax/productos_factura.php?action=ajax&page=' + page + '&q=' + q + '&nombre_empresas=' + nombre_empresas,
         beforeSend: function(objeto) {
             $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
         },
@@ -38,6 +38,8 @@ function init(page) {
 function agregar(id) {
     var precio_venta = document.getElementById('precio_venta_' + id).value;
     var cantidad = document.getElementById('cantidad_' + id).value;
+    var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
+    //alert("aplica " + aplica_descuento);
     //Inicia validacion
     if (isNaN(cantidad)) {
         alert('Esto no es un numero');
@@ -54,7 +56,7 @@ function agregar(id) {
     $.ajax({
         type: "POST",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=" + id + "&precio_venta=" + precio_venta + "&cantidad=" + cantidad,
+        data: "id=" + id + "&precio_venta=" + precio_venta + "&cantidad=" + cantidad + "&aplica_descuento=" + aplica_descuento,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
@@ -97,11 +99,11 @@ $('#guardar_tarjeta').submit(function(event) {
 });
 
 function eliminar(id) {
-
+    var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
     $.ajax({
         type: "GET",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=" + id,
+        data: "id=" + id + "&aplica_descuento=" + aplica_descuento,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
@@ -117,6 +119,32 @@ function eliminar(id) {
             }
         }
     });
+
+}
+
+function actualiza_dsco(id) {
+    var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
+   // alert("Genera Evento " + aplica_descuento);
+    $.ajax({
+        type: "GET",
+        url: "./ajax/agregar_facturacion.php",
+        data: "id=" + id + "&aplica_descuento=" + aplica_descuento,
+        beforeSend: function(objeto) {
+            $("#resultados").html("Mensaje: Cargando...");
+        },
+        success: function(datos) {
+            $("#resultados").html(datos);
+            var total_factura = localStorage.getItem('total_factura');
+            var saldo = $("#saldo_cliente").val() * 1;
+            if (total_factura > saldo) {
+                alert('Saldo insuficiente para la compra');
+                document.getElementById("btn-comprar").disabled = true;
+            } else {
+                document.getElementById("btn-comprar").disabled = false;
+            }
+        }
+    });
+
 
 }
 
@@ -175,5 +203,16 @@ $('#getproductos').click(function() {
 });
 
 $('#addproducto').click(function() {
-    load(1);
+    
+    id_cliente = $('#id_cliente').val();
+    
+    if(id_cliente != ''){
+        nombre_empresas = $('#nombre_empresas').val();
+        //descuento = $('#descuento_cliente').val();
+        load(1);
+    } else {
+        alert("Debe Seleccionar un Cliente");
+        return false;
+    }
+    
 });
