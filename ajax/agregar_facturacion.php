@@ -196,8 +196,7 @@
    <tr>
       <td class='text-right' colspan=4>TOTAL <?php echo $simbolo_moneda;?></td>
       <td class='text-right'><?php echo number_format($total_factura,2);?></td>
-      <input id="tot" type='hidden' value="<?php echo number_format($tot,2); ?>" >
-      <input id="tot" type='hidden' value="<?php echo number_format($tot,2); ?>" >
+      <input id="total_factura" type='hidden' value="<?php echo $total_factura; ?>" >
       <input id="cantidad_productos" type='hidden' value="<?php echo $cantidad_productos  ?>" >
       <input id="gastos_tarjeta" type='hidden' value="<?php echo $gastos_tarjeta  ?>" >
       <td></td>
@@ -207,8 +206,6 @@
    <script>
       var gastos_tarjeta = $("#gastos_tarjeta").val();	
       localStorage.setItem("gastos_tarjeta", gastos_tarjeta);
-      var tot =  $("#tot").val();
-      localStorage.setItem("tot", tot);
       var total_factura = $("#total_factura").val();
       localStorage.setItem("total_factura", total_factura);
       var porcentaje_descuento = localStorage.getItem('descuento');

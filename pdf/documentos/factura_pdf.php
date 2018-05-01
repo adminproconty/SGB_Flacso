@@ -62,6 +62,8 @@
 
 	$condiciones=mysqli_real_escape_string($con,(strip_tags($_REQUEST['condiciones'], ENT_QUOTES)));
 
+	$total_compra=mysqli_real_escape_string($con,(strip_tags($_REQUEST['gastos_producto'], ENT_QUOTES)));
+
 
 
 	//Fin de variables por GET

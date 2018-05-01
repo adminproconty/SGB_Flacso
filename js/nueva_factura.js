@@ -2,6 +2,7 @@ $(document).ready(function() {
     load(1);
     init(1);
     localStorage.setItem('descuento', 0);
+    localStorage.setItem('aplica_descuento', 0);
 });
 
 function load(page) {
@@ -62,37 +63,36 @@ function agregar(id) {
         },
         success: function(datos) {
             $("#resultados").html(datos);
-            var total_factura = localStorage.getItem('total_factura');
-            var saldo = $("#saldo_cliente").val() * 1;
-            if (total_factura > saldo) {
-                alert('Saldo insuficiente para la compra');
-                document.getElementById("btn-comprar").disabled = true;
+            var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
+            var iva_tarjeta = gasto_tarjeta * 0.12;
+            var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
+            var aplica_descuento = localStorage.getItem("aplica_descuento");
+            var total_factura = localStorage.getItem("total_factura");
+            if (aplica_descuento == 0) {
+                total_gasto_tarjeta = total_gasto_tarjeta;
             } else {
-                document.getElementById("btn-comprar").disabled = false;
+                var por_descuento = $('#descuento_cliente').val() / 100;
+                var descuento = total_gasto_tarjeta * por_descuento;
+                total_gasto_tarjeta = total_gasto_tarjeta - descuento;
             }
+            var gastos_producto = (total_factura - total_gasto_tarjeta).toFixed(2);
+            $("#gastos_producto").val(gastos_producto);
         }
     });
 }
 
 $('#guardar_tarjeta').submit(function(event) {
     var precio_venta = document.getElementById('monto').value;
+    var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
     $.ajax({
         type: "POST",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=1&precio_venta=" + precio_venta + "&cantidad=1&tarjeta=0",
+        data: "id=1&precio_venta=" + precio_venta + "&cantidad=1&tarjeta=0" + "&aplica_descuento=" + aplica_descuento,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
         success: function(datos) {
             $("#resultados").html(datos);
-            var total_factura = localStorage.getItem('total_factura');
-            var saldo = $("#saldo_cliente").val() * 1;
-            if (total_factura > saldo) {
-                alert('Saldo insuficiente para la compra');
-                document.getElementById("btn-comprar").disabled = true;
-            } else {
-                document.getElementById("btn-comprar").disabled = false;
-            }
         }
     });
     event.preventDefault();
@@ -109,14 +109,20 @@ function eliminar(id) {
         },
         success: function(datos) {
             $("#resultados").html(datos);
-            var total_factura = localStorage.getItem('total_factura');
-            var saldo = $("#saldo_cliente").val() * 1;
-            if (total_factura > saldo) {
-                alert('Saldo insuficiente para la compra');
-                document.getElementById("btn-comprar").disabled = true;
+            var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
+            var iva_tarjeta = gasto_tarjeta * 0.12;
+            var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
+            var aplica_descuento = localStorage.getItem("aplica_descuento");
+            var total_factura = localStorage.getItem("total_factura");
+            if (aplica_descuento == 0) {
+                total_gasto_tarjeta = total_gasto_tarjeta;
             } else {
-                document.getElementById("btn-comprar").disabled = false;
+                var por_descuento = $('#descuento_cliente').val() / 100;
+                var descuento = total_gasto_tarjeta * por_descuento;
+                total_gasto_tarjeta = total_gasto_tarjeta - descuento;
             }
+            var gastos_producto = (total_factura - total_gasto_tarjeta).toFixed(2);
+            $("#gastos_producto").val(gastos_producto);
         }
     });
 
@@ -124,7 +130,11 @@ function eliminar(id) {
 
 function actualiza_dsco(id) {
     var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
-   // alert("Genera Evento " + aplica_descuento);
+    if (aplica_descuento == 0) {
+        localStorage.setItem('aplica_descuento', 0);
+    } else {
+        localStorage.setItem('aplica_descuento', 1);
+    }
     $.ajax({
         type: "GET",
         url: "./ajax/agregar_facturacion.php",
@@ -134,25 +144,46 @@ function actualiza_dsco(id) {
         },
         success: function(datos) {
             $("#resultados").html(datos);
-            var total_factura = localStorage.getItem('total_factura');
-            var saldo = $("#saldo_cliente").val() * 1;
-            if (total_factura > saldo) {
-                alert('Saldo insuficiente para la compra');
-                document.getElementById("btn-comprar").disabled = true;
+            var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
+            var iva_tarjeta = gasto_tarjeta * 0.12;
+            var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
+            var aplica_descuento = localStorage.getItem("aplica_descuento");
+            var total_factura = localStorage.getItem("total_factura");
+            if (aplica_descuento == 0) {
+                total_gasto_tarjeta = total_gasto_tarjeta;
             } else {
-                document.getElementById("btn-comprar").disabled = false;
+                var por_descuento = $('#descuento_cliente').val() / 100;
+                var descuento = total_gasto_tarjeta * por_descuento;
+                total_gasto_tarjeta = total_gasto_tarjeta - descuento;
             }
+            var gastos_producto = (total_factura - total_gasto_tarjeta).toFixed(2);
+            $("#gastos_producto").val(gastos_producto);
         }
     });
-
-
 }
 
 $("#datos_factura").submit(function(event) {
-
+    var cupo = $('#saldo_cliente').val() * 1;
     var cantidad_productos = localStorage.getItem('cantidad_productos');
+    var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
+    var iva_tarjeta = gasto_tarjeta * 0.12;
+    var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
+    var aplica_descuento = localStorage.getItem("aplica_descuento");
+    var total_factura = localStorage.getItem("total_factura");
+    if (aplica_descuento == 0) {
+        total_gasto_tarjeta = total_gasto_tarjeta;
+    } else {
+        var por_descuento = $('#descuento_cliente').val() / 100;
+        var descuento = total_gasto_tarjeta * por_descuento;
+        total_gasto_tarjeta = total_gasto_tarjeta - descuento;
+    }
     if (cantidad_productos < 1) {
         alert('Debe seleccionar productos para proceder la compra');
+        event.preventDefault();
+    }
+    var gastos_producto = (total_factura - total_gasto_tarjeta).toFixed(2);
+    if (cupo < gastos_producto) {
+        alert('Saldo insuficiente, por favor, comprar una tarjeta');
         event.preventDefault();
     }
 
@@ -203,10 +234,10 @@ $('#getproductos').click(function() {
 });
 
 $('#addproducto').click(function() {
-    
+
     id_cliente = $('#id_cliente').val();
-    
-    if(id_cliente != ''){
+
+    if (id_cliente != '') {
         nombre_empresas = $('#nombre_empresas').val();
         //descuento = $('#descuento_cliente').val();
         load(1);
@@ -214,5 +245,5 @@ $('#addproducto').click(function() {
         alert("Debe Seleccionar un Cliente");
         return false;
     }
-    
+
 });

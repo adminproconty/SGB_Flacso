@@ -117,6 +117,7 @@
 				  	<label for="descuento_cliente" class="col-md-1 control-label">Descuento(%)</label>
                      <div class="col-md-1">
                         <input type="text" class="form-control input-sm" id="descuento_cliente" placeholder="%" readonly>
+                        <input type="hidden" id="gastos_producto" name="gastos_producto">
 						
                      </div>
 					 <label for="aplica_descuento" class="col-md-1 control-label">Aplica Descuento</label>
@@ -179,12 +180,14 @@
          		source: "./ajax/autocomplete/clientes.php",
          		minLength: 2,
          		select: function(event, ui) {
-         			event.preventDefault();
+                        event.preventDefault();
+                        var saldo = ui.item.saldo_cliente * 1;
+                        saldo = saldo.toFixed(2);
          			$('#id_cliente').val(ui.item.id_cliente);
          			$('#nombre_cliente').val(ui.item.nombre_cliente);
          			$('#tel1').val(ui.item.telefono_cliente);
          			$('#mail').val(ui.item.email_cliente);
-         			$('#saldo_cliente').val(ui.item.saldo_cliente);
+         			$('#saldo_cliente').val(saldo);
 					$('#documento_cli').val(ui.item.documento_cliente);
 					$('#nombre_empresas').val(ui.item.nombre_empresas); 
 					$('#descuento_cliente').val(ui.item.descuento*100); 
