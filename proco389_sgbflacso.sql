@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2018 a las 10:36:48
+-- Tiempo de generación: 02-05-2018 a las 00:43:19
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -243,7 +243,7 @@ INSERT INTO `clientes` (`id_cliente`, `nombre_cliente`, `documento_cliente`, `te
 (146, 'REYES NIETO ESTEBAN ANDRÃ‰S', '1714832852', '2340713', 'eareyes@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10145', '0.00', 0.1, 1),
 (147, 'RÃOS PARRA ADRIANA GABRIELA', '1802718070', '3261088', 'grios@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10146', '0.00', 0.1, 1),
 (148, 'RIVADENEIRA ALMEIDA SHITI DAMAYANTI', '1711956928', '2245404', 'sdrivadeneira@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10147', '0.00', 0.1, 1),
-(149, 'RIVERA VELEZ FREDY PATRICIO', '1706743067', '3340634', 'frivera@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10148', '-63.66', 0.1, 1),
+(149, 'RIVERA VELEZ FREDY PATRICIO', '1706743067', '3340634', 'frivera@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10148', '-84.16', 0.1, 1),
 (150, 'ROCHINA ASITUMBAY SANDRA TATIANA', '1727139808', '3510 251', 'srochina@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10149', '0.00', 0.1, 1),
 (151, 'RODAS FLORES MARCELO FRANCISCO', '1712085099', 's/d', 'mfrodas@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10150', '0.00', 0.1, 1),
 (152, 'RODRÃGUEZ VELA WILSON SANTIAGO', '1712429503', '3018605', 'wrodriguez@flacso.edu.ec', 'na', 1, '0000-00-00 00:00:09', '10151', '0.00', 0.1, 1),
@@ -1140,9 +1140,9 @@ CREATE TABLE `detalle_factura` (
 --
 
 INSERT INTO `detalle_factura` (`id_detalle`, `numero_factura`, `id_producto`, `cantidad`, `precio_venta`) VALUES
-(143, 2, 82, 1, 1),
-(142, 1, 77, 1, 2.25),
-(141, 1, 77, 1, 2.25);
+(160, 4, 84, 1, 0.8),
+(159, 3, 83, 1, 2.5),
+(158, 2, 83, 1, 2.5);
 
 -- --------------------------------------------------------
 
@@ -1207,8 +1207,10 @@ CREATE TABLE `facturas` (
 --
 
 INSERT INTO `facturas` (`id_factura`, `numero_factura`, `fecha_factura`, `id_cliente`, `id_vendedor`, `condiciones`, `total_venta`, `estado_factura`) VALUES
-(103, 2, '2018-05-01 06:10:32', 149, 1, '1', '1.12', 1),
-(102, 1, '2018-05-01 06:07:23', 149, 1, '1', '5.04', 1);
+(121, 4, '2018-05-02 00:34:02', 149, 1, '1', '0.9', 1),
+(120, 3, '2018-05-02 00:33:44', 149, 1, '1', '2.8', 1),
+(119, 2, '2018-05-02 00:33:10', 149, 1, '1', '11.76', 1),
+(118, 1, '2018-05-02 00:32:32', 149, 1, '1', '11.2', 1);
 
 -- --------------------------------------------------------
 
@@ -1408,8 +1410,8 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`id_tarjetas`, `codigo_tarjetas`, `cliente_id`, `monto_tarjetas`, `fecha_solicitud_Tarjetas`, `numero_factura`, `user_solicitud_id`, `estatus_tarjetas`) VALUES
-(9, '17067430671', 149, 3.95, '2018-04-30 22:08:20', '1', 1, 1),
-(10, '17067430672', 149, 10, '2018-04-30 22:20:30', '2', 1, 1);
+(16, '17067430672', 149, 2.4, '2018-05-01 17:33:10', '2', 1, 1),
+(15, '17067430671', 149, 10, '2018-05-01 17:32:32', '1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1425,6 +1427,13 @@ CREATE TABLE `tmp` (
   `tarjeta_temp` tinyint(1) NOT NULL,
   `session_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tmp`
+--
+
+INSERT INTO `tmp` (`id_tmp`, `id_producto`, `cantidad_tmp`, `precio_tmp`, `tarjeta_temp`, `session_id`) VALUES
+(397, 109, 1, 2.00, 0, 'kl6j9uqmdr51mrf5gq7pteb98v');
 
 -- --------------------------------------------------------
 
@@ -1611,7 +1620,7 @@ ALTER TABLE `detalle_caja_chica`
 -- AUTO_INCREMENT de la tabla `detalle_factura`
 --
 ALTER TABLE `detalle_factura`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT de la tabla `empresas`
@@ -1629,7 +1638,7 @@ ALTER TABLE `estatus`
 -- AUTO_INCREMENT de la tabla `facturas`
 --
 ALTER TABLE `facturas`
-  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT de la tabla `log_tarjeta`
@@ -1653,13 +1662,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  MODIFY `id_tarjetas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_tarjetas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `tmp`
 --
 ALTER TABLE `tmp`
-  MODIFY `id_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+  MODIFY `id_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=422;
 
 --
 -- AUTO_INCREMENT de la tabla `tmp_caja_chica`

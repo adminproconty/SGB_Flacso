@@ -8,6 +8,8 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     require_once("libraries/password_compatibility_library.php");
 }
 
+$_SESSION['user_perfil']="";
+
 // include the configs / constants for the database connection
 require_once("config/db.php");
 

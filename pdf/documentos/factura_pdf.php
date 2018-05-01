@@ -64,6 +64,7 @@
 
 	$total_compra=mysqli_real_escape_string($con,(strip_tags($_REQUEST['gastos_producto'], ENT_QUOTES)));
 
+	$aplica_tarjeta=mysqli_real_escape_string($con,(strip_tags($_REQUEST['aplica_tarjeta'], ENT_QUOTES)));
 
 
 	//Fin de variables por GET

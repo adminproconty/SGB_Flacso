@@ -172,7 +172,7 @@ $("#datos_factura").submit(function(event) {
     var total_factura = localStorage.getItem("total_factura");
     var aplica_tarjeta = $('input[name="aplica_tarjeta"]:checked').val();
 
-    
+
     if (aplica_descuento == 0) {
         total_gasto_tarjeta = total_gasto_tarjeta;
     } else {
@@ -185,14 +185,14 @@ $("#datos_factura").submit(function(event) {
         event.preventDefault();
     }
     var gastos_producto = (total_factura - total_gasto_tarjeta).toFixed(2);
-    
-    if (aplica_tarjeta != "no"){
+
+    if (aplica_tarjeta != "no") {
         if (cupo < gastos_producto) {
             alert('Saldo insuficiente, por favor, comprar una tarjeta');
             event.preventDefault();
         }
     }
-    
+
 
 });
 

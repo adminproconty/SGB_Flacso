@@ -338,25 +338,27 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 						1)");
 			}
 
-			$sql=mysqli_query($con, "SELECT * FROM `tarjetas` WHERE `cliente_id` = ".$id_cliente);
-			$apagar = $total_compra;
-			while ($row=mysqli_fetch_array($sql)){
-				if($apagar > 0) {
-					if($row['monto_tarjetas'] >= $apagar){
-						$resto = $row['monto_tarjetas'] - $apagar;
-						mysqli_query($con, "UPDATE `tarjetas` SET `monto_tarjetas`= $resto WHERE `id_tarjetas` = ".$row['id_tarjetas']);
-						if($resto == 0){
+			if($aplica_tarjeta == 'si'){
+				$sql=mysqli_query($con, "SELECT * FROM `tarjetas` WHERE `cliente_id` = ".$id_cliente);
+				$apagar = $total_compra;
+				while ($row=mysqli_fetch_array($sql)){
+					if($apagar > 0) {
+						if($row['monto_tarjetas'] >= $apagar){
+							$resto = $row['monto_tarjetas'] - $apagar;
+							mysqli_query($con, "UPDATE `tarjetas` SET `monto_tarjetas`= $resto WHERE `id_tarjetas` = ".$row['id_tarjetas']);
+							if($resto == 0){
+								mysqli_query($con, "UPDATE `tarjetas` SET `estatus_tarjetas`= 2 WHERE `id_tarjetas` = ".$row['id_tarjetas']);
+							}
+							$apagar = 0;
+						}else{
+							$resto = $apagar - $row['monto_tarjetas'];
+							mysqli_query($con, "UPDATE `tarjetas` SET `monto_tarjetas`= 0 WHERE `id_tarjetas` = ".$row['id_tarjetas']);
 							mysqli_query($con, "UPDATE `tarjetas` SET `estatus_tarjetas`= 2 WHERE `id_tarjetas` = ".$row['id_tarjetas']);
+							$apagar = $resto;
 						}
-						$apagar = 0;
-					}else{
-						$resto = $apagar - $row['monto_tarjetas'];
-						mysqli_query($con, "UPDATE `tarjetas` SET `monto_tarjetas`= 0 WHERE `id_tarjetas` = ".$row['id_tarjetas']);
-						mysqli_query($con, "UPDATE `tarjetas` SET `estatus_tarjetas`= 2 WHERE `id_tarjetas` = ".$row['id_tarjetas']);
-						$apagar = $resto;
-					}
-				}				
-			}
+					}				
+				}
+			}			
 
 			$impuesto=get_row('perfil','impuesto', 'id_perfil', 1);
 
