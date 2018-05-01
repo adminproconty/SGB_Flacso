@@ -105,9 +105,10 @@
 		//Count the total number of row in your table*/
 
 		$count_query   = mysqli_query($con, "SELECT count(cc.`id_cc`) as numrows
-                            FROM `caja_chica` as cc
-                            WHERE cc.`fecha_cc` >= '".$inicio."'
-                            AND cc.`fecha_cc` <= '".$fin."'");
+                            FROM `caja_chica` as cc, detalle_caja_chica dc 
+                            WHERE dc.caja_chica_id = cc.id_cc 
+							AND cc.`fecha_cc` >= '".$inicio." 00:00:00'
+                            AND cc.`fecha_cc` <= '".$fin." 23:59:59'");
 
 		$row= mysqli_fetch_array($count_query);
 
@@ -119,11 +120,12 @@
 
 		//main query to fetch the data
 
-		$sql="SELECT cc.`id_cc`, cc.`fecha_cc`, cc.`user_cc`, us.`firstname`, us.`lastname`, cc.`gasto_total_cc` 
+		$sql="SELECT cc.`id_cc`, cc.`fecha_cc`, cc.`user_cc`, us.`firstname`, us.`lastname`, cc.`gasto_total_cc`, dc.producto_dcc, dc.precio_total_dcc
                 FROM `caja_chica` as cc
                 JOIN `users` as us ON (cc.`user_cc` = us.`user_id`) 
-                WHERE cc.`fecha_cc` >= '".$inicio."'
-                AND cc.`fecha_cc` <= '".$fin."' 
+				JOIN `detalle_caja_chica` as dc ON (cc.`id_cc` = dc.`caja_chica_id`) 
+                WHERE cc.`fecha_cc` >= '".$inicio." 00:00:00'
+                AND cc.`fecha_cc` <= '".$fin." 23:59:59' 
                 LIMIT $offset,$per_page";
 
 		$query = mysqli_query($con, $sql);
@@ -148,6 +150,8 @@
 
 					<th>Usuario</th>
 
+					<th>Producto</th>
+
 					<th>
 						<span class='pull-right'>Total Gasto($)</span>
 					</th>
@@ -171,6 +175,12 @@
 						$usuario_apellido=$row['lastname'];
 
 						$gasto_total=$row['gasto_total_cc'];
+
+						$producto_dcc=$row['producto_dcc'];
+
+						$precio_total_dcc=$row['precio_total_dcc'];
+
+						
 
 						
 
@@ -200,7 +210,9 @@
 
 						<td><?php echo $usuario_nombre." ".$usuario_apellido;?> </td>
 
-						<td><span class='pull-right'><?php echo "$";?><?php echo number_format($gasto_total,2);?></span></td>
+						<td><?php echo $producto_dcc; ?></td>
+
+						<td><span class='pull-right'><?php echo "$";?><?php echo number_format($precio_total_dcc,2);?></span></td>
 
 					<td ><span class="pull-right">
 
