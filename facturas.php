@@ -11,6 +11,7 @@
 	$active_tarjetas="";
 	$active_usuarios="";	
 	$active_reportes="";
+	$active_caja_chica = "";
 	$title="Consumos | SGB";
 
 	include('ajax/is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado

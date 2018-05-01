@@ -10,6 +10,7 @@
    $active_tarjetas="";
    $active_usuarios="";	
    $active_reportes="";
+   $active_caja_chica = "";
    $title="SGB | Registro de Breaks";
    
    /* Connect To Database*/

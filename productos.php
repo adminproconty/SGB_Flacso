@@ -16,6 +16,7 @@
 	$active_tarjetas="";
 	$active_usuarios="";	
 	$active_reportes="";
+	$active_caja_chica = "";
 	$title="Productos | SGB";
 ?>
 <!DOCTYPE html>

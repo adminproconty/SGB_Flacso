@@ -30,6 +30,8 @@
 
 	$active_reportes="";
 
+	$active_caja_chica = "";
+
 	$title="Configuración | SGB";
 
 	

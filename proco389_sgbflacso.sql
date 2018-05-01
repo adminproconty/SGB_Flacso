@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2018 a las 06:45:31
+-- Tiempo de generación: 01-05-2018 a las 10:36:48
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proco389_sgbflacso`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `caja_chica`
+--
+
+CREATE TABLE `caja_chica` (
+  `id_cc` int(11) NOT NULL,
+  `fecha_cc` datetime NOT NULL,
+  `user_cc` int(11) NOT NULL,
+  `gasto_total_cc` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `caja_chica`
+--
+
+INSERT INTO `caja_chica` (`id_cc`, `fecha_cc`, `user_cc`, `gasto_total_cc`) VALUES
+(1, '2018-05-01 02:48:15', 1, 3.04),
+(2, '2018-05-01 02:50:18', 1, 3.04);
 
 -- --------------------------------------------------------
 
@@ -1078,6 +1099,31 @@ INSERT INTO `currencies` (`id`, `name`, `symbol`, `precision`, `thousand_separat
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `detalle_caja_chica`
+--
+
+CREATE TABLE `detalle_caja_chica` (
+  `id_dcc` int(11) NOT NULL,
+  `caja_chica_id` int(11) NOT NULL,
+  `producto_dcc` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad_dcc` int(5) NOT NULL,
+  `precio_unitario_dcc` float NOT NULL,
+  `precio_total_dcc` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_caja_chica`
+--
+
+INSERT INTO `detalle_caja_chica` (`id_dcc`, `caja_chica_id`, `producto_dcc`, `cantidad_dcc`, `precio_unitario_dcc`, `precio_total_dcc`) VALUES
+(1, 1, 'Producto 1', 2, 0.32, 0.64),
+(2, 1, 'Prod', 3, 0.8, 2.4),
+(3, 2, 'P', 1, 2.4, 2.4),
+(4, 2, 'P', 1, 0.64, 0.64);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `detalle_factura`
 --
 
@@ -1380,12 +1426,19 @@ CREATE TABLE `tmp` (
   `session_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `tmp`
+-- Estructura de tabla para la tabla `tmp_caja_chica`
 --
 
-INSERT INTO `tmp` (`id_tmp`, `id_producto`, `cantidad_tmp`, `precio_tmp`, `tarjeta_temp`, `session_id`) VALUES
-(386, 1, 1, 7.00, 1, 'aeq97mtcg4quocdd4ktk0bnds6');
+CREATE TABLE `tmp_caja_chica` (
+  `id_tempcc` int(11) NOT NULL,
+  `producto__tempcc` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `cantidad__tempcc` int(5) NOT NULL,
+  `precio_unitario__tempcc` float NOT NULL,
+  `sesion__tempcc` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -1418,6 +1471,12 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_name`, `user_pass
 --
 
 --
+-- Indices de la tabla `caja_chica`
+--
+ALTER TABLE `caja_chica`
+  ADD PRIMARY KEY (`id_cc`);
+
+--
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
@@ -1436,6 +1495,12 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `currencies`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `detalle_caja_chica`
+--
+ALTER TABLE `detalle_caja_chica`
+  ADD PRIMARY KEY (`id_dcc`);
 
 --
 -- Indices de la tabla `detalle_factura`
@@ -1495,6 +1560,12 @@ ALTER TABLE `tmp`
   ADD PRIMARY KEY (`id_tmp`);
 
 --
+-- Indices de la tabla `tmp_caja_chica`
+--
+ALTER TABLE `tmp_caja_chica`
+  ADD PRIMARY KEY (`id_tempcc`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -1505,6 +1576,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `caja_chica`
+--
+ALTER TABLE `caja_chica`
+  MODIFY `id_cc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -1523,6 +1600,12 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `currencies`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_caja_chica`
+--
+ALTER TABLE `detalle_caja_chica`
+  MODIFY `id_dcc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_factura`
@@ -1577,6 +1660,12 @@ ALTER TABLE `tarjetas`
 --
 ALTER TABLE `tmp`
   MODIFY `id_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+
+--
+-- AUTO_INCREMENT de la tabla `tmp_caja_chica`
+--
+ALTER TABLE `tmp_caja_chica`
+  MODIFY `id_tempcc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
