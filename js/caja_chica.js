@@ -12,7 +12,7 @@ function load(page) {
     if (fin == '') {
         fin = '3000-01-01';
     }
-    alert('inicio ' + inicio + ' fin ' + fin);
+    //alert('inicio ' + inicio + ' fin ' + fin);
     $.ajax({
         url: './ajax/buscar_caja_chica.php?action=ajax&page=' + page + '&inicio=' + inicio + '&fin=' + fin,
         beforeSend: function(objeto) {

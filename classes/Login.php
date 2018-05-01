@@ -87,6 +87,7 @@ class Login
 						$_SESSION['user_name'] = $result_row->user_name;
                         $_SESSION['user_email'] = $result_row->user_email;
                         $_SESSION['user_login_status'] = 1;
+                        $_SESSION['user_perfil'] = $result_row->user_perfil;
 
                     } else {
                         $this->errors[] = "Usuario y/o contraseña no coinciden.";
