@@ -1,3 +1,5 @@
+
+
 <?php
    session_start();
    if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
@@ -71,14 +73,12 @@
                      <label for="saldo_cliente" class="col-md-1 control-label">Saldo Tarjeta</label>
                      <div class="col-md-2">
                         <input type="text" class="form-control input-sm" id="saldo_cliente" placeholder="Saldo" readonly>
-						
                      </div>
                      <label for="nombre_empresas" class="col-md-1 control-label">Tipo Cliente</label>
                      <div class="col-md-2">
                         <input readonly type="text" class="form-control input-sm" id="nombre_empresas" placeholder="Tipo Cliente" required>
                      </div>
-					 
-					 <label for="id_vendedor" class="col-md-1 control-label">Vendedor</label>
+                     <label for="id_vendedor" class="col-md-1 control-label">Vendedor</label>
                      <div class="col-md-2">
                         <select class="form-control input-sm" id="id_vendedor" name="id_vendedor" readonly>
                            <?php
@@ -114,58 +114,72 @@
                         </select>
                      </div>
                   </div>
-				  <div class="form-group row">
-				  	<label for="descuento_cliente" class="col-md-1 control-label">Descuento(%)</label>
+                  <div class="form-group row">
+                     <label for="descuento_cliente" class="col-md-1 control-label">Descuento(%)</label>
                      <div class="col-md-1">
                         <input type="text" class="form-control input-sm" id="descuento_cliente" placeholder="%" readonly>
                         <input type="hidden" id="gastos_producto" name="gastos_producto">
-						
                      </div>
-					 <label for="aplica_descuento" class="col-md-1 control-label">Aplica Descuento</label>
+                     <label for="aplica_descuento" class="col-md-1 control-label">Aplica Descuento</label>
                      <div class="form-check">
-						<input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_si" onclick="actualiza_dsco(0)">
-						<label class="form-check-label" for="exampleRadios1">
-							Si
-						</label>
-						</div>
-						<div class="form-check">
-						<input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_no" value=0 checked onclick="actualiza_dsco(0)">
-						<label class="form-check-label" for="exampleRadios2">
-							No
-						</label>
-					 </div>
-				  </div>	 
-                  <div class="col-md-12">
-                     <div class="pull-right">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#consultaProducto" id="getproductos">
-                        <span class="glyphicon glyphicon-search"></span> Consulta productos
-                        </button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="addproducto">
-                        <span class="glyphicon glyphicon-plus"></span> Agregar productos
-                        </button>
-                        <button type="submit" class="btn btn-success" id="btn-comprar">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Comprar
-                        </button>
-                        <button type="button" class="btn btn-default" onclick="<?php $delete=mysqli_query($con, "DELETE FROM tmp WHERE session_id='".$session_id."'");?> javascript:window.location.reload();">
-                        <span class="glyphicon glyphicon-erase"></span> Limpiar Pantalla
-                        </button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto" style="display: none;">
-                        <span class="glyphicon glyphicon-plus"></span> Nuevo producto
-                        </button>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoCliente" style="display: none;">
-                        <span class="glyphicon glyphicon-user"></span> Nuevo cliente
-                        </button>
+                        <input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_si" onclick="actualiza_dsco(0)">
+                        <label class="form-check-label" for="exampleRadios1">
+                        Si
+                        </label>
                      </div>
+                     <div class="form-check">
+                        <input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_no" value=0 checked onclick="actualiza_dsco(0)">
+                        <label class="form-check-label" for="exampleRadios2">
+                        No
+                        </label>
+                     </div>
+
+                     <label for="aplica_tarjeta" class="col-md-1 control-label">Compra con Tajeta</label>
+                  <div class="form-check">
+                     <input class="form-check-input" type="radio" name="aplica_tarjeta" id="tarjeta_si" value = "si" >
+                     <label class="form-check-label" for="exampleRadios1">
+                     Si
+                     </label>
                   </div>
-               </form>
-               <div id="resultados" class='col-md-12' style="margin-top:10px"></div>
-               <!-- Carga los datos ajax -->			
+                  <div class="form-check">
+                     <input class="form-check-input" type="radio" name="aplica_tarjeta" id="tajeta_no" value = "no" checked >
+                     <label class="form-check-label" for="exampleRadios2">
+                     No
+                     </label>
+                  </div>
+                  
             </div>
-         </div>
-         <div class="row-fluid">
             <div class="col-md-12">
+            <div class="pull-right">
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#consultaProducto" id="getproductos">
+            <span class="glyphicon glyphicon-search"></span> Consulta productos
+            </button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="addproducto">
+            <span class="glyphicon glyphicon-plus"></span> Agregar productos
+            </button>
+            <button type="submit" class="btn btn-success" id="btn-comprar">
+            <span class="glyphicon glyphicon-shopping-cart"></span> Comprar
+            </button>
+            <button type="button" class="btn btn-default" onclick="<?php $delete=mysqli_query($con, "DELETE FROM tmp WHERE session_id='".$session_id."'");?> javascript:window.location.reload();">
+            <span class="glyphicon glyphicon-erase"></span> Limpiar Pantalla
+            </button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoProducto" style="display: none;">
+            <span class="glyphicon glyphicon-plus"></span> Nuevo producto
+            </button>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#nuevoCliente" style="display: none;">
+            <span class="glyphicon glyphicon-user"></span> Nuevo cliente
+            </button>
             </div>
+            </div>
+            </form>
+            <div id="resultados" class='col-md-12' style="margin-top:10px"></div>
+            <!-- Carga los datos ajax -->			
          </div>
+      </div>
+      <div class="row-fluid">
+         <div class="col-md-12">
+         </div>
+      </div>
       </div>
       <hr>
       <?php
@@ -189,11 +203,11 @@
          			$('#tel1').val(ui.item.telefono_cliente);
          			$('#mail').val(ui.item.email_cliente);
          			$('#saldo_cliente').val(saldo);
-					$('#documento_cli').val(ui.item.documento_cliente);
-					$('#nombre_empresas').val(ui.item.nombre_empresas); 
-					$('#descuento_cliente').val(ui.item.descuento*100); 
-					$('#descuento_si').val(ui.item.descuento*100); 
-
+         $('#documento_cli').val(ui.item.documento_cliente);
+         $('#nombre_empresas').val(ui.item.nombre_empresas); 
+         $('#descuento_cliente').val(ui.item.descuento*100); 
+         $('#descuento_si').val(ui.item.descuento*100); 
+         
          			localStorage.setItem('descuento', ui.item.descuento);
          		}
          });

@@ -397,15 +397,15 @@ $mail->Body = utf8_decode($cuerpo);
 
 
 
-		if ($mail->Send()) {
+		//if ($mail->Send()) {
 
 			//echo "Enviado con éxito";
 
-		} else {
+		//} else {
 
 			//echo "Venta Registrada correctamente. No se pudo realizar el envio";
 
-		}
+		//}
 
 	
 

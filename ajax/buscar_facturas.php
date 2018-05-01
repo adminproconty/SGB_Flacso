@@ -70,7 +70,7 @@
 
 			//Envio correo de devolución
 
-			require_once "correo_reverso.php";
+			//require_once "correo_reverso.php";
 
 
 
