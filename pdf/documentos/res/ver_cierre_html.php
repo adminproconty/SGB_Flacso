@@ -129,7 +129,7 @@ while ($row=mysqli_fetch_array($sql))
             $vendedor=$row["user_name"];
         ?>
                 <tr>
-                <th class='clouds' style="width: 100%; text-align: left">Vendedor: <?php echo $vendedor; ?></th>
+                <th colspan="2" class='clouds' style="width: 100%; text-align: left">Vendedor: <?php echo $vendedor; ?></th>
                 </tr>
                 
         <?php
@@ -140,7 +140,8 @@ while ($row=mysqli_fetch_array($sql))
             $ventas_efectivo=number_format($ventas_efectivo,2);
         ?>
                 <tr>
-                <th class='silver' style="width: 100%; text-align: left">Efectivo: $<?php echo $ventas_efectivo; ?></th>
+                <th class='silver' style="width: 25%; text-align: left">Efectivo: </th>
+                <th class='silver' style="width: 25%; text-align: left;">$<?php echo $ventas_efectivo; ?></th>
                 </tr>
         <?php
         }
@@ -150,8 +151,8 @@ while ($row=mysqli_fetch_array($sql))
             $ventas_transferencia=number_format($ventas_transferencia,2);
         ?>
                 <tr>
-                <th class='silver' style="width: 30%; text-align: left">Transferencias: $<?php echo $ventas_transferencia; ?></th>
-                
+                <th class='silver' style="width: 25%; text-align: left">Transferencias: </th>
+                <th class='silver' style="width: 25%; text-align: left;">$<?php echo $ventas_transferencia; ?></th>
                 </tr>
         <?php
         }
@@ -161,7 +162,8 @@ while ($row=mysqli_fetch_array($sql))
             $ventas_tarjeta=number_format($ventas_tarjeta,2);
         ?>
                 <tr>
-                <th class='silver' style="width: 100%; text-align: left">Tarjetas Prep: $<?php echo $ventas_tarjeta; ?></th>
+                <th class='silver' style="width: 25%; text-align: left">Tarjetas Prep: </th>
+                <th class='silver' style="width: 25%; text-align: left;">$<?php echo $ventas_tarjeta; ?></th>
                 </tr>
         <?php
         }
@@ -179,8 +181,12 @@ while ($row=mysqli_fetch_array($sql))
     <br>
     <br>
 
-	<div style="font-size:11pt;text-align:left;font-weight:bold">Jefe de Contrato</div>
-    <div style="font-size:11pt;text-align:left;font-weight:bold">Recibe</div>
+    <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
+        <tr>
+            <th class='silver' style="width: 50%; text-align: left; font-size:11pt">Jefe de Contrato</th>
+            <th class='silver' style="width: 50%; text-align: right; font-size:11pt">Recibe</th>
+        </tr>
+    </table>
 
 
 </page>
