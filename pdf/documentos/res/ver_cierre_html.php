@@ -107,7 +107,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
         <tr>
-            <th style="width: 100%;text-align:center" class='midnight-blue'>DETALLE DE CAJA CHICA</th>
+            <th style="width: 100%;text-align:center" class='midnight-blue'>DETALLE DE CIERRE DE CAJA</th>
         </tr>
     </table>    
 
@@ -122,12 +122,14 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
 
     $total = 0;
+    $i = 0;
+    $total_vendedor = 0;
 while ($row=mysqli_fetch_array($sql))
 
 	{
-        $total_vendedor = 0;
         if ($vendedor != $row["user_name"] ){
             $vendedor=$row["user_name"];
+            if($i == 0){
         ?>
                 <tr>
                 <th colspan="2" class='clouds' style="width: 99.9%; text-align: left">Vendedor: <?php echo $vendedor; ?></th>
@@ -135,13 +137,31 @@ while ($row=mysqli_fetch_array($sql))
                 </tr>
                 
         <?php
+            }else{
+
+        ?>
+        
+                <tr>
+                <th class='silver' style="width: 40%; text-align: left">Total Venta Vendendor: </th>
+                <th class='silver' style="width: 10%; text-align: right;">$<?php echo number_format($total_vendedor,2); ?></th>
+                <th class='silver' style="width: 50%; text-align: left;"></th>
+                </tr>
+
+                <tr>
+                <th colspan="2" class='clouds' style="width: 99.9%; text-align: left">Vendedor: <?php echo $vendedor; ?></th>
+                <th style="width: 0.1%; text-align: left"></th>
+                </tr>
+        
+        <?php
+                $total_vendedor = 0;
+            }
         }
 
         if ($row["condiciones"] == 1){
             $ventas_efectivo=$row["total_venta"];
-            $ventas_efectivo=number_format($ventas_efectivo,2);
             $total += $ventas_efectivo;
             $total_vendedor += $ventas_efectivo;
+            $ventas_efectivo=number_format($ventas_efectivo,2);            
         ?>
                 <tr>
                 <th class='silver' style="width: 40%; text-align: left;">Efectivo: </th>
@@ -153,9 +173,9 @@ while ($row=mysqli_fetch_array($sql))
         
         if ($row["condiciones"] == 2){
             $ventas_transferencia=$row["total_venta"];
-            $ventas_transferencia=number_format($ventas_transferencia,2);
             $total += $ventas_transferencia;
             $total_vendedor += $ventas_transferencia;
+            $ventas_transferencia=number_format($ventas_transferencia,2);            
         ?>
                 <tr>
                 <th class='silver' style="width: 40%; text-align: left">Transferencias: </th>
@@ -167,9 +187,9 @@ while ($row=mysqli_fetch_array($sql))
 
         if ($row["condiciones"] == 3){
             $ventas_tarjeta=$row["total_venta"];
-            $ventas_tarjeta=number_format($ventas_tarjeta,2);
             $total += $ventas_transferencia;
             $total_vendedor += $ventas_transferencia;
+            $ventas_tarjeta=number_format($ventas_tarjeta,2);            
         ?>
                 <tr>
                 <th class='silver' style="width: 40%; text-align: left">Tarjetas Prep: </th>
@@ -179,21 +199,21 @@ while ($row=mysqli_fetch_array($sql))
         <?php
         }
 
-        ?>
-
-                <tr>
-                <th class='silver' style="width: 40%; text-align: left">Total Venta Vendendor: </th>
-                <th class='silver' style="width: 10%; text-align: right;">$<?php echo $total_vendedor; ?></th>
-                <th class='silver' style="width: 50%; text-align: left;"></th>
-                </tr>
+        ?>                
 
         <?php
-
+        $i++;
 	}
 
         $total=number_format($total,2);
 
     ?>
+
+                <tr>
+                <th class='silver' style="width: 40%; text-align: left">Total Venta Vendendor: </th>
+                <th class='silver' style="width: 10%; text-align: right;">$<?php echo number_format($total_vendedor,2); ?></th>
+                <th class='silver' style="width: 50%; text-align: left;"></th>
+                </tr>
 
                 <tr style="margin-top: 15%;">
                 <th colspan="2" class='clouds' style="width: 99.9%; text-align: left"></th>
