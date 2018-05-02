@@ -121,7 +121,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         GROUP by usr.user_name, fac.condiciones");
 
 
-
+    $total = 0;
 while ($row=mysqli_fetch_array($sql))
 
 	{
@@ -129,7 +129,7 @@ while ($row=mysqli_fetch_array($sql))
             $vendedor=$row["user_name"];
         ?>
                 <tr>
-                <th colspan="2" class='clouds' style="width: 100%; text-align: left">Vendedor: <?php echo $vendedor; ?></th>
+                <th colspan="3" class='clouds' style="width: 100%; text-align: left">Vendedor: <?php echo $vendedor; ?></th>
                 </tr>
                 
         <?php
@@ -138,10 +138,12 @@ while ($row=mysqli_fetch_array($sql))
         if ($row["condiciones"] == 1){
             $ventas_efectivo=$row["total_venta"];
             $ventas_efectivo=number_format($ventas_efectivo,2);
+            $total += $ventas_efectivo;
         ?>
                 <tr>
-                <th class='silver' style="width: 25%; text-align: left">Efectivo: </th>
-                <th class='silver' style="width: 25%; text-align: left;">$<?php echo $ventas_efectivo; ?></th>
+                <th class='silver' style="width: 40%; text-align: left;">Efectivo: </th>
+                <th class='silver' style="width: 10%; text-align: right;">$<?php echo $ventas_efectivo; ?></th>
+                <th class='silver' style="width: 50%; text-align: left;"></th>
                 </tr>
         <?php
         }
@@ -149,10 +151,12 @@ while ($row=mysqli_fetch_array($sql))
         if ($row["condiciones"] == 2){
             $ventas_transferencia=$row["total_venta"];
             $ventas_transferencia=number_format($ventas_transferencia,2);
+            $total += $ventas_transferencia;
         ?>
                 <tr>
-                <th class='silver' style="width: 25%; text-align: left">Transferencias: </th>
-                <th class='silver' style="width: 25%; text-align: left;">$<?php echo $ventas_transferencia; ?></th>
+                <th class='silver' style="width: 40%; text-align: left">Transferencias: </th>
+                <th class='silver' style="width: 10%; text-align: right;">$<?php echo $ventas_transferencia; ?></th>
+                <th class='silver' style="width: 50%; text-align: left;"></th>
                 </tr>
         <?php
         }
@@ -160,19 +164,27 @@ while ($row=mysqli_fetch_array($sql))
         if ($row["condiciones"] == 3){
             $ventas_tarjeta=$row["total_venta"];
             $ventas_tarjeta=number_format($ventas_tarjeta,2);
+            $total += $ventas_transferencia;
         ?>
                 <tr>
-                <th class='silver' style="width: 25%; text-align: left">Tarjetas Prep: </th>
-                <th class='silver' style="width: 25%; text-align: left;">$<?php echo $ventas_tarjeta; ?></th>
+                <th class='silver' style="width: 40%; text-align: left">Tarjetas Prep: </th>
+                <th class='silver' style="width: 10%; text-align: right;">$<?php echo $ventas_tarjeta; ?></th>
+                <th class='silver' style="width: 50%; text-align: left;"></th>
                 </tr>
         <?php
         }
 
 	}
 
+        $total=number_format($total,2);
+
     ?>
 
-
+                <tr>
+                <th class='silver' style="width: 40%; text-align: left">Total Venta: </th>
+                <th class='silver' style="width: 10%; text-align: right;">$<?php echo $total; ?></th>
+                <th class='silver' style="width: 50%; text-align: left;"></th>
+                </tr>
     </table>
 
 
@@ -184,7 +196,7 @@ while ($row=mysqli_fetch_array($sql))
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
         <tr>
             <th class='silver' style="width: 50%; text-align: left; font-size:11pt">Jefe de Contrato</th>
-            <th class='silver' style="width: 50%; text-align: right; font-size:11pt">Recibe</th>
+            <th class='silver' style="width: 40%; text-align: right; font-size:11pt">Recibe</th>
         </tr>
     </table>
 
