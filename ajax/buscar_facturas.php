@@ -10,7 +10,9 @@
 
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
-	
+	$user_id = $_SESSION['user_id'];
+    $query_usuario2=mysqli_query($con,"select * from users where user_id='".$user_id."'");
+	$row_user=mysqli_fetch_array($query_usuario2);		
 
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 
@@ -235,7 +237,7 @@
 						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
 					
 					<?php
-						if ($_SESSION['user_perfil'] != "Ventas"){
+						if ($row2['perfil'] == "Administrador") {
 					?>	
 							<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					<?php		
