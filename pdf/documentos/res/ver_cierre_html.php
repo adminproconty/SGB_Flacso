@@ -175,15 +175,19 @@ while ($row=mysqli_fetch_array($sql))
                 <th class='silver' style="width: 40%; text-align: left">Tarjetas Prep: </th>
                 <th class='silver' style="width: 10%; text-align: right;">$<?php echo $ventas_tarjeta; ?></th>
                 <th class='silver' style="width: 50%; text-align: left;"></th>
-                </tr>
+                </tr>                
+        <?php
+        }
+
+        ?>
 
                 <tr>
                 <th class='silver' style="width: 40%; text-align: left">Total Venta Vendendor: </th>
                 <th class='silver' style="width: 10%; text-align: right;">$<?php echo $total_vendedor; ?></th>
                 <th class='silver' style="width: 50%; text-align: left;"></th>
                 </tr>
+
         <?php
-        }
 
 	}
 
@@ -191,7 +195,7 @@ while ($row=mysqli_fetch_array($sql))
 
     ?>
 
-                <tr style="margin-top: 5%;">
+                <tr style="margin-top: 15%;">
                 <th colspan="2" class='clouds' style="width: 99.9%; text-align: left"></th>
                 <th style="width: 0.1%; text-align: left"></th>
                 </tr>
