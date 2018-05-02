@@ -23,7 +23,28 @@
    
    	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
    
-   	//Archivo de funciones PHP
+       
+    //obtiene id de producto para tarjeta
+    function getidTarjetas($con){
+
+		$sql="SELECT `id_producto` FROM `products` WHERE `nombre_producto` = 'Tarjeta Prepago'";
+
+		$query = mysqli_query($con, $sql);
+
+		$count=mysqli_num_rows($query);
+
+		if($count > 0) {
+			$saldo = 0;
+			while($row=mysqli_fetch_array($query)){
+				$id_prod_tarjeta = $row['id_producto'];
+			}
+			return $id_prod_tarjeta;
+		}else{
+			return 0;
+		}
+	}
+    
+       //Archivo de funciones PHP
    
    	include("../funciones.php");
 
@@ -31,8 +52,9 @@
    
    {
    	if(isset($_POST['tarjeta'])){
-   		$insert_tmp=mysqli_query($con, "INSERT INTO `tmp`(`id_producto`, `cantidad_tmp`, `precio_tmp`, `tarjeta_temp`, `session_id`)  
-   			VALUES (1,'$cantidad','$precio_venta', 1, '$session_id')");
+        $id_prod_tarjeta2=getidTarjetas($con);
+        $insert_tmp=mysqli_query($con, "INSERT INTO `tmp`(`id_producto`, `cantidad_tmp`, `precio_tmp`, `tarjeta_temp`, `session_id`)  
+   			VALUES ($id_prod_tarjeta2,'$cantidad','$precio_venta', 1, '$session_id')");
    	}else{
    		$insert_tmp=mysqli_query($con, "INSERT INTO `tmp`(`id_producto`, `cantidad_tmp`, `precio_tmp`, `tarjeta_temp`, `session_id`)  
    			VALUES ('$id','$cantidad','$precio_venta', 0, '$session_id')");

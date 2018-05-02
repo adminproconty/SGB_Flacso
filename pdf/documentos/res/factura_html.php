@@ -247,7 +247,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
 		$sumador_total=0;
 
-		$sql=mysqli_query($con, "select * from products, tmp where tmp.tarjeta_temp = 0 and (products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."')");
+		$sql=mysqli_query($con, "select * from products, tmp where (products.id_producto=tmp.id_producto and tmp.session_id='".$session_id."')");
 
 		while ($row=mysqli_fetch_array($sql))
 
@@ -262,8 +262,6 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			$cantidad=$row['cantidad_tmp'];
 
 			$nombre_producto=$row['nombre_producto'];
-
-			
 
 			$precio_venta=$row['precio_tmp'];
 
