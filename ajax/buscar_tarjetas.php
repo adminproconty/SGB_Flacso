@@ -242,7 +242,7 @@
 						<td><?php echo $email_cliente; ?></td>
 						<td><?php echo $codigo_tarjetas; ?></td>
 						<td><?php echo $fecha_solicitud_Tarjetas; ?></td> 
-						<td><?php echo $monto_tarjetas; ?></td>
+						<td class='text-right'><?php echo number_format ($monto_tarjetas,2); ?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $nombre_estatus; ?></span></td>
 
 					    <td >

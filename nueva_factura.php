@@ -203,10 +203,10 @@
          			$('#tel1').val(ui.item.telefono_cliente);
          			$('#mail').val(ui.item.email_cliente);
          			$('#saldo_cliente').val(saldo);
-         $('#documento_cli').val(ui.item.documento_cliente);
-         $('#nombre_empresas').val(ui.item.nombre_empresas); 
-         $('#descuento_cliente').val(ui.item.descuento*100); 
-         $('#descuento_si').val(ui.item.descuento*100); 
+                        $('#documento_cli').val(ui.item.documento_cliente);
+                        $('#nombre_empresas').val(ui.item.nombre_empresas); 
+                        $('#descuento_cliente').val(ui.item.descuento*100); 
+                        $('#descuento_si').val(ui.item.descuento*100); 
          
          			localStorage.setItem('descuento', ui.item.descuento);
          		}

@@ -7,9 +7,9 @@ $return_arr = array();
 if ($con)
 {
 	
-	$fetch = mysqli_query($con,"SELECT * FROM clientes, empresas where empresa_cliente = id_empresas and nombre_cliente 
-				like '%" . mysqli_real_escape_string($con,($_GET['term'])) . "%' 
-				OR `documento_cliente` like '%" . mysqli_real_escape_string($con,($_GET['term'])) . "%'  
+	$fetch = mysqli_query($con,"SELECT DISTINCT * FROM clientes, empresas where empresa_cliente = id_empresas 
+				and (nombre_cliente 	like '%" . mysqli_real_escape_string($con,($_GET['term'])) . "%' 
+				OR `documento_cliente` like '%" . mysqli_real_escape_string($con,($_GET['term'])) . "%')
 				LIMIT 0 ,50"); 
 	
 	/* Retrieve and store in array the results of the query.*/
@@ -27,7 +27,6 @@ if ($con)
 		$row_array['nombre_empresas']=$row['nombre_empresas'];
 		array_push($return_arr,$row_array);
 	}
-	
 	
 }
 

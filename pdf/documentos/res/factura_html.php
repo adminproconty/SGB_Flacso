@@ -211,12 +211,6 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
         </tr>
 
-		
-
-        
-
-   
-
     </table>
 
 	<br>
