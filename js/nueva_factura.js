@@ -40,7 +40,8 @@ function agregar(id) {
     var precio_venta = document.getElementById('precio_venta_' + id).value;
     var cantidad = document.getElementById('cantidad_' + id).value;
     var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
-    //alert("aplica " + aplica_descuento);
+    var aplica_iva = $('input:radio[name=aplica_iva]:checked').val();
+    //alert("aplica " + aplica_iva);
     //Inicia validacion
     if (isNaN(cantidad)) {
         alert('Esto no es un numero');
@@ -57,14 +58,14 @@ function agregar(id) {
     $.ajax({
         type: "POST",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=" + id + "&precio_venta=" + precio_venta + "&cantidad=" + cantidad + "&aplica_descuento=" + aplica_descuento,
+        data: "id=" + id + "&precio_venta=" + precio_venta + "&cantidad=" + cantidad + "&aplica_descuento=" + aplica_descuento + "&aplica_iva=" + aplica_iva,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
         success: function(datos) {
             $("#resultados").html(datos);
             var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
-            var iva_tarjeta = gasto_tarjeta * 0.12;
+            var iva_tarjeta = gasto_tarjeta * $('input:radio[name=aplica_iva]:checked').val();
             var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
             var aplica_descuento = localStorage.getItem("aplica_descuento");
             var total_factura = localStorage.getItem("total_factura");
@@ -84,10 +85,11 @@ function agregar(id) {
 $('#guardar_tarjeta').submit(function(event) {
     var precio_venta = document.getElementById('monto').value;
     var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
+    var aplica_iva = $('input:radio[name=aplica_iva]:checked').val();
     $.ajax({
         type: "POST",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=1&precio_venta=" + precio_venta + "&cantidad=1&tarjeta=0" + "&aplica_descuento=" + aplica_descuento,
+        data: "id=1&precio_venta=" + precio_venta + "&cantidad=1&tarjeta=0" + "&aplica_descuento=" + aplica_descuento + "&aplica_iva=" + aplica_iva,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
@@ -100,17 +102,18 @@ $('#guardar_tarjeta').submit(function(event) {
 
 function eliminar(id) {
     var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
+    var aplica_iva = $('input:radio[name=aplica_iva]:checked').val();
     $.ajax({
         type: "GET",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=" + id + "&aplica_descuento=" + aplica_descuento,
+        data: "id=" + id + "&aplica_descuento=" + aplica_descuento + "&aplica_iva=" + aplica_iva,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
         success: function(datos) {
             $("#resultados").html(datos);
             var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
-            var iva_tarjeta = gasto_tarjeta * 0.12;
+            var iva_tarjeta = gasto_tarjeta * $('input:radio[name=aplica_iva]:checked').val();
             var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
             var aplica_descuento = localStorage.getItem("aplica_descuento");
             var total_factura = localStorage.getItem("total_factura");
@@ -130,6 +133,8 @@ function eliminar(id) {
 
 function actualiza_dsco(id) {
     var aplica_descuento = $('input:radio[name=aplica_descuento]:checked').val();
+    var aplica_iva = $('input:radio[name=aplica_iva]:checked').val();
+    //alert ("iva " + aplica_iva);
     if (aplica_descuento == 0) {
         localStorage.setItem('aplica_descuento', 0);
     } else {
@@ -138,14 +143,14 @@ function actualiza_dsco(id) {
     $.ajax({
         type: "GET",
         url: "./ajax/agregar_facturacion.php",
-        data: "id=" + id + "&aplica_descuento=" + aplica_descuento,
+        data: "id=" + id + "&aplica_descuento=" + aplica_descuento + "&aplica_iva=" + aplica_iva,
         beforeSend: function(objeto) {
             $("#resultados").html("Mensaje: Cargando...");
         },
         success: function(datos) {
             $("#resultados").html(datos);
             var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
-            var iva_tarjeta = gasto_tarjeta * 0.12;
+            var iva_tarjeta = gasto_tarjeta * $('input:radio[name=aplica_iva]:checked').val();
             var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
             var aplica_descuento = localStorage.getItem("aplica_descuento");
             var total_factura = localStorage.getItem("total_factura");
@@ -162,17 +167,20 @@ function actualiza_dsco(id) {
     });
 }
 
+
 $("#datos_factura").submit(function(event) {
+    
     var cupo = $('#saldo_cliente').val() * 1;
     var cantidad_productos = localStorage.getItem('cantidad_productos');
     var gasto_tarjeta = $('#gastos_tarjeta').val() * 1;
-    var iva_tarjeta = gasto_tarjeta * 0.12;
+    var iva_tarjeta = gasto_tarjeta * aplica_iva;
     var total_gasto_tarjeta = gasto_tarjeta + iva_tarjeta;
     var aplica_descuento = localStorage.getItem("aplica_descuento");
     var total_factura = localStorage.getItem("total_factura");
     var aplica_tarjeta = $('input[name="aplica_tarjeta"]:checked').val();
+    var aplica_iva = $('input[name="aplica_iva"]:checked').val();
 
-
+    //alert("iva " + aplica_iva);
     if (aplica_descuento == 0) {
         total_gasto_tarjeta = total_gasto_tarjeta;
     } else {

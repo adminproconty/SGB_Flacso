@@ -66,6 +66,8 @@
 
 	$aplica_tarjeta=mysqli_real_escape_string($con,(strip_tags($_REQUEST['aplica_tarjeta'], ENT_QUOTES)));
 
+	$aplica_iva=mysqli_real_escape_string($con,(strip_tags($_REQUEST['aplica_iva'], ENT_QUOTES)));
+
 
 	//Fin de variables por GET
 

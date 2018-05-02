@@ -196,13 +196,13 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
 				<?php 
 
-				if ($condiciones==1){echo "Consumo Interno";}
-
-				elseif ($condiciones==2){echo "Cheque";}
-
-				elseif ($condiciones==3){echo "Transferencia bancaria";}
-
-				elseif ($condiciones==4){echo "Crédito";}
+				if ($condiciones==1){
+					echo "Efectivo";
+				}elseif ($condiciones==2){
+					echo "Transferencia bancaria";
+				}elseif ($condiciones==3){
+					echo "Tarjeta Prepago";
+				}
 
 				?>
 
@@ -278,6 +278,8 @@ while ($row=mysqli_fetch_array($sql))
 
 	$sumador_total+=$precio_total_r;//Sumador
 
+	$total_master_fac = $row['total_venta'];
+
 	if ($nums%2==0){
 
 		$clase="clouds";
@@ -322,7 +324,9 @@ while ($row=mysqli_fetch_array($sql))
 
 	$subtotal=number_format($sumador_total,2,'.','');
 
-	$total_iva=($subtotal * $impuesto )/100;
+	//$total_iva=($subtotal * $impuesto )/100;
+
+	$total_iva = $total_master_fac - $subtotal;
 
 	$total_iva=number_format($total_iva,2,'.','');
 

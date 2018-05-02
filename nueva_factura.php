@@ -102,51 +102,48 @@
                      <div class="col-md-2">
                         <input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
                      </div>
-                     <!--
-                        <label for="email" class="col-md-1 control-label">Pago</label>
-                        -->
-                     <div class="col-md-3">
-                        <select class='form-control input-sm' id="condiciones" name="condiciones"  style="visibility:hidden">
-                           <option value="1">Efectivo</option>
-                           <option value="2">Cheque</option>
-                           <option value="3">Transferencia bancaria</option>
-                           <option value="4">Crédito</option>
-                        </select>
-                     </div>
+                     
                   </div>
+                  
                   <div class="form-group row">
                      <label for="descuento_cliente" class="col-md-1 control-label">Descuento(%)</label>
                      <div class="col-md-1">
                         <input type="text" class="form-control input-sm" id="descuento_cliente" placeholder="%" readonly>
                         <input type="hidden" id="gastos_producto" name="gastos_producto">
                      </div>
-                     <label for="aplica_descuento" class="col-md-1 control-label">Aplica Descuento</label>
+                     <label for="email" class="col-md-1 control-label">F. Pago</label>
+                     <div class="col-md-3">
+                        <select class='form-control input-sm' id="condiciones" name="condiciones">
+                           <option value="1" selected>Efectivo</option>
+                           <option value="2">Transferencia bancaria</option>
+                           <option value="3">Tarjeta Prepago</option>
+                        </select>
+                     </div>
+                   
+                   </div>
+                   <div class="form-group row">  
+                     <label for="aplica_descuento" class="col-md-2 control-label">Aplica Descuento</label>
                      <div class="form-check">
                         <input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_si" onclick="actualiza_dsco(0)">
-                        <label class="form-check-label" for="exampleRadios1">
-                        Si
-                        </label>
-                     </div>
-                     <div class="form-check">
+                        <label class="form-check-label" for="exampleRadios1">Si</label>
                         <input class="form-check-input" type="radio" name="aplica_descuento" id="descuento_no" value=0 checked onclick="actualiza_dsco(0)">
-                        <label class="form-check-label" for="exampleRadios2">
-                        No
-                        </label>
+                        <label class="form-check-label" for="exampleRadios2">No</label>
                      </div>
 
-                     <label for="aplica_tarjeta" class="col-md-1 control-label">Compra con Tajeta</label>
-                  <div class="form-check">
-                     <input class="form-check-input" type="radio" name="aplica_tarjeta" id="tarjeta_si" value = "si" >
-                     <label class="form-check-label" for="exampleRadios1">
-                     Si
-                     </label>
-                  </div>
-                  <div class="form-check">
-                     <input class="form-check-input" type="radio" name="aplica_tarjeta" id="tajeta_no" value = "no" checked >
-                     <label class="form-check-label" for="exampleRadios2">
-                     No
-                     </label>
-                  </div>
+                     <label for="aplica_tarjeta" class="col-md-2 control-label">Compra con Tajeta</label>
+                     <div class="form-check">
+                       <input class="form-check-input" type="radio" name="aplica_tarjeta" id="tarjeta_si" value = "si" >
+                       <label class="form-check-label" for="exampleRadios1">Si</label>
+                       <input class="form-check-input" type="radio" name="aplica_tarjeta" id="tajeta_no" value = "no" checked >
+                       <label class="form-check-label" for="exampleRadios2">No</label>
+                     </div>               
+                     <label for="aplica_iva" class="col-md-2 control-label">Paga IVA</label>
+                     <div class="form-check">
+                       <input class="form-check-input" type="radio" name="aplica_iva" id="iva_si" value=0.12 onclick="actualiza_dsco(0)" >
+                       <label class="form-check-label" for="exampleRadios1">Si</label>
+                       <input class="form-check-input" type="radio" name="aplica_iva" id="iva_no" value=0 checked onclick="actualiza_dsco(0)" >
+                       <label class="form-check-label" for="exampleRadios2">No</label> 
+                     </div>
                   
             </div>
             <div class="col-md-12">

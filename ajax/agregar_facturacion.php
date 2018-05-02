@@ -12,6 +12,8 @@
    if (isset($_POST['precio_venta'])){$precio_venta=$_POST['precio_venta'];}
 
    if (isset($_POST['aplica_descuento'])){$descuento_cliente=$_POST['aplica_descuento'];}
+
+   if (isset($_POST['aplica_iva'])){$aplica_iva=$_POST['aplica_iva'];}
    
    
    
@@ -46,7 +48,9 @@
 		
 		$delete=mysqli_query($con, "DELETE FROM tmp WHERE id_tmp='".$id_tmp."'");
    
-		$descuento_cliente = $_GET['aplica_descuento'];
+        $descuento_cliente = $_GET['aplica_descuento'];
+        
+        $aplica_iva = $_GET['aplica_iva'];
    }
    
    $simbolo_moneda=get_row('perfil','moneda', 'id_perfil', 1);
@@ -109,7 +113,7 @@
       }
       
       $st = $sumador_total;
-      $iv = $st * 0.12;
+      $iv = $st * $aplica_iva;
       $tot = $st + $iv;
       
       $sql=mysqli_query($con, "SELECT `id_tmp`, `cantidad_tmp`, `precio_tmp` FROM `tmp` 
@@ -160,7 +164,14 @@
    <?php
       }
       
-      $impuesto=get_row('perfil','impuesto', 'id_perfil', 1);
+      $impr_impuesto=get_row('perfil','impuesto', 'id_perfil', 1);
+      if ($aplica_iva == 0){
+        $impuesto = 0;
+      } else {
+          
+          $impuesto=get_row('perfil','impuesto', 'id_perfil', 1);
+      }
+      
       
 	  $subtotal=number_format($sumador_total,2,'.','');
 	  
@@ -188,7 +199,7 @@
       <td></td>
    </tr>
    <tr>
-      <td class='text-right' colspan=4>IVA (<?php echo $impuesto;?>)% <?php echo $simbolo_moneda;?></td>
+      <td class='text-right' colspan=4>IVA (<?php echo $impr_impuesto;?>)% <?php echo $simbolo_moneda;?></td>
       <td class='text-right'><?php echo number_format($total_iva,2);?></td>
       <td></td>
    </tr>

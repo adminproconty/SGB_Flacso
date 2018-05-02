@@ -4,6 +4,8 @@
 
 	session_start();
 
+    date_default_timezone_set('America/Bogota');
+
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
 
         header("location: ../login.php");
@@ -72,7 +74,7 @@
         
         echo "<script>alert('Registro Generado con Éxito!!!')</script>";
           
-        echo '<script>window.location.href = "../nueva_compra.php";</script>';
+        echo '<script>window.location.href = "../caja_chica.php";</script>';
 
     }  
     

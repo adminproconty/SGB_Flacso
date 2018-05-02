@@ -1,7 +1,7 @@
 <?php
 
 include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
-
+date_default_timezone_set('America/Bogota');
 	/*Inicia validacion del lado del servidor*/
 
 	if (empty($_POST['codigo'])) {

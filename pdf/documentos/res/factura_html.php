@@ -124,6 +124,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
 			<?php 
 
+			date_default_timezone_set('America/Bogota');
+
 				$sql_cliente=mysqli_query($con,"select * from clientes where id_cliente='$id_cliente'");
 
 				$rw_cliente=mysqli_fetch_array($sql_cliente);
@@ -197,13 +199,17 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
 				<?php 
 
-				if ($condiciones==1){echo "Consumo Interno";}
+				if($aplica_tarjeta == 'si'){
+					$condiciones = 3;
+				}
 
-				elseif ($condiciones==2){echo "Cheque";}
-
-				elseif ($condiciones==3){echo "Transferencia bancaria";}
-
-				elseif ($condiciones==4){echo "Crédito";}
+				if ($condiciones==1){
+					echo "Efectivo";
+				}elseif ($condiciones==2){
+					echo "Transferencia bancaria";
+				}elseif ($condiciones==3){
+					echo "Tarjeta Prepago";
+				}	
 
 				?>
 
@@ -354,7 +360,11 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 				}
 			}			
 
-			$impuesto=get_row('perfil','impuesto', 'id_perfil', 1);
+			if($aplica_iva == 0){
+				$impuesto = 0;
+			} else {
+				$impuesto=get_row('perfil','impuesto', 'id_perfil', 1);
+			}	
 
 			$subtotal=number_format($sumador_total,2,'.','');
 
@@ -380,29 +390,14 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 
     </table>
 
-	
-
-	
-
-	
-
 	<br>
 
 	<div style="font-size:11pt;text-align:center;font-weight:bold">Gracias por su compra!</div>
-
-	
-
-	
-
-	  
-
-
-
 </page>
 
 
 
-<?php include("bodymail.php");?>
+<?php //include("bodymail.php");?>
 
 
 

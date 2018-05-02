@@ -125,7 +125,8 @@
                 JOIN `users` as us ON (cc.`user_cc` = us.`user_id`) 
 				JOIN `detalle_caja_chica` as dc ON (cc.`id_cc` = dc.`caja_chica_id`) 
                 WHERE cc.`fecha_cc` >= '".$inicio." 00:00:00'
-                AND cc.`fecha_cc` <= '".$fin." 23:59:59' 
+				AND cc.`fecha_cc` <= '".$fin." 23:59:59' 
+				ORDER BY cc.`id_cc` DESC
                 LIMIT $offset,$per_page";
 
 		$query = mysqli_query($con, $sql);
@@ -216,7 +217,7 @@
 
 					<td ><span class="pull-right">
 
-					    <a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
+					 <!-- <a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a>  -->
 
                         <a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 
