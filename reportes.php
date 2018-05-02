@@ -46,71 +46,42 @@
 			<form class="form-horizontal" role="form" style="margin-bottom: 25px;">
 				
 				<div class="form-group row">
-					<label for="q" class="col-md-3 control-label">Seleccione el Tipo de Reporte:</label>
+					<label for="q" class="col-md-2 control-label">Seleccione:</label>
 					<div class="col-md-4">
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
-					        <option value="cliente">Ventas por Cliente</option>
-					        <option value="producto">Productos Vendidos</option>
+					        <option value="cierre">Cierre de Caja</option>
+					         <option value="ventas">Ventas Detalladas</option> 
 				        </select>
 					</div>
-							
-							
-							
-				<div class="col-md-3">
-					<button type="button" class="btn btn-default" onclick='load(1);' style="display: none;">
-					    <span class="glyphicon glyphicon-search" ></span> Buscar</button>
-						<span id="loader"></span>
-					</div>
-				</div>
+				</div>							
+				<div class="for-group row">
 
-                <div class="for-group row" id="form_busq_producto">
-                    <div class="col-md-4">
-                        <label for="q" class="control-label" style="display: inline-block; width: 20%;">Producto:</label>
-                        <input type="text" class="form-control input-sm" style="display: inline-block; width: 75%;" id="nombre_producto" placeholder="Selecciona un producto">
-                        <input id="id_producto" type='hidden' name="id producto">                        
-                    </div>
+					 <label for="tel2" class="col-md-2 control-label">Desde</label>
+                     <div class="col-md-2">
+                        <input type="date" class="form-control input-sm" id="fecha_ini">
+                     </div>
 
-                    <div class="col-md-4">
-                        <label for="q" class="control-label">Desde:</label>
-                        <input type="date" id="desde_producto">
-                        <input type="hidden" id="inicio_producto">
-                    </div>
+					 <label for="tel2" class="col-md-1 control-label">Hasta</label>
+                     <div class="col-md-2">
+                        <input type="date" class="form-control input-sm" id="fecha_fin">
+                     </div>
 
-                    <div class="col-md-4">
-                    <label for="q" class="control-label">Hasta:</label> 
-                        <input type="date" id="hasta_producto">
-                        <input type="hidden" id="fin_producto">
-                    </div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-success" data-toggle="modal" onclick="reportes(1)">
+						<span class="glyphicon glyphicon-search"></span> Obtener Reporte
+						</button>
+					<div>	
+
                 </div>
-
-                <div class="for-group row" id="form_busq_cliente">
-                    <div class="col-md-4">
-                        <label for="q" class="control-label" style="display: inline-block; width: 20%;">Cliente:</label>
-                        <input type="text" class="form-control input-sm" style="display: inline-block; width: 75%;" id="nombre_cliente" placeholder="Selecciona un cliente">
-					    <input id="id_cliente" type='hidden' name="id_cliente">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="q" class="control-label">Desde:</label>
-                        <input type="date" id="desde_cliente">
-                        <input type="hidden" id="inicio_cliente">
-                    </div>
-
-                    <div class="col-md-4">
-                    <label for="q" class="control-label">Hasta:</label> 
-                        <input type="date" id="hasta_cliente">
-                        <input type="hidden" id="fin_cliente">
-                    </div>
-                </div>
-
+				
 			</form>
 				<div id="resultados"></div><!-- Carga los datos ajax -->
 				<div class='outer_div'></div><!-- Carga los datos ajax -->
 						
 			</div>
 		</div>
-
+			
 	</div>
 	<hr>
 	<?php

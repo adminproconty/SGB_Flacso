@@ -237,7 +237,7 @@
 						<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
 					
 					<?php
-						if ($row2['perfil'] == "Administrador") {
+						if ($row_user['perfil'] == "Administrador") {
 					?>	
 							<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 					<?php		
