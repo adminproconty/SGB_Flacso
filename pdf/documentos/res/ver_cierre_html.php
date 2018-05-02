@@ -187,8 +187,8 @@ while ($row=mysqli_fetch_array($sql))
 
         if ($row["condiciones"] == 3){
             $ventas_tarjeta=$row["total_venta"];
-            $total += $ventas_transferencia;
-            $total_vendedor += $ventas_transferencia;
+            $total += $ventas_tarjeta;
+            $total_vendedor += $ventas_tarjeta;
             $ventas_tarjeta=number_format($ventas_tarjeta,2);            
         ?>
                 <tr>
