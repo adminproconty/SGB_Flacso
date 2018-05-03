@@ -107,7 +107,24 @@
 		</script>
 	</head>
 	<body onload="imprimir();">
-		Hola PHPCentral!
+	Nombre: CHRISTIAN TERAN<br/>
+Fecha: 3-May-2018<br/>
+Vendedor: Ventas1<br/>
+-------------------------<br/>
+Cant.    Prod.    Total
+-------------------------<br/>
+1	 Almuerzo		3.00<br/>
+
+
+
+
+-------------------------
+		 Total		3.00
+-------------------------		 
+
+Orden N. xxxxxx<br/>
+
+Gracias por su Compra!!!<br/>
 	</body>
 </html>
 	
