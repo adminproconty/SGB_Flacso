@@ -64,7 +64,7 @@
 
         // send the PDF
 
-        $html2pdf->Output('Factura.pdf');
+        $html2pdf->Output('Factura.pdf', 'F');
 
     }
 
@@ -75,4 +75,6 @@
         exit;
 
     }
+?>
+
 
