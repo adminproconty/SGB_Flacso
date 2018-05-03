@@ -131,7 +131,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						<FONT FACE="Arial" SIZE="1">---------------------------------------------</FONT>
+						<FONT FACE="Arial" SIZE="1">-------------------------------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
@@ -193,13 +193,13 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1">---------------------------------------------</FONT>
+					<FONT FACE="Arial" SIZE="1">-------------------------------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
-					<td style="width: 100%; text-align: left;">
+					<td style="width: 100%; text-align: right;">
 					<FONT FACE="Arial" SIZE="1">Total: </strong> <?php echo $sumador_total ?></FONT>
 					</td>
 				</tr>
