@@ -114,17 +114,17 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						<h5>Nombre: <?php echo $rw_cliente['nombre_cliente'] ?><h5>
+					<FONT FACE="Arial" SIZE="2">Nombre: <?php echo $rw_cliente['nombre_cliente'] ?></FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<h5>Fecha: <?php echo "".date("d/m/Y").""; ?><h5>
+					<FONT FACE="Arial" SIZE="2">Fecha: <?php echo "".date("d/m/Y").""; ?></FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<h5>Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?><h5>
+					<FONT FACE="Arial" SIZE="2">Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?></FONT>
 					</td>
 				</tr>
 			</table>
@@ -138,13 +138,13 @@
 			<table style="width: 100%;">
 				<tr>
 					<th style="width: 30%; text-align: left;">
-						Cant
+					<FONT FACE="Arial" SIZE="2">Cant</FONT>
 					</th>
 					<th style="width: 40%; text-align: left;">
-						Prod.
+					<FONT FACE="Arial" SIZE="2">Prod.</FONT>
 					</th>
 					<th style="width: 30%; text-align: left;">
-						Total
+					<FONT FACE="Arial" SIZE="2">Total</FONT>
 					</th>
 				</tr>
 		<?php
