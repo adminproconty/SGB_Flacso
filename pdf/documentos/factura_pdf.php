@@ -44,7 +44,7 @@
 
 	} else {
 		
-	  	//echo "<script>alert('Consumo Generado con Éxito!!!')</script>";	
+	  	echo "<script>alert('Consumo Generado con Éxito!!!')</script>";	
 
 	}
 
@@ -88,35 +88,35 @@
     $content = ob_get_clean();
 
 
-    try
+?>
 
-    {
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function imprimir() {
+				if (window.print) {
+					window.print();
+					window.location.href = "../../nueva_factura.php"
+				} else {
+					alert("La función de impresion no esta soportada por su navegador.");
+				}
+			}
+		</script>
+	</head>
+	<body onload="imprimir();">
+		Hola PHPCentral!
+	</body>
+</html>
+	
 
-        // init HTML2PDF
 
-        $html2pdf = new HTML2PDF('P', 'LETTER', 'es', true, 'UTF-8', array(0, 0, 0, 0));
 
-        // display the full page
+	//exit;
 
-        $html2pdf->pdf->SetDisplayMode('fullpage');
-
-        // convert
-
-        $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
-
-        // send the PDF
-
-        $html2pdf->Output('Factura.pdf');
-
-    }
-
-    catch(HTML2PDF_exception $e) {
-
-        echo $e;
-
-        exit;
-
-    }
+    
 
 
 
