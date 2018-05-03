@@ -114,37 +114,37 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="2">Nombre: <?php echo $rw_cliente['nombre_cliente'] ?></FONT>
+					<FONT FACE="Arial" SIZE="1">Nombre: <?php echo $rw_cliente['nombre_cliente'] ?></FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="2">Fecha: <?php echo "".date("d/m/Y").""; ?></FONT>
+					<FONT FACE="Arial" SIZE="1">Fecha: <?php echo "".date("d/m/Y").""; ?></FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="2">Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?></FONT>
+					<FONT FACE="Arial" SIZE="1">Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?></FONT>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					----------------------------------
+						<FONT FACE="Arial" SIZE="1">----------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
 					<th style="width: 30%; text-align: left;">
-					<FONT FACE="Arial" SIZE="2">Cant</FONT>
+						<FONT FACE="Arial" SIZE="1">Cant</FONT>
 					</th>
 					<th style="width: 40%; text-align: left;">
-					<FONT FACE="Arial" SIZE="2">Prod.</FONT>
+						<FONT FACE="Arial" SIZE="1">Prod.</FONT>
 					</th>
 					<th style="width: 30%; text-align: left;">
-					<FONT FACE="Arial" SIZE="2">Total</FONT>
+						<FONT FACE="Arial" SIZE="1">Total</FONT>
 					</th>
 				</tr>
 		<?php
@@ -173,13 +173,13 @@
 		?>
 				<tr>
 					<td style="width: 30%; text-align: left;">
-						<?php echo $cantidad; ?>
+					<FONT FACE="Arial" SIZE="2"><?php echo $cantidad; ?></FONT>
 					</td>
 					<td style="width: 40%; text-align: left;">
-						<?php echo $nombre_producto; ?>
+					<FONT FACE="Arial" SIZE="2"><?php echo $nombre_producto; ?></FONT>
 					</td>
 					<td style="width: 30%; text-align: left;">
-						<?php echo $precio_total_r ?>
+					<FONT FACE="Arial" SIZE="2"><?php echo $precio_total_r ?></FONT>
 					</td>
 				</tr>
 		<?php
@@ -193,28 +193,28 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						----------------------------------
+						<FONT FACE="Arial" SIZE="1">----------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
 					<td style="width: 100%; text-align: left;">
-						<strong>Total: </strong> <?php echo $sumador_total ?>
+					<FONT FACE="Arial" SIZE="1">Total: </strong> <?php echo $sumador_total ?></FONT>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
 					<td style="width: 100%; text-align: left;">
-						<strong>Orden N. </strong> <?php echo $numero_factura ?>
+					<FONT FACE="Arial" SIZE="1"><strong>Orden N. </strong> <?php echo $numero_factura ?></FONT>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
 					<td style="width: 100%; text-align: center;">
-						<strong>¡¡Gracias por su compra!!</strong>
+					<FONT FACE="Arial" SIZE="1">¡¡Gracias por su compra!!</FONT>
 					</td>
 				</tr>
 			</table>
