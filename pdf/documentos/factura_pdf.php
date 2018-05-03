@@ -85,7 +85,13 @@
 
      include(dirname('__FILE__').'/res/factura_html.php');
 
-    $content = ob_get_clean();
+	$content = ob_get_clean();
+	
+	$sql_cliente=mysqli_query($con,"select * from clientes where id_cliente='$id_cliente'");
+	$rw_cliente=mysqli_fetch_array($sql_cliente);
+	$sql_user=mysqli_query($con,"select * from users where user_id='$id_vendedor'");
+	$rw_user=mysqli_fetch_array($sql_user);	
+
 ?>
 
 	<!DOCTYPE html>
@@ -105,31 +111,115 @@
 			</script>
 		</head>
 		<body onload="imprimir();">
-			Nombre: CHRISTIAN TERAN<br/>
-			Fecha: 3-May-2018<br/>
-			Vendedor: Ventas1<br/>
-			-------------------------<br/>
-			Cant.    Prod.    Total
-			-------------------------<br/>
-			1	 Almuerzo		3.00<br/>
+			<table style="width: 100%;">
+				<tr>
+					<td>
+						Nombre: <?php echo $rw_cliente['nombre_cliente'] ?>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Fecha: <?php echo "".date("d/m/Y").""; ?>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?>
+					</td>
+				</tr>
+			</table>
+			<table style="width: 100%;">
+				<tr>
+					<td>
+						-------------------------------------------------------------------------
+					</td>
+				</tr>
+			</table>
+			<table style="width: 100%;">
+				<tr>
+					<th style="width: 30%; text-align: left;">
+						Cant
+					</th>
+					<th style="width: 40%; text-align: left;">
+						Prod.
+					</th>
+					<th style="width: 30%; text-align: left;">
+						Total
+					</th>
+				</tr>
+		<?php
+
+			$sumador_total=0;
+			$sql=mysqli_query($con, "select * from products, detalle_factura, facturas where products.id_producto=detalle_factura.id_producto and detalle_factura.numero_factura=facturas.numero_factura and facturas.numero_factura=".$numero_factura);
+
+			while ($row=mysqli_fetch_array($sql))
+
+			{
+
+				$id_producto=$row["id_producto"];
+				$codigo_producto=$row['codigo_producto'];
+				$cantidad=$row['cantidad'];
+				$nombre_producto=$row['nombre_producto'];	
+				$precio_venta=$row['precio_venta'];
+				$precio_venta_f=number_format($precio_venta,2);//Formateo variables
+				$precio_venta_r=str_replace(",","",$precio_venta_f);//Reemplazo las comas
+				$precio_total=$precio_venta_r*$cantidad;
+				$precio_total_f=number_format($precio_total,2);//Precio total formateado
+				$precio_total_r=str_replace(",","",$precio_total_f);//Reemplazo las comas
+				$sumador_total+=$precio_total_r;//Sumador
+				$total_master_fac = $row['total_venta'];
+				
+				
+		?>
+				<tr>
+					<td style="width: 30%; text-align: left;">
+						<?php echo $cantidad; ?>
+					</td>
+					<td style="width: 40%; text-align: left;">
+						<?php echo $nombre_producto; ?>
+					</td>
+					<td style="width: 30%; text-align: left;">
+						<?php echo $precio_total_r ?>
+					</td>
+				</tr>
+		<?php
+
+			}
+				
+		?>
+
 	
-	
-	
-	
-			-------------------------
-					Total		3.00
-			-------------------------		 
-	
-			Orden N. xxxxxx<br/>
-	
-			Gracias por su Compra!!!<br/>
+			</table>
+			<table style="width: 100%;">
+				<tr>
+					<td>
+						-------------------------------------------------------------------------
+					</td>
+				</tr>
+			</table>
+			<table style="width: 100%;">
+				<tr>
+					<td style="width: 100%; text-align: left;">
+						<strong>Total: </strong> <?php echo $sumador_total ?>
+					</td>
+				</tr>
+			</table>
+			<table style="width: 100%;">
+				<tr>
+					<td style="width: 100%; text-align: left;">
+						<strong>Orden N </strong> <?php echo $numero_factura ?>
+					</td>
+				</tr>
+			</table>
+			<table style="width: 100%;">
+				<tr>
+					<td style="width: 100%; text-align: center;">
+						<strong>¡¡Gracias por su compra!!</strong>
+					</td>
+				</tr>
+			</table>
 		</body>
 	</html>
-	
-
-	
-
-	//exit;
 
     
 
