@@ -44,7 +44,7 @@
 
 	} else {
 		
-	  	echo "<script>alert('Consumo Generado con Éxito!!!')</script>";	
+	  	//echo "<script>alert('Consumo Generado con Éxito!!!')</script>";	
 
 	}
 
@@ -88,16 +88,35 @@
     $content = ob_get_clean();
 
 
+    try
 
-	
+    {
 
-	echo '<script>window.location.href = "../../nueva_factura.php";</script>';
+        // init HTML2PDF
 
-	
+        $html2pdf = new HTML2PDF('P', 'LETTER', 'es', true, 'UTF-8', array(0, 0, 0, 0));
 
-	//exit;
+        // display the full page
 
-    
+        $html2pdf->pdf->SetDisplayMode('fullpage');
+
+        // convert
+
+        $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+
+        // send the PDF
+
+        $html2pdf->Output('Factura.pdf');
+
+    }
+
+    catch(HTML2PDF_exception $e) {
+
+        echo $e;
+
+        exit;
+
+    }
 
 
 
