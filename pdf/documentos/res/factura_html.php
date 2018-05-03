@@ -412,3 +412,41 @@ $delete=mysqli_query($con,"DELETE FROM tmp WHERE session_id='".$session_id."'");
 $update=mysqli_query($con,"UPDATE clientes SET saldo_cliente='".$saldo."' WHERE id_cliente='".$id_cliente."'");
 
 ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			function imprimir() {
+				if (window.print) {
+					window.print();
+					
+				} else {
+					alert("La función de impresion no esta soportada por su navegador.");
+				}
+			}
+		</script>
+	</head>
+	<body onload="imprimir();">
+		Nombre: CHRISTIAN TERAN<br/>
+		Fecha: 3-May-2018<br/>
+		Vendedor: Ventas1<br/>
+		-------------------------<br/>
+		Cant.    Prod.    Total
+		-------------------------<br/>
+		1	 Almuerzo		3.00<br/>
+
+
+
+
+		-------------------------
+				Total		3.00
+		-------------------------		 
+
+		Orden N. xxxxxx<br/>
+
+		Gracias por su Compra!!!<br/>
+	</body>
+</html>
