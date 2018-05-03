@@ -86,12 +86,46 @@
      include(dirname('__FILE__').'/res/factura_html.php');
 
     $content = ob_get_clean();
+?>
 
-
-
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title></title>
+			<script type="text/javascript">
+				function imprimir() {
+					if (window.print) {
+						window.print();
+						window.location.href = "../../nueva_factura.php"
+					} else {
+						alert("La función de impresion no esta soportada por su navegador.");
+					}
+				}
+			</script>
+		</head>
+		<body onload="imprimir();">
+			Nombre: CHRISTIAN TERAN<br/>
+			Fecha: 3-May-2018<br/>
+			Vendedor: Ventas1<br/>
+			-------------------------<br/>
+			Cant.    Prod.    Total
+			-------------------------<br/>
+			1	 Almuerzo		3.00<br/>
 	
-
-	echo '<script>window.location.href = "../../nueva_factura.php";</script>';
+	
+	
+	
+			-------------------------
+					Total		3.00
+			-------------------------		 
+	
+			Orden N. xxxxxx<br/>
+	
+			Gracias por su Compra!!!<br/>
+		</body>
+	</html>
+	
 
 	
 
