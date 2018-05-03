@@ -131,7 +131,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						<FONT FACE="Arial" SIZE="1">----------------------------------</FONT>
+						<FONT FACE="Arial" SIZE="1">---------------------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
@@ -173,13 +173,13 @@
 		?>
 				<tr>
 					<td style="width: 30%; text-align: left;">
-					<FONT FACE="Arial" SIZE="2"><?php echo $cantidad; ?></FONT>
+					<FONT FACE="Arial" SIZE="1"><?php echo $cantidad; ?></FONT>
 					</td>
-					<td style="width: 40%; text-align: left;">
-					<FONT FACE="Arial" SIZE="2"><?php echo $nombre_producto; ?></FONT>
+					<td style="width: 60%; text-align: left;">
+					<FONT FACE="Arial" SIZE="1"><?php echo $nombre_producto; ?></FONT>
 					</td>
 					<td style="width: 30%; text-align: left;">
-					<FONT FACE="Arial" SIZE="2"><?php echo $precio_total_r ?></FONT>
+					<FONT FACE="Arial" SIZE="1"><?php echo $precio_total_r ?></FONT>
 					</td>
 				</tr>
 		<?php
@@ -193,7 +193,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						<FONT FACE="Arial" SIZE="1">----------------------------------</FONT>
+					<FONT FACE="Arial" SIZE="1">---------------------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
