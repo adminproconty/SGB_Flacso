@@ -131,7 +131,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						<FONT FACE="Arial" SIZE="1">-------------------------------------------------------</FONT>
+						<FONT FACE="Arial" SIZE="1">--------------------------------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
@@ -166,6 +166,7 @@
 				$precio_total=$precio_venta_r*$cantidad;
 				$precio_total_f=number_format($precio_total,2);//Precio total formateado
 				$precio_total_r=str_replace(",","",$precio_total_f);//Reemplazo las comas
+				$precio_total_r=number_format($precio_total_r,2)
 				$sumador_total+=$precio_total_r;//Sumador
 				$total_master_fac = $row['total_venta'];
 				
@@ -193,7 +194,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1">-------------------------------------------------------</FONT>
+						<FONT FACE="Arial" SIZE="1">--------------------------------------------------------</FONT>
 					</td>
 				</tr>
 			</table>
