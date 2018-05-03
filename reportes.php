@@ -51,7 +51,7 @@
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
 					        <option value="cierre">Cierre de Caja</option>
-					         <option value="ventas">Ventas Detalladas</option> 
+					         <!-- <option value="ventas">Ventas Detalladas</option>  -->
 				        </select>
 					</div>
 				</div>							
