@@ -109,6 +109,12 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <tr>
             <th style="width: 100%;text-align:center" class='midnight-blue'>DETALLE DE CIERRE DE CAJA</th>
         </tr>
+        <tr>
+            <th style="width: 100%;text-align:left" class='silver'>DESDE: <?php echo $fecha_ini; ?></th>
+        </tr>
+        <tr>
+            <th style="width: 100%;text-align:left" class='silver'>HASTA: <?php echo $fecha_fin; ?></th>
+        </tr>
     </table>    
 
     <table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
@@ -118,6 +124,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         $sql=mysqli_query($con, "select usr.user_name, fac.condiciones, sum(fac.total_venta) as total_venta
         from facturas fac, users usr
         where usr.user_id = fac.id_vendedor
+        and fac.fecha_factura >= '".$fecha_ini." 00:00:00'
+        and fac.fecha_factura <= '".$fecha_fin." 23:59:59'
         GROUP by usr.user_name, fac.condiciones");
 
 
