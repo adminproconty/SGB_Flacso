@@ -114,24 +114,24 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						Nombre: <?php echo $rw_cliente['nombre_cliente'] ?>
+						<h5>Nombre: <?php echo $rw_cliente['nombre_cliente'] ?><h5>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Fecha: <?php echo "".date("d/m/Y").""; ?>
+					<h5>Fecha: <?php echo "".date("d/m/Y").""; ?><h5>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?>
+					<h5>Vendedor: <?php echo $rw_user['firstname']." ".$rw_user['lastname']; ?><h5>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						-------------------------------------------------------------------------
+					----------------------------------
 					</td>
 				</tr>
 			</table>
@@ -193,7 +193,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-						-------------------------------------------------------------------------
+						----------------------------------
 					</td>
 				</tr>
 			</table>
@@ -207,7 +207,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td style="width: 100%; text-align: left;">
-						<strong>Orden N </strong> <?php echo $numero_factura ?>
+						<strong>Orden N. </strong> <?php echo $numero_factura ?>
 					</td>
 				</tr>
 			</table>
