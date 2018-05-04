@@ -15,7 +15,8 @@
 	$active_clientes="";
 	$active_tarjetas="";
 	$active_usuarios="";	
-    $active_reportes="";
+	$active_reportes="";
+	$active_kardex="";
     $active_caja_chica = "active";
 	$title="Caja Chica | SGB";
 ?>

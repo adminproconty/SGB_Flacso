@@ -15,6 +15,7 @@
 	$active_usuarios="active";
 	$active_reportes="";
 	$active_caja_chica = "";
+	$active_kardex="";
 	$title="Usuarios | SGB";
 ?>
 <!DOCTYPE html>

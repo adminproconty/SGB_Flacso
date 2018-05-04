@@ -12,6 +12,7 @@
    $active_usuarios="";	
    $active_reportes="";
    $active_caja_chica = "active";
+   $active_kardex="";
    $title="SGB | Registro de Compra";
    
    /* Connect To Database*/

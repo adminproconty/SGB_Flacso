@@ -13,6 +13,7 @@
    $active_usuarios="";	
    $active_reportes="";
    $active_caja_chica = "";
+   $active_kardex="";
    $title="SGB | Registro de Breaks";
    
    /* Connect To Database*/

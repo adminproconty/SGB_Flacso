@@ -16,6 +16,7 @@
 	$active_tarjetas="active";
 	$active_usuarios="";	
 	$active_reportes="";
+	$active_kardex="";
 	$title="Tarjetas | SGB";
 ?>
 <!DOCTYPE html>

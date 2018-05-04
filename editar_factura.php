@@ -16,6 +16,7 @@
 	$active_usuarios="";
 	$active_reportes="";	
 	$active_caja_chica = "";
+	$active_kardex="";
 	$title="Editar Factura | Simple Invoice";
 	
 	/* Connect To Database*/
