@@ -250,6 +250,3 @@ while ($row=mysqli_fetch_array($sql))
 
 
 </page>
-
-
-
