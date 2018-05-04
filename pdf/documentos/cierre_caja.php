@@ -32,8 +32,7 @@
 
 	}
 
-	$id_factura = 39;
-
+	
 	require_once(dirname(__FILE__).'/../html2pdf.class.php');
 
     // get the HTML
@@ -64,7 +63,7 @@
 
         // send the PDF
 
-        $html2pdf->Output('Factura.pdf', 'F');
+        $html2pdf->Output('Factura.pdf');
 
     }
 

@@ -19,7 +19,7 @@ function reportes($id) {
     var desde = $('#fecha_ini').val();
     var hasta = $('#fecha_fin').val();
 
-    printJS('./pdf/documentos/Factura.pdf');
+    //printJS('./pdf/documentos/Factura.pdf');
 
-    //window.open('./pdf/documentos/cierre_caja.php?fecha_ini=' + desde + '&fecha_fin=' + hasta, 'Factura', '', '1024', '768', 'true');
+    window.open('./pdf/documentos/cierre_caja.php?fecha_ini=' + desde + '&fecha_fin=' + hasta, 'Factura', '', '1024', '768', 'true');
 }
