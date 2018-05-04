@@ -92,6 +92,57 @@
 	$sql_user=mysqli_query($con,"select * from users where user_id='$id_vendedor'");
 	$rw_user=mysqli_fetch_array($sql_user);	
 
+	function getCantidad($id_producto, $conexion){
+		$sql_cantidad = mysqli_query($conexion, "SELECT `id_inventario`, `cantidad_inventario`, `producto_inventario` 
+			FROM `inventario` WHERE `producto_inventario` = ".$id_producto);
+		$cantidad = array(
+			"cantidad" => "",
+			"id_inventario" => 0
+		);
+		if($fila=mysqli_fetch_array($sql_cantidad)){
+			$cantidad = array(
+				"cantidad" => $fila['cantidad_inventario'],
+				"id_inventario" => $fila['id_inventario']
+			);
+		}
+		return $cantidad;
+	}
+
+	function updateInventario($cantidad, $id_inventario, $conexion){
+		mysqli_query($conexion, "UPDATE `inventario` SET `cantidad_inventario`= ".$cantidad."
+			WHERE `id_inventario` = ".$id_inventario);
+	}
+
+	function cantidadConsumida($num_factura, $id_producto, $conexion){
+		$sql_cantidad = mysqli_query($conexion, "SELECT `cantidad` FROM `detalle_factura` 
+			WHERE `numero_factura` = ".$num_factura." and `id_producto` = ".$id_producto);
+		$cantidad = 0;
+		if($fila=mysqli_fetch_array($sql_cantidad)){
+			$cantidad = $fila['cantidad'];
+		}
+		return $cantidad;
+	}
+
+	function insertLog($id_producto, $cantidad, $conexion){
+		mysqli_query($conexion, "INSERT INTO `log_inventario`(`fecha_loginv`, `producto_loginv`, `cantidad_loginv`, 
+			`tipo_loginv`, `motivo`) VALUES (NOW(),".$id_producto.",".$cantidad.",'Compra','Compra')");
+	}
+
+	$sql_productos_compra=mysqli_query($con, "select * from products, detalle_factura, facturas where products.id_producto=detalle_factura.id_producto and detalle_factura.numero_factura=facturas.numero_factura and facturas.numero_factura=".$numero_factura);
+	while($fila=mysqli_fetch_array($sql_productos_compra)){
+		$cant = getCantidad($fila['id_producto'], $con);
+		if($cant['cantidad'] != ""){
+			if($cant['cantidad'] != 0){
+				$cantidad_comprada = cantidadConsumida($numero_factura, $fila['id_producto'], $con);
+				$cantidad_nueva = $cant['cantidad'] - $cantidad_comprada;
+				updateInventario($cantidad_nueva, $cant['id_inventario'], $con);
+				insertLog($fila['id_producto'], $cantidad_comprada, $con);
+			}
+		}
+	}
+
+
+
 ?>
 
 	<!DOCTYPE html>

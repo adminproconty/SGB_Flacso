@@ -26,12 +26,21 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             
             $id_producto = $_GET['id'];
             $cantidad = $_GET['cantidad'];
+            $cant = $_GET['cant'];
 
             $sqlExiste = mysqli_query($con,"SELECT `id_inventario`, `cantidad_inventario`, `producto_inventario` 
                     FROM `inventario` WHERE `producto_inventario` = ".$id_producto);
             if($row=mysqli_fetch_array($sqlExiste)){
                 $sqlUpdate = mysqli_query($con,"UPDATE `inventario` SET 
                     `cantidad_inventario`= ".$cantidad." WHERE `id_inventario` = ".$row['id_inventario']);
+                $sqlUpdate = mysqli_query($con,"INSERT INTO `log_inventario`(`fecha_loginv`, `producto_loginv`, 
+                    `cantidad_loginv`, `tipo_loginv`, `motivo`) VALUES (
+                        NOW(),
+                        ".$id_producto.",
+                        ".$cant.",
+                        'Descuento',
+                        '".$_GET['motivo']."'
+                    )");
                 if($sqlUpdate){
                     $messages[] = "Inventario actualizado exitosamente.";
                 }else{
@@ -51,12 +60,21 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 
             $id_producto = $_GET['id'];
             $cantidad = $_GET['cantidad'];
+            $cant = $_GET['cant'];
 
             $sqlExiste = mysqli_query($con,"SELECT `id_inventario`, `cantidad_inventario`, `producto_inventario` 
                     FROM `inventario` WHERE `producto_inventario` = ".$id_producto);
             if($row=mysqli_fetch_array($sqlExiste)){
                 $sqlUpdate = mysqli_query($con,"UPDATE `inventario` SET 
                     `cantidad_inventario`= ".$cantidad." WHERE `id_inventario` = ".$row['id_inventario']);
+                $sqlUpdate = mysqli_query($con,"INSERT INTO `log_inventario`(`fecha_loginv`, `producto_loginv`, 
+                `cantidad_loginv`, `tipo_loginv`, `motivo`) VALUES (
+                    NOW(),
+                    ".$id_producto.",
+                    ".$cant.",
+                    'Incremento',
+                    'Agregar al inventario'
+                )");
                 if($sqlUpdate){
                     $messages[] = "Inventario actualizado exitosamente.";
                 }else{
@@ -65,6 +83,14 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             }else{
                 $sqlInsert = mysqli_query($con,"INSERT INTO `inventario`(`cantidad_inventario`, `producto_inventario`) 
                     VALUES (".$cantidad.",".$id_producto.")");
+                $sqlInsert = mysqli_query($con,"INSERT INTO `log_inventario`(`fecha_loginv`, `producto_loginv`, 
+                `cantidad_loginv`, `tipo_loginv`, `motivo`) VALUES (
+                    NOW(),
+                    ".$id_producto.",
+                    ".$cant.",
+                    'Incremento',
+                    'Agregar al inventario'
+                )");
                 if($sqlInsert){
                     $messages[] = "Inventario actualizado exitosamente.";
                 }else{

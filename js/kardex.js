@@ -28,10 +28,10 @@ $("#guardar_kardex").submit(function(event) {
     var cantidad = 0;
     if (cantidad_disminuye == '' || motivo == '') {
         cantidad = cantidad_actual + cantidad_aumenta;
-        url = 'id=' + id + '&cantidad=' + cantidad;
+        url = 'id=' + id + '&cantidad=' + cantidad + '&cant=' + cantidad_aumenta;
     } else {
         cantidad = cantidad_actual - cantidad_disminuye;
-        url = 'id=' + id + '&cantidad=' + cantidad + '&motivo=' + motivo;
+        url = 'id=' + id + '&cantidad=' + cantidad + '&motivo=' + motivo + '&cant=' + cantidad_disminuye;
     }
     $.ajax({
         type: "GET",
