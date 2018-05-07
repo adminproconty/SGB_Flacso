@@ -129,50 +129,54 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <?php
         $vendedor = '';
         
-        $sql=mysqli_query($con, "SELECT loginv.`fecha_loginv`, loginv.`producto_loginv`, prod.`codigo_producto`, 
-            prod.`nombre_producto`, loginv.`cantidad_loginv`, loginv.`tipo_loginv`, loginv.`motivo` 
-            FROM `log_inventario` as loginv
-            JOIN `products` as prod ON (loginv.`producto_loginv` = prod.`id_producto`)
-            where loginv.`fecha_loginv` >= '".$fecha_ini."'
-            and loginv.`fecha_loginv` <= '".$fecha_fin."'");
+        $sql=mysqli_query($con, "SELECT (select us.user_name from users us where us.user_id = fac.id_vendedor) as vendedor
+            ,date(fac.fecha_factura) fechafac, pr.nombre_producto, sum(det.cantidad) as cantidad,sum(det.precio_venta) as precio_venta
+            FROM facturas fac, detalle_factura det , products pr
+            where det.numero_factura = fac.numero_factura
+            and det.id_producto = pr.id_producto
+            and fac.fecha_factura >= '".$fecha_ini."'
+            and fac.fecha_factura <= '".$fecha_fin."'
+            group by vendedor, fechafac, pr.nombre_producto
+            order by vendedor
+            ");
     
     ?>
 
         <tr>
             <th class='clouds' style=" text-align: center">Fecha</th>
-            <th class='clouds' style="text-align: center">COD Producto</th>
             <th class='clouds' style=" text-align: center">Nombre Producto</th>
-            <th class='clouds' style=" text-align: center">Movimiento</th>
-            <th class='clouds' style="text-align: center">Cantidad</th>
+            <th class='clouds' style=" text-align: center">Cantidad</th>
+            <th class='clouds' style="text-align: center">Total</th>
         </tr>
 
     <?php
     
     
-    
+    $vendedor_while = '';
     while ($row=mysqli_fetch_array($sql))
 
 	{
+        if ($vendedor_while != $row["vendedor"] ){
+            $vendedor=$row["user_name"];
+            
 
-    ?>
-
+        ?>
+                <tr>
+                <td class='gold' style="width: 25%; text-align: left"><b>Vendedor: <?php echo $row['vendedor'];?></b></td>
+                </tr>
+                
+        <?php
+        }
+        ?>
         <tr>
-            <td class='gold' style="width: 15%; text-align: center"><?php echo $row['fecha_loginv'];?></td>
-            <td class='gold' style="width: 15%; text-align: center"><?php echo $row['codigo_producto'];?></td>
-            <td class='gold' style="width: 40%; text-align: center"><?php echo $row['nombre_producto'];?></td>
-            <td class='gold' style="width: 15%; text-align: center"><?php echo $row['tipo_loginv'];?></td>
-            <td class='gold' style="width: 15%; text-align: center">
-                <?php 
-                    if($row['tipo_loginv'] == 'Descuento' || $row['tipo_loginv'] == 'Compra'){
-                        echo "-".$row['cantidad_loginv'];
-                    }else if($row['tipo_loginv'] == 'Incremento'){
-                        echo "+".$row['cantidad_loginv'];
-                    }
-                ?>
-            </td>
+            <td class='gold' style="width: 25%; text-align: center"><?php echo $row['fechafac'];?></td>
+            <td class='gold' style="width: 45%; text-align: left"><?php echo $row['nombre_producto'];?></td>
+            <td class='gold' style="width: 15%; text-align: center"><?php echo $row['cantidad'];?></td>
+            <td class='gold' style="width: 15%; text-align: center"><?php echo number_format($row['precio_venta'],2);?></td>
         </tr>
 
     <?php
+    $vendedor_while = $row["vendedor"];
 	}
 
     ?>

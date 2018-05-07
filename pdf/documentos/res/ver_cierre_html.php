@@ -238,7 +238,7 @@ while ($row=mysqli_fetch_array($sql))
         $compras=$row["cajachica"]*-1;       
 	}
 
-        $total=number_format($total,2);
+        //$total=number_format($total,2);
 
     ?>
 

@@ -29,15 +29,19 @@
 	?> 
     <div class="container">
 		<div class="panel panel-info">
+		
 		<div class="panel-heading">
+			<!--
 			<div class="btn-group pull-right">
 				<button type='button' class="btn btn-info" id="exportar"
 				data-toggle="tooltip" data-placement="top" title="Exportar excel">
 					<span class="glyphicon glyphicon-cloud-download" ></span>
 				</button>
 			</div>
+			-->
 			<h4><i class='glyphicon glyphicon-paste'></i> Consulta de Reportes</h4>
-		</div>			
+		</div>
+					
 			<div class="panel-body">
 			<?php
 			/*include("modal/registro_usuarios.php");
@@ -52,7 +56,9 @@
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
 					        <option value="cierre">Cierre de Caja</option>
-					        <option value="kardex">Kardex</option>
+					        <option value="kardex">Movimientos Kardex</option>
+							<option value="detalle_prod">Venta Productos</option>
+							
 					         <!-- <option value="ventas">Ventas Detalladas</option>  -->
 				        </select>
 					</div>
