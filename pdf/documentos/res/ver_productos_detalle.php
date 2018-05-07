@@ -134,8 +134,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
             FROM facturas fac, detalle_factura det , products pr
             where det.numero_factura = fac.numero_factura
             and det.id_producto = pr.id_producto
-            and fac.fecha_factura >= '".$fecha_ini."'
-            and fac.fecha_factura <= '".$fecha_fin."'
+            and fac.fecha_factura >= '".$fecha_ini." 00:00:00'
+            and fac.fecha_factura <= '".$fecha_fin." 23:59:59'
             group by vendedor, fechafac, pr.nombre_producto
             order by vendedor
             ");

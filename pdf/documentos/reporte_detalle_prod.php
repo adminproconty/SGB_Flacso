@@ -17,8 +17,8 @@
     FROM facturas fac, detalle_factura det , products pr
     where det.numero_factura = fac.numero_factura
     and det.id_producto = pr.id_producto
-    AND fac.fecha_factura >= '".$fecha_ini."' 
-    AND fac.fecha_factura <= '".$fecha_fin."'
+    AND fac.fecha_factura >= '".$fecha_ini." 00:00:00' 
+    AND fac.fecha_factura <= '".$fecha_fin." 23:59:59'
     group by vendedor, fechafac, pr.nombre_producto
     order by vendedor");
 	$count=mysqli_num_rows($sql_count);
