@@ -25,6 +25,25 @@ function load(page) {
     })
 }
 
+function eliminar(id) {
+    var q = $("#q").val();
+    if (confirm("Realmente deseas eliminar la Compra")) {
+        $.ajax({
+            type: "GET",
+            url: "./ajax/buscar_caja_chica.php",
+            data: "id=" + id,
+            "q": q,
+            beforeSend: function(objeto) {
+                $("#resultados").html("Mensaje: Cargando...");
+            },
+            success: function(datos) {
+                $("#resultados").html(datos);
+                load(1);
+            }
+        });
+    }
+}
+
 $('#desde').change(function() {
     var fecha = '' + this.value + '';
     $('#inicio').val(fecha);

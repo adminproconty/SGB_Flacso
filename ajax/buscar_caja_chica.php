@@ -14,15 +14,18 @@
 
 	if (isset($_GET['id'])){
 
-		$id_cliente=intval($_GET['id']);
+		$id_cc=intval($_GET['id']);
 
-		$query=mysqli_query($con, "select * from facturas where id_cliente='".$id_cliente."'");
+		$query_cc=mysqli_query($con,"select * from caja_chica where id_cc='".$id_cc."'");
 
-		$count=mysqli_num_rows($query);
+		$rowfac=mysqli_fetch_array($query_cc);
 
-		if ($count==0){
 
-			if ($delete1=mysqli_query($con,"DELETE FROM clientes WHERE id_cliente='".$id_cliente."'")){
+		$del1="delete from detalle_caja_chica where caja_chica_id='".$id_cc."'";
+
+		$del2="delete from caja_chica where id_cc='".$id_cc."'";
+
+		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
 
 			?>
 
@@ -30,7 +33,7 @@
 
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-			  <strong>Aviso!</strong> Datos eliminados exitosamente.
+			  <strong>Aviso!</strong> Datos eliminados exitosamente
 
 			</div>
 
@@ -44,7 +47,7 @@
 
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-			  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+			  <strong>Error!</strong> No se puedo eliminar los datos
 
 			</div>
 
@@ -53,30 +56,6 @@
 			
 
 		}
-
-			
-
-		} else {
-
-			?>
-
-			<div class="alert alert-danger alert-dismissible" role="alert">
-
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-			  <strong>Error!</strong> No se pudo eliminar éste  cliente. Existen facturas vinculadas a éste producto. 
-
-			</div>
-
-			<?php
-
-		}
-
-		
-
-		
-
-		
 
 	}
 
@@ -219,7 +198,7 @@
 
 					 <!-- <a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a>  -->
 
-                        <a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
+                        <a href="#" class='btn btn-default' title='Borrar Compra' onclick="eliminar('<?php echo $id_cc; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 
 					</tr>
 
