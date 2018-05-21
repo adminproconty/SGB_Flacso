@@ -56,14 +56,15 @@
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
 					        <option value="cierre">Cierre de Caja</option>
-					        <option value="kardex">Movimientos Kardex</option>
-							<option value="detalle_prod">Venta Productos</option>
+					        <option value="detalle_prod">Venta Productos</option>
+							<option value="kardex">Movimientos Kardex</option>
+							<option value="stock">Stock de Productos</option>
 							
 					         <!-- <option value="ventas">Ventas Detalladas</option>  -->
 				        </select>
 					</div>
 				</div>							
-				<div class="for-group row">
+				<div class="for-group row" id="form_stock">
 
 					 <label for="tel2" class="col-md-2 control-label">Desde</label>
                      <div class="col-md-2">
@@ -75,11 +76,14 @@
                         <input type="date" class="form-control input-sm" id="fecha_fin">
                      </div>
 
-					<div class="col-md-2">
+				</div>
+
+				<div class="btn-group pull-right">
+					
 						<button type="button" class="btn btn-success" data-toggle="modal" onclick="reportes(1)">
 						<span class="glyphicon glyphicon-search"></span> Obtener Reporte
 						</button>
-					<div>	
+					
 
                 </div>
 				
