@@ -33,6 +33,7 @@
 
 						  <input type="number" class="form-control" id="monto">
 						  <input type="hidden" id="id_cliente">
+						  <input type="hidden" id="ttDeuda">
 
 						</div>
 

@@ -42,6 +42,7 @@ function modal_abonar(id_cliente) {
         success: function(data) {
             var valor = data * 1;
             $("#monto").val(valor);
+            $('#ttDeuda').val(valor);
         }
     })
 }
@@ -49,19 +50,24 @@ function modal_abonar(id_cliente) {
 function abonar() {
     var id_cliente = $('#id_cliente').val();
     var monto = $('#monto').val();
-    $.ajax({
-        url: './ajax/modal_detalle_cxc.php?id=' + id_cliente + '&monto=' + monto + '&detalle=0',
-        success: function(data) {
-            console.log('deudas', data);
-            if (data == true) {
-                window.location.href = "cxc.php"
-                alert('¡Abono registrado exitosamente!');
-            } else {
-                window.location.href = "cxc.php"
-                alert('¡Algo malo sucedió, intente de nuevo por favor, si persiste, comuníquese con el administrador del sistema!');
+    var totalDeuda = $('#ttDeuda').val();
+    if (monto <= totalDeuda) {
+        $.ajax({
+            url: './ajax/modal_detalle_cxc.php?id=' + id_cliente + '&monto=' + monto + '&detalle=0',
+            success: function(data) {
+                console.log('deudas', data);
+                if (data == true) {
+                    window.location.href = "cxc.php"
+                    alert('¡Abono registrado exitosamente!');
+                } else {
+                    window.location.href = "cxc.php"
+                    alert('¡Algo malo sucedió, intente de nuevo por favor, si persiste, comuníquese con el administrador del sistema!');
+                }
             }
-        }
-    })
+        })
+    } else {
+        alert('No puede abonar un monto mayor a $' + totalDeuda);
+    }
 }
 
 function descargar(cliente_id) {

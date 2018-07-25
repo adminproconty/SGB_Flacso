@@ -110,7 +110,7 @@
 
 
 
-		?>	   
+		?>	 
 
 			<li class="<?php echo $active_administracion ?> dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -123,13 +123,18 @@
 				</ul>
 			</li>
 
+			<li class="<?php echo $active_facturas;?>">
+				<a href="facturas.php">
+					<i class='glyphicon glyphicon-list-alt'></i> Consumos <span class="sr-only">(current)</span>
+				</a>
+			</li>
+
 			<li class="<?php echo $active_ingresos ?> dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<i class='glyphicon glyphicon-list-alt'></i>
 					Ingresos 
 				</a>
 				<ul class="dropdown-menu">
-					<li><a href="facturas.php">Consumos</a></li>
 					<li><a href="clientes.php">Clientes</a></li>
 					<li><a href="tarjetas.php">Tarjetas</a></li>
 					<li><a href="cxc.php">CXC</a></li>
@@ -178,13 +183,8 @@
 
 
 			<li class="<?php echo $active_facturas;?>"><a href="facturas.php"><i class='glyphicon glyphicon-list-alt'></i> Consumos <span class="sr-only">(current)</span></a></li>
-
-
-
 			<li class="<?php echo $active_caja_chica;?>"><a href="caja_chica.php"><i  class='glyphicon glyphicon-shopping-cart'></i> Caja Chica</a></li>
-
-
-
+			<li class="<?php echo $active_cxc;?>"><a href="cxc.php"><i  class='glyphicon glyphicon-usd'></i> CXC</a></li>
 			<li class="<?php echo $active_reportes;?>"><a href="reportes.php"><i  class='glyphicon glyphicon-paste'></i> Reportes</a></li>
 
 

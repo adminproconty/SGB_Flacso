@@ -107,21 +107,7 @@ if ($detalle == 1 && !isset($_GET['monto'])) {
 
     }
 } else if ($detalle == 0 && !isset($_GET['monto'])) {
-    $sql = "SELECT fac.`id_factura`, fac.`numero_factura`, fac.`fecha_factura`, fac.`id_cliente`, 
-                fac.`id_vendedor`, fac.`condiciones`, fac.`total_venta`, fac.`estado_factura`
-                FROM `facturas` as fac 
-                WHERE fac.`condiciones` = 4 
-                AND fac.`id_cliente` = ".$id;
-
-    $query   = mysqli_query($con, $sql);
-    $numrows= mysqli_num_rows($query);
-    $total = 0;
-    if ($numrows>0){
-        while ($row=mysqli_fetch_array($query)){
-            $deuda = number_format ($row['total_venta'],2);
-            $total = $total + $deuda;
-        }
-    }
+    $total = restar($con, $id);
     echo $total;
 } else if ($detalle == 0 && isset($_GET['monto'])) {
     $sql = "SELECT fac.`id_factura`, fac.`numero_factura`, fac.`fecha_factura`, fac.`id_cliente`, fac.`id_vendedor`, 
@@ -133,12 +119,11 @@ if ($detalle == 1 && !isset($_GET['monto'])) {
                 AND (cxc.`estado_cxc` = 0 OR cxc.estado_cxc = 1)";
     $query = mysqli_query($con, $sql);
     $deudas = [];
-    $total = 0;
     while($row=mysqli_fetch_array($query)) {
-        $total = $total + $row['total_venta'];
         $deuda_item = array(
             "id_cxc" => $row['id_cxc'],
-            "total_venta" => $row['total_venta']
+            "total_venta" => $row['total_venta'],
+            "estado_cxc" => $row['estado_cxc']
         );
         array_push($deudas,$deuda_item);
     }
@@ -151,13 +136,29 @@ function pagar($conexion, $deudas_arr, $monto) {
     $paga = $monto;
     for ($i = 0; $i < count($deudas_arr); $i++) {
         if ($paga > 0) {
-            if ($paga > $deudas_arr[$i]['total_venta']) {            
-                abonar($conexion, $deudas_arr[$i]['total_venta'], 2, $deudas_arr[$i]['id_cxc']);
-                $paga = $paga - $deudas_arr[$i]['total_venta'];
-            } else if ($paga < $deudas_arr[$i]['total_venta']) {
-                abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc']);
-            } else if ($paga == $deudas_arr[$i]['total_venta']) {
-                abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc']);
+            if ($deudas_arr[$i]['estado_cxc'] == 0) {
+                if ($paga > $deudas_arr[$i]['total_venta']) {            
+                    abonar($conexion, $deudas_arr[$i]['total_venta'], 2, $deudas_arr[$i]['id_cxc']);
+                    $paga = $paga - $deudas_arr[$i]['total_venta'];
+                } else if ($paga < $deudas_arr[$i]['total_venta']) {
+                    abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc']);
+                    $paga = 0;
+                } else if ($paga == $deudas_arr[$i]['total_venta']) {
+                    abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc']);
+                    $paga = 0;
+                }
+            } else if ($deudas_arr[$i]['estado_cxc'] == 1) {
+                $deuda = $deudas_arr[$i]['total_venta'] - consultarAbonos($conexion, $deudas_arr[$i]['id_cxc']);
+                if ($paga > $deuda) {            
+                    abonar($conexion, $deuda, 2, $deudas_arr[$i]['id_cxc']);
+                    $paga = $paga - $deuda;
+                } else if ($paga < $deuda) {
+                    abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc']);
+                    $paga = 0;
+                } else if ($paga == $deuda) {
+                    abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc']);
+                    $paga = 0;
+                }
             }
         }
     }
@@ -175,6 +176,45 @@ function abonar($conexion, $abono, $estado, $cxc_id) {
                         `estado_cxc`= ".$estado." 
                         WHERE `id_cxc` = ".$cxc_id;
     mysqli_query($conexion, $sqlUpdateCXC);
+}
+
+function restar($conexion, $cliente) {
+    $deudaTotal = 0;
+    $sqlFacturasPendientePago = "SELECT cxc.factura_id, fac.`total_venta`
+                                FROM `cxc` as cxc
+                                JOIN `facturas` as fac ON (cxc.factura_id = fac.`id_factura`)
+                                WHERE cxc.estado_cxc = 0 
+                                AND `id_cliente` = ".$cliente;
+    $query = mysqli_query($conexion, $sqlFacturasPendientePago);
+    while ($row = mysqli_fetch_array($query)) {
+        $deudaTotal = $deudaTotal + $row['total_venta'];
+    }
+    $sqlFacturasAbonadas = "SELECT cxc.factura_id, fac.`total_venta`, cxc.`id_cxc`
+                                FROM `cxc` as cxc
+                                JOIN `facturas` as fac ON (cxc.factura_id = fac.`id_factura`)
+                                WHERE cxc.estado_cxc = 1
+                                AND `id_cliente` = ".$cliente;
+    $query = mysqli_query($conexion, $sqlFacturasAbonadas);
+    $deudaAbonada = 0;
+    while($row = mysqli_fetch_array($query)) {
+        $deudaAbonada = $deudaAbonada + ($row['total_venta'] - descontar($conexion, $row['id_cxc']));
+    }
+    return $deudaTotal + $deudaAbonada;    
+}
+
+function descontar($conexion, $cuenta_cobrar) {
+    $sql = "SELECT SUM(`monto_abonos`) as abonos FROM `abonos` WHERE `cxc_id` = ".$cuenta_cobrar;
+    $query = mysqli_query($conexion, $sql);
+    $row = mysqli_fetch_array($query);
+    return $row['abonos'];
+}
+
+function consultarAbonos($conexion, $id_cxc) {
+    $sql = "SELECT SUM(`monto_abonos`) AS abonos 
+                FROM `abonos` WHERE `cxc_id` = ".$id_cxc;
+    $query = mysqli_query($conexion, $sql);
+    $row = mysqli_fetch_array($query);
+    return $row['abonos'];
 }
 
 ?>

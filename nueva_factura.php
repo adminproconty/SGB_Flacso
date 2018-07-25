@@ -5,10 +5,11 @@
    	exit;
           }
   $active_administracion = "";
-	$active_ingresos = "active";
+	$active_ingresos = "";
 	$active_egresos = "";
 	$active_bodega = "";
 	$active_reportes = "";
+	$active_facturas = "active";
    $title="SGB | Registro de Breaks";
    
    /* Connect To Database*/
