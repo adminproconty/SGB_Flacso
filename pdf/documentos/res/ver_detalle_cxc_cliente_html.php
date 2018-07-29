@@ -78,16 +78,16 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
     
     <?php
 
-        $num_factura = $cxc['numero_factura'];
-        $fecha_factura = date("d/m/Y", strtotime($cxc['fecha_factura']));
-        $total_venta = number_format($cxc['total_venta'],2);
+        $num_factura = $cxc[$i]['numero_factura'];
+        $fecha_factura = date("d/m/Y", strtotime($cxc[$i]['fecha_factura']));
+        $total_venta = number_format($cxc[$i]['total_venta'],2);
 
     ?>
 
         <tr>
-            <td style="width: 33.3%; text-align: left"><?php echo $fecha_factura; ?></td>
-            <td style="width: 33.3%; text-align: left"><?php echo $num_factura; ?></td>
-            <td style="width: 33.3%; text-align: right"><?php echo $total_venta; ?></td>
+            <td style="width: 33.3%; text-align: center"><?php echo $fecha_factura; ?></td>
+            <td style="width: 33.3%; text-align: center"><?php echo $num_factura; ?></td>
+            <td style="width: 33.3%; text-align: center"><?php echo $total_venta; ?></td>
         </tr> 
     </table>
 
@@ -113,6 +113,19 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         <?php
         }
         ?>
+
+        <tr>
+            <th colspan="3" style="width: 80%; text-align: right" class="silver">Total Venta</th>
+            <th style="width: 20%; text-align: right" class="silver">$<?php echo $cxc[$i]['total_venta']; ?></th>
+        </tr> 
+        <tr>
+            <th colspan="3" style="width: 80%; text-align: right" class='silver'>Total Abonado Factura</th>
+            <th style="width: 20%; text-align: right" class="silver">-$<?php echo $cxc[$i]['total_abonos']; ?></th>
+        </tr> 
+        <tr>
+            <th colspan="3" style="width: 80%; text-align: right" class='silver'>Resta Factura</th>
+            <th style="width: 20%; text-align: right" class="silver">$<?php echo $cxc[$i]['resta']; ?></th>
+        </tr> 
 
     </table>
     

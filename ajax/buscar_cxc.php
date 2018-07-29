@@ -210,15 +210,15 @@
 
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 
-        $sql = "SELECT SUM(fac.`total_venta`) as deuda, cli.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, 
-					cxc.`estado_cxc`
-					FROM `facturas` as fac 
-					JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-					JOIN `cxc` as cxc ON (fac.`id_factura` = cxc.`factura_id`)
-					WHERE (fac.`condiciones` = 4 AND fac.`estado_factura` = 1)
-					AND (cxc.estado_cxc = 0 OR cxc.estado_cxc = 1)
-					AND (cli.`nombre_cliente` like '%".$q."%' OR cli.`documento_cliente` like '%".$q."%')
-					GROUP BY fac.`id_cliente`";
+		$deudas = array();
+		$sql = "SELECT `id_cliente` FROM `clientes` WHERE `nombre_cliente` like '%".$q."%' OR `documento_cliente` like '%".$q."%'";
+		$query = mysqli_query($con, $sql);
+		while($row = mysqli_fetch_array($query)) {
+			$consulta = consultarDeuda($con, $row['id_cliente']);
+			if ($consulta['estatus'] == 1) {
+				array_push($deudas, $consulta);
+			}
+		}
 
 
 		include 'pagination.php'; //include pagination file
@@ -227,9 +227,7 @@
 		$per_page = 10; //how much records you want to show
 		$adjacents  = 4; //gap between pages after number of adjacents
 		$offset = ($page - 1) * $per_page;
-		//Count the total number of row in your table*/
-		$query   = mysqli_query($con, $sql);
-		$numrows= mysqli_num_rows($query);
+		$numrows= count($deudas);
 		$total_pages = ceil($numrows/$per_page);
 		$reload = './cxc.php';
 		//loop through fetched data
@@ -265,21 +263,17 @@
 
 
 
-				while ($row=mysqli_fetch_array($query)){
+				for ($i = 0; $i < count($deudas); $i++) {
 
-
-						$cedula=$row['documento_cliente'];
-						$nombre = $row['nombre_cliente'];
-						$deuda = $row['deuda'];
-						$id_cliente = $row['id_cliente'];
-						$estado = $row['estado_cxc'];
-						if ($estado==0) {
+						$cedula=$deudas[$i]['documento_cliente'];
+						$nombre = $deudas[$i]['nombre_cliente'];
+						$deuda = number_format($deudas[$i]['deuda'],2);
+						$id_cliente = $deudas[$i]['id_cliente'];
+						$estado = $deudas[$i]['estado_cxc'];
+						if ($estado=="Pendiente Pago") {
 							$estado="Pendiente Pago";$label_class='label-danger';
-						} else if ($estado == 1) {
+						} else {
 							$estado="Abonado";$label_class='label-warning';
-							$deuda = restar($con, $id_cliente);
-						} else if ($estado == 2) {
-							$estado="Pagado";$label_class='label-success';
 						}
 
 					?>
@@ -305,7 +299,7 @@
 							<a href="#" class='btn btn-default' title='Detalles' onclick="detalle_cxc('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#modDetalle_CXC">
 								<i class="glyphicon glyphicon-eye-open"></i>
 							</a> 
-							<a href="#" class='btn btn-default' title='Abonar' onclick="modal_abonar('<?php echo $id_cliente; ?>')" data-toggle="modal" data-target="#modAbonarCXC">
+							<a href="#" class='btn btn-default' title='Abonar' onclick="modal_abonar('<?php echo $id_cliente; ?>', '<?php echo $_SESSION['user_id']; ?>')" data-toggle="modal" data-target="#modAbonarCXC">
 								<i class="glyphicon glyphicon-credit-card"></i> 
 							</a>
 						</span></td>
@@ -407,6 +401,75 @@
 		} else {
 			return 0;
 		}
+	}
+
+	function consultarDeuda($conexion, $cliente) {
+		$usuario_deudor = 0;
+		$sql = "SELECT cxc.estado_cxc, cxc.id_cxc, fac.`id_factura`, fac.`id_cliente`, fac.`condiciones`, SUM(fac.`total_venta`) as deuda, 
+					cli.`nombre_cliente`, cli.`documento_cliente`
+					FROM `cxc` as cxc
+					JOIN `facturas` as fac ON (cxc.`factura_id` = fac.`id_factura`)
+					JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
+					WHERE cxc.estado_cxc = 0 AND fac.`condiciones` = 4
+					AND fac.`id_cliente` = ".$cliente." AND fac.`estado_factura` = 1";
+		$query = mysqli_query($conexion, $sql);
+		$row = mysqli_fetch_array($query);
+		if ($row['deuda'] != null) {
+			$usuario_deudor = 1;			
+			$deuda_cliente = array(
+				"estatus" => 1,
+				"deuda" => $row['deuda'],
+				"id_cliente" => $row['id_cliente'],
+				"nombre_cliente" => $row['nombre_cliente'],
+				"documento_cliente" => $row['documento_cliente'],
+				"estado_cxc" => "Pendiente Pago"
+			);
+		} else {
+			$usuario_deudor = 0;
+			$deuda_cliente = array(
+				"estatus" => 0
+			);
+		}	
+		$sql = "SELECT cxc.estado_cxc, cxc.id_cxc, fac.`id_factura`, fac.`id_cliente`, fac.`condiciones`, fac.`total_venta`, 
+					cli.`nombre_cliente`, cli.`documento_cliente`, cxc.`id_cxc`
+					FROM `cxc` as cxc
+					JOIN `facturas` as fac ON (cxc.`factura_id` = fac.`id_factura`)
+					JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
+					WHERE cxc.estado_cxc = 1 AND fac.`condiciones` = 4
+					AND fac.`id_cliente` = ".$cliente." AND fac.`estado_factura` = 1";
+		$query = mysqli_query($conexion, $sql);
+		$num_row = mysqli_num_rows($query);
+		$deuda_total = 0;
+		if ($num_row > 0) {
+			while ($row = mysqli_fetch_array($query)) {
+				$deuda_total = $deuda_total  + ($row['total_venta'] - restarAbonos($conexion, $row['id_cxc']));
+				$nombre_cliente = $row['nombre_cliente'];
+				$documento_cliente = $row['documento_cliente'];
+				$id_cliente = $row['id_cliente'];
+			}
+			if ($usuario_deudor == 0) {
+				$deuda_cliente = array(
+					"estatus" => 1,
+					"deuda" => $deuda_total,
+					"id_cliente" => $id_cliente,
+					"nombre_cliente" => $nombre_cliente,
+					"documento_cliente" => $documento_cliente,
+					"estado_cxc" => "Abonado"
+				);
+			} else {
+				$deuda_cliente['estado_cxc'] = "Abonado";
+				$total_deuda = $deuda_cliente['deuda'] + $deuda_total;
+				$deuda_cliente['deuda'] = $total_deuda;
+			}
+		}
+		return $deuda_cliente;
+	}
+
+	function restarAbonos($conexion, $cxc){
+		$sql = "SELECT SUM(`monto_abonos`) as total FROM `abonos` WHERE `cxc_id` = ".$cxc;
+		$query = mysqli_query($conexion, $sql);
+		$row = mysqli_fetch_array($query);
+		return $row['total'];
 	}
 
 

@@ -109,6 +109,8 @@
 							<option value="kardex">Movimientos Kardex</option>
 
 							<option value="stock">Stock de Productos</option>
+							<option value="cxc">Cuentas Por Cobrar (CXC)</option>
+							<option value="acc">Aperturas y Cierres de Caja</option>
 
 							
 
@@ -141,6 +143,32 @@
                         <input type="date" class="form-control input-sm" id="fecha_fin">
 
                      </div>
+
+					 <label for="tel2" class="col-md-1 control-label estado_cxc">Estado</label>
+
+					<div class="col-md-2 estado_cxc">
+
+						<select class="form-control" id="select_estado_cxc">
+							<option value="">-- Selecciona --</option>
+							<option value="0">Pendientes Pago</option>
+							<option value="1">Abonadas</option>
+							<option value="2">Pagadas</option>
+						</select>
+
+					</div>
+
+					<label for="tel2" class="col-md-1 control-label estado_acc">Estado</label>
+
+					<div class="col-md-2 estado_acc">
+
+						<select class="form-control" id="select_estado_acc">
+							<option value="">-- Selecciona --</option>
+							<option value="0">Abiertas</option>
+							<option value="1">Cerradas</option>
+							<option value="2">Depositadas</option>
+						</select>
+
+					</div>
 
 
 

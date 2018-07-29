@@ -35,25 +35,27 @@ function detalle_cxc(id_cliente) {
     })
 }
 
-function modal_abonar(id_cliente) {
+function modal_abonar(id_cliente, id_usuario) {
     $('#id_cliente').val(id_cliente);
+    $('#id_usuario').val(id_usuario);
     $.ajax({
         url: './ajax/modal_detalle_cxc.php?id=' + id_cliente + '&detalle=0',
         success: function(data) {
             var valor = data * 1;
-            $("#monto").val(valor);
-            $('#ttDeuda').val(valor);
+            $("#monto").val(valor.toFixed(2));
+            $('#ttDeuda').val(valor.toFixed(2));
         }
     })
 }
 
 function abonar() {
     var id_cliente = $('#id_cliente').val();
-    var monto = $('#monto').val();
-    var totalDeuda = $('#ttDeuda').val();
+    var monto = $('#monto').val() * 1;
+    var totalDeuda = $('#ttDeuda').val() * 1;
+    var id_usuario = $('#id_usuario').val();
     if (monto <= totalDeuda) {
         $.ajax({
-            url: './ajax/modal_detalle_cxc.php?id=' + id_cliente + '&monto=' + monto + '&detalle=0',
+            url: './ajax/modal_detalle_cxc.php?id=' + id_cliente + '&monto=' + monto + '&detalle=0&usuario=' + id_usuario,
             success: function(data) {
                 console.log('deudas', data);
                 if (data == true) {
@@ -73,3 +75,8 @@ function abonar() {
 function descargar(cliente_id) {
     window.open('./pdf/documentos/detalle_cxc_cliente.php?cliente=' + cliente_id, 'Detalle CXC', '', '1024', '768', 'true');
 }
+
+$('#form-abonar').submit(function(e) {
+    e.preventDefault();
+    abonar();
+});

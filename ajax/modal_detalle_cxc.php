@@ -134,29 +134,30 @@ if ($detalle == 1 && !isset($_GET['monto'])) {
 
 function pagar($conexion, $deudas_arr, $monto) {
     $paga = $monto;
+    $usuario = $_GET['usuario'];
     for ($i = 0; $i < count($deudas_arr); $i++) {
         if ($paga > 0) {
             if ($deudas_arr[$i]['estado_cxc'] == 0) {
                 if ($paga > $deudas_arr[$i]['total_venta']) {            
-                    abonar($conexion, $deudas_arr[$i]['total_venta'], 2, $deudas_arr[$i]['id_cxc']);
+                    abonar($conexion, $deudas_arr[$i]['total_venta'], 2, $deudas_arr[$i]['id_cxc'], $usuario);
                     $paga = $paga - $deudas_arr[$i]['total_venta'];
                 } else if ($paga < $deudas_arr[$i]['total_venta']) {
-                    abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc']);
+                    abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc'], $usuario);
                     $paga = 0;
                 } else if ($paga == $deudas_arr[$i]['total_venta']) {
-                    abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc']);
+                    abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc'], $usuario);
                     $paga = 0;
                 }
             } else if ($deudas_arr[$i]['estado_cxc'] == 1) {
                 $deuda = $deudas_arr[$i]['total_venta'] - consultarAbonos($conexion, $deudas_arr[$i]['id_cxc']);
                 if ($paga > $deuda) {            
-                    abonar($conexion, $deuda, 2, $deudas_arr[$i]['id_cxc']);
+                    abonar($conexion, $deuda, 2, $deudas_arr[$i]['id_cxc'], $usuario);
                     $paga = $paga - $deuda;
                 } else if ($paga < $deuda) {
-                    abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc']);
+                    abonar($conexion, $paga, 1, $deudas_arr[$i]['id_cxc'], $usuario);
                     $paga = 0;
                 } else if ($paga == $deuda) {
-                    abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc']);
+                    abonar($conexion, $paga, 2, $deudas_arr[$i]['id_cxc'], $usuario);
                     $paga = 0;
                 }
             }
@@ -165,12 +166,14 @@ function pagar($conexion, $deudas_arr, $monto) {
     return true;
 }
 
-function abonar($conexion, $abono, $estado, $cxc_id) {
-    $sqlAbonar = "INSERT INTO `abonos`(`cxc_id`, `fecha_abonos`, `monto_abonos`) VALUES (
-                        ".$cxc_id.",
-                        now(),
-                        ".$abono."
-                    )";
+function abonar($conexion, $abono, $estado, $cxc_id, $usuario) {
+    $fecha = date('Y-m-d H:i:s');
+    $sqlAbonar = "INSERT INTO `abonos`(`cxc_id`, `fecha_abonos`, `monto_abonos`, `usuario_id`) VALUES (
+            ".$cxc_id.",
+            '".$fecha."',
+            ".$abono.",
+            ".$usuario."
+        )";
     mysqli_query($conexion, $sqlAbonar);
     $sqlUpdateCXC = "UPDATE `cxc` SET 
                         `estado_cxc`= ".$estado." 

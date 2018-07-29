@@ -45,13 +45,13 @@
             "estado_cxc" => $row['estado_cxc'],
             "numero_factura" => $row['numero_factura'],
             "fecha_factura" => $row['fecha_factura'],
-            "total_venta" => $row['total_venta'],
-            "detalles" => detallarFactura($con, $row['numero_factura'])
+            "total_venta" => $row['total_venta'],            
+            "total_abonos" => consultarTotalAbonos($con, $row['id_cxc']),
+            "resta" => $row['total_venta'] - consultarTotalAbonos($con, $row['id_cxc']),
+            "detalles" => detallarFactura($con, $row['numero_factura'])            
         );
         array_push($cxc, $cxc_item);
     }
-
-
 
 	if ($count==0)
 
@@ -178,6 +178,13 @@
             array_push($arreglo_return, $item);
         }
         return $arreglo_return;
+    }
+
+    function consultarTotalAbonos($conexion, $cxc) {
+        $sql = "SELECT SUM(`monto_abonos`) as total_abonos FROM `abonos` WHERE `cxc_id` = ".$cxc;
+        $query = mysqli_query($conexion, $sql);
+        $row = mysqli_fetch_array($query);
+        return $row['total_abonos'];
     }
 
 ?>

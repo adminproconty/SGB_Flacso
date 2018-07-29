@@ -207,12 +207,8 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-
-
-        <li><a href="http://www.proconty.com" target='_blank'><i class='glyphicon glyphicon-envelope'></i> Soporte</a></li>
-
-
-
+		<li><a href="caja.php"><i class='glyphicon glyphicon-shopping-cart'></i> Caja</a></li>
+        <li><a href="http://www.proconty.com" target='_blank'><i class='glyphicon glyphicon-envelope'></i> Soporte</a></li>        
 		<li><a href="login.php?logout"><i class='glyphicon glyphicon-off'></i> Salir</a></li>
 
 

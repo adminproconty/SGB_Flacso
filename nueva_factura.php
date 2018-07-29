@@ -17,6 +17,12 @@
    require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
    
    $session_id= session_id();	
+   $usuario = $_SESSION['user_id'];
+   echo "<script>
+			var tipo = 'Ventas';
+			localStorage.setItem('tipoUsuario', tipo); 
+			localStorage.setItem('user', ".$usuario."); 
+		</script>";
    
    ?>
 <!DOCTYPE html>
