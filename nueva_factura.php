@@ -4,12 +4,14 @@
           header("location: login.php");
    	exit;
           }
-  $active_administracion = "";
-	$active_ingresos = "";
-	$active_egresos = "";
-	$active_bodega = "";
-	$active_reportes = "";
-	$active_facturas = "active";
+   $active_facturas="active";
+   $active_productos="";
+   $active_clientes="";
+   $active_tarjetas="";
+   $active_usuarios="";	
+   $active_reportes="";
+   $active_caja_chica = "";
+   $active_kardex="";
    $title="SGB | Registro de Breaks";
    
    /* Connect To Database*/
@@ -17,12 +19,6 @@
    require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
    
    $session_id= session_id();	
-   $usuario = $_SESSION['user_id'];
-   echo "<script>
-			var tipo = 'Ventas';
-			localStorage.setItem('tipoUsuario', tipo); 
-			localStorage.setItem('user', ".$usuario."); 
-		</script>";
    
    ?>
 <!DOCTYPE html>
@@ -120,7 +116,6 @@
                            <option value="1" selected>Efectivo</option>
                            <option value="2">Transferencia bancaria</option>
                            <option value="3">Tarjeta Prepago</option>
-                           <option value="4">A Crédito</option>
                         </select>
                      </div>
                    

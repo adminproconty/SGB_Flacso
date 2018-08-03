@@ -1,0 +1,1 @@
+[26-Jul-2018 14:34:51 America/Bogota] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, boolean given in /home/proco389/public_html/SGB_Flacso/config/conexion.php on line 5
