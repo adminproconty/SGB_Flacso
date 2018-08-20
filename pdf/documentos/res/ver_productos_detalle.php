@@ -130,7 +130,14 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         $vendedor = '';
         
         $sql=mysqli_query($con, "SELECT (select us.user_name from users us where us.user_id = fac.id_vendedor) as vendedor
-            ,date(fac.fecha_factura) fechafac, pr.nombre_producto, sum(det.cantidad) as cantidad,sum(det.precio_venta) as precio_venta
+            ,date(fac.fecha_factura) fechafac, pr.nombre_producto, sum(det.cantidad) as cantidad
+            ,sum(det.cantidad * det.precio_venta) as precio_venta,
+				(SELECT sum(det2.cantidad * det2.precio_venta) 
+				FROM facturas fac2, detalle_factura det2
+				where det2.numero_factura = fac2.numero_factura
+				and fac2.fecha_factura >= '".$fecha_ini." 00:00:00'
+				and fac2.fecha_factura <= '".$fecha_fin." 23:59:59'
+				and fac2.id_vendedor = fac.id_vendedor) as total_venta
             FROM facturas fac, detalle_factura det , products pr
             where det.numero_factura = fac.numero_factura
             and det.id_producto = pr.id_producto
@@ -163,6 +170,9 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
         ?>
                 <tr>
                 <td class='gold' style="width: 25%; text-align: left"><b>Vendedor: <?php echo $row['vendedor'];?></b></td>
+                </tr>
+				<tr>
+                <td class='gold' style="width: 25%; text-align: left"><b>Total Venta: $<?php echo  number_format($row['total_venta'],2);?></b></td>
                 </tr>
                 
         <?php
