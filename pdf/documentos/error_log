@@ -185,7 +185,6 @@
 [13-Apr-2018 02:08:43 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/proco389/public_html/SGB/pdf/documentos/factura_pdf.php:24) in /home/proco389/public_html/SGB/pdf/_tcpdf_5.0.002/tcpdf.php on line 6122
 [13-Apr-2018 02:09:39 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/proco389/public_html/SGB/pdf/documentos/factura_pdf.php:24) in /home/proco389/public_html/SGB/pdf/_tcpdf_5.0.002/tcpdf.php on line 6122
 [10-Jul-2018 20:51:35 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 1048576 bytes) in /home/proco389/public_html/SGB_Flacso/pdf/_class/parsingHtml.class.php on line 221
-<<<<<<< HEAD
 [16-Aug-2018 04:58:23 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/proco389/public_html/SGB_Flacso/pdf/documentos/res/ver_cierre_html.php on line 591
 [16-Aug-2018 04:58:23 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/proco389/public_html/SGB_Flacso/pdf/documentos/res/ver_cierre_html.php on line 591
 [16-Aug-2018 04:58:23 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/proco389/public_html/SGB_Flacso/pdf/documentos/res/ver_cierre_html.php on line 591
@@ -205,5 +204,3 @@
 [16-Aug-2018 21:29:31 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/proco389/public_html/SGB_Flacso/pdf/documentos/res/ver_cierre_html.php on line 289
 [16-Aug-2018 21:29:45 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/proco389/public_html/SGB_Flacso/pdf/documentos/res/ver_cierre_html.php on line 289
 [16-Aug-2018 21:30:00 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/proco389/public_html/SGB_Flacso/pdf/documentos/res/ver_cierre_html.php on line 289
-=======
->>>>>>> e42f1f6e4a9c79f42bf10042040de3109db5cb0e

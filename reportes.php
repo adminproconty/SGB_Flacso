@@ -103,7 +103,6 @@
 					        <option value="">-- Selecciona tipo de reporte --</option>
 
 					        <option value="cierre">Cierre de Caja</option>
-<<<<<<< HEAD
 
 					        <option value="detalle_prod">Venta Productos</option>
 
@@ -113,11 +112,6 @@
 							<option value="cxc">Cuentas Por Cobrar (CXC)</option>
 							<option value="acc">Aperturas y Cierres de Caja</option>
 
-=======
-					        <option value="detalle_prod">Venta Productos</option>
-							<option value="kardex">Movimientos Kardex</option>
-							<option value="stock">Stock de Productos</option>
->>>>>>> e42f1f6e4a9c79f42bf10042040de3109db5cb0e
 							
 
 					         <!-- <option value="ventas">Ventas Detalladas</option>  -->
@@ -127,14 +121,10 @@
 					</div>
 
 				</div>							
-<<<<<<< HEAD
 
 				<div class="for-group row" id="form_stock">
 
 
-=======
-				<div class="for-group row" id="form_stock">
->>>>>>> e42f1f6e4a9c79f42bf10042040de3109db5cb0e
 
 					 <label for="tel2" class="col-md-2 control-label">Desde</label>
 
@@ -154,7 +144,6 @@
 
                      </div>
 
-<<<<<<< HEAD
 					 <label for="tel2" class="col-md-1 control-label estado_cxc">Estado</label>
 
 					<div class="col-md-2 estado_cxc">
@@ -191,25 +180,15 @@
 
 					
 
-=======
-				</div>
-
-				<div class="btn-group pull-right">
-					
->>>>>>> e42f1f6e4a9c79f42bf10042040de3109db5cb0e
 						<button type="button" class="btn btn-success" data-toggle="modal" onclick="reportes(1)">
 
 						<span class="glyphicon glyphicon-search"></span> Obtener Reporte
 
 						</button>
-<<<<<<< HEAD
 
 					
 
 
-=======
-					
->>>>>>> e42f1f6e4a9c79f42bf10042040de3109db5cb0e
 
                 </div>
 
