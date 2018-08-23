@@ -18,95 +18,70 @@
 
 	if (isset($_GET['id'])){
 
-		
-
 		//Para devolver el saldo al cliente
-
 		$numero_factura=intval($_GET['id']);
+				
+		$query_factura=mysqli_query($con,"select * from facturas, detalle_factura, clientes
+										where facturas.numero_factura = detalle_factura.numero_factura
+										and clientes.id_cliente = facturas.id_cliente
+										and facturas.numero_factura='".$numero_factura."'");
+		while ($rowfac=mysqli_fetch_array($query_factura)){
 
-		
+			$id_cliente = $rowfac['id_cliente'];
+			$id_detalle = $rowfac['id_detalle'];
+			$id_producto = $rowfac['id_producto'];
+			$valor_factura = number_format($rowfac['total_venta'],2);
+			//$fecha_factura=date("d/m/Y", strtotime($rowfac['fecha_factura']));
+			$fecha_factura=$rowfac['fecha_factura'];
+			$valor_devuelto = $rowfac['precio_venta'] + $rowfac['saldo_cliente'];
+			$cantidad = $rowfac['cantidad'];
+			$precio_venta = $rowfac['precio_venta'];
+			$user_borra = $_SESSION['user_id'];
 
-		$query_factura=mysqli_query($con,"select * from facturas where numero_factura='".$numero_factura."'");
+			$log_borrado="INSERT INTO log_borrado(fecha_borrado,numero_factura,fecha_factura,id_producto,cantidad,precio_venta,usuario) 
+			VALUES (now(),$numero_factura,'$fecha_factura',$id_producto,$cantidad,$precio_venta,$user_borra)";
+			if ($ejecuta_borrado=mysqli_query($con,$log_borrado)){
+				//Borro el registro correspondiente del Detalle_Factura
+				$del2="delete from detalle_factura where id_detalle ='".$id_detalle."'";
+				$delete2=mysqli_query($con,$del2);
 
-		$rowfac=mysqli_fetch_array($query_factura);
+				//Devuelvo Saldo
+				$sql_saldo="UPDATE clientes SET saldo_cliente='".$valor_devuelto."' WHERE id_cliente='".$id_cliente."'";
+				$query_saldo = mysqli_query($con,$sql_saldo);
 
-		$id_clientefac = $rowfac['id_cliente'];
+				//Devuelvo stock al Producto
+				$sql_inventario="UPDATE inventario SET cantidad_inventario=cantidad_inventario + '".$cantidad."' WHERE producto_inventario='".$id_producto."'";
+				$query_inventario = mysqli_query($con,$sql_inventario);
 
-		$id_consumo = $rowfac['id_factura'];
-
-		$valor_factura = number_format($rowfac['total_venta'],2);
-
-		$fecha_factura=date("d/m/Y", strtotime($rowfac['fecha_factura']));
-
-		
-
-		$query_cliente=mysqli_query($con,"select * from clientes where id_cliente='".$id_clientefac."'");
-
-		$rowcliente=mysqli_fetch_array($query_cliente);
-
-		
-
-		$valor_devuelto = $rowfac['total_venta'] + $rowcliente['saldo_cliente'];
-
-		$email_cliente = $rowcliente['email_cliente'];
-
-		$nombre_cliente = $rowcliente['nombre_cliente'];
-
-		
-
+				//Registro movimiento en Log_Inventario
+				$log_inventario = mysqli_query($con,"INSERT INTO `log_inventario`(`fecha_loginv`, `producto_loginv`, 
+                    `cantidad_loginv`, `tipo_loginv`, `motivo`) VALUES (
+                        NOW(),".$id_producto.",".$cantidad.",'Incremento','Elimina Consumo')");
+			}	
+		}
+		//Elimino Registro de Facturas y de Detalle_Factura
 		$del1="delete from facturas where numero_factura='".$numero_factura."'";
 
-		$del2="delete from detalle_factura where numero_factura='".$numero_factura."'";
 
-		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
-
-			
-
-			//Devuelvo Saldo
-
-			$sql="UPDATE clientes SET saldo_cliente='".$valor_devuelto."' WHERE id_cliente='".$id_clientefac."'";
-
-			$query_update = mysqli_query($con,$sql);
-
-			
-
+		if ($delete1=mysqli_query($con,$del1)){
 			//Envio correo de devolución
-
 			//require_once "correo_reverso.php";
-
-
-
 			?>
-
 			<div class="alert alert-success alert-dismissible" role="alert">
-
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-			  <strong>Aviso!</strong> Datos eliminados exitosamente
-
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Aviso!</strong> Datos eliminados exitosamente
 			</div>
-
 			<?php 
-
 		}else {
-
 			?>
-
 			<div class="alert alert-danger alert-dismissible" role="alert">
-
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-			  <strong>Error!</strong> No se puedo eliminar los datos
-
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Error!</strong> No se puedo eliminar los datos
 			</div>
-
 			<?php
-
 			
-
 		}
-
-	}
+		}
 
 	if($action == 'ajax'){
 
