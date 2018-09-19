@@ -6,7 +6,7 @@
 
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
-	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+	//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 

@@ -1,10 +1,11 @@
 <?php
-include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 /* Connect To Database*/
 require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 $id_acc = $_GET['id'];
 //Count the total number of row in your table*/
+date_default_timezone_set('America/Bogota');
 $query   = mysqli_query($con, "SELECT `id_acc`, `usuario_id`, `fecha_apertura` FROM `apertura_cierre_caja` WHERE `id_acc` = ".$id_acc);
 $row = mysqli_fetch_array($query);
 $abonos = abonos($con, $row['usuario_id'], $row['fecha_apertura']) * 1;
@@ -17,7 +18,7 @@ $tarjetas = number_format(ventasTarjeta($con, $row['usuario_id'], $row['fecha_ap
 $array = array(
     "compras" => number_format($compras, 2),
     "efectivo" => number_format($efectivo, 2),
-    "tarjeta" => $transferencias,
+    "tarjeta" => $tarjetas,
     "transferencias" => $transferencias,
     "abonos" => $abonos,
     "total" => $total

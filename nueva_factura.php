@@ -1,9 +1,9 @@
 <?php
-   session_start();
-   if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
+  //session_start();
+   /*if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
           header("location: login.php");
    	exit;
-          }
+   }*/
   $active_administracion = "";
 	$active_ingresos = "";
 	$active_egresos = "";
@@ -16,13 +16,8 @@
    require_once ("config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
    require_once ("config/conexion.php");//Contiene funcion que conecta a la base de datos
    
-   $session_id= session_id();	
-   $usuario = $_SESSION['user_id'];
-   echo "<script>
-			var tipo = 'Ventas';
-			localStorage.setItem('tipoUsuario', tipo); 
-			localStorage.setItem('user', ".$usuario."); 
-		</script>";
+   $session_id= $_COOKIE['PHPSESSID'];	
+   $usuario = $_COOKIE['user_id']; 
    
    ?>
 <!DOCTYPE html>
@@ -85,7 +80,7 @@
                      <div class="col-md-2">
                         <select class="form-control input-sm" id="id_vendedor" name="id_vendedor" readonly>
                            <?php
-                              $sql_vendedor=mysqli_query($con,"select * from users where user_id = ".$_SESSION['user_id']." order by lastname");
+                              $sql_vendedor=mysqli_query($con,"select * from users where user_id = ".$_COOKIE['user_id']." order by lastname");
                               while ($rw=mysqli_fetch_array($sql_vendedor)){
                               	$id_vendedor=$rw["user_id"];
                               	$nombre_vendedor=$rw["firstname"]." ".$rw["lastname"];

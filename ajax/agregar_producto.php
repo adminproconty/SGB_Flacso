@@ -1,9 +1,9 @@
 
 
 <?php
-   include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+   //include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
    
-   $session_id= session_id();
+   $session_id= $_COOKIE["PHPSESSID"];
    
    if (isset($_POST['cantidad'])){$cantidad=$_POST['cantidad'];}
    

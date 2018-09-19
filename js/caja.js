@@ -1,7 +1,8 @@
 $(document).ready(function() {
-    var tipoUsuario = localStorage.getItem('tipoUsuario');
+    var tipoUsuario = readCookie('user_perfil');
+    var user = readCookie('user_id');
     if (tipoUsuario == "Ventas") {
-        load(localStorage.getItem('user'));
+        load(user);
     } else {
         init();
     }
@@ -46,7 +47,8 @@ function cajaAbierta(usuario) {
     $.ajax({
         url: './ajax/buscar_caja_abierta_usuario.php?usuario=' + usuario,
         success: function(data) {
-            if (data == true) {
+            console.log('buscar caja abierta', data);
+            if (data == 1) {
                 $('#openCaja').hide('slow');
             } else {
                 $('#openCaja').show('slow');
@@ -69,7 +71,7 @@ function abrirCaja() {
                 } else {
                     alert('Algo sucedió mal, por favor reintente, si sucede de nuevo, comuníquese con el administrador del sistema');
                 }
-                var int = self.setInterval("refresh()", 60000);
+                window.location.reload();
             }
         })
     }
@@ -149,11 +151,7 @@ function cerrarCaja() {
             } else {
                 alert('Algo sucedió mal, por favor reintente, si sucede de nuevo, comuníquese con el administrador del sistema');
             }
-            var tipoUsuario = localStorage.getItem('tipoUsuario');
-            if (tipoUsuario == "Ventas") {
-                load(localStorage.getItem('user'));
-            }
-            var int = self.setInterval("refresh()", 60000);
+            window.location.reload();
         }
     })
 }
@@ -165,7 +163,8 @@ function depositar_caja(id_acc) {
         success: function(data) {
             console.log('total depositar', data);
             $('#monto_depositar').val(data);
-            var int = self.setInterval("refresh()", 60000);
+            /*alert('Depósito realizado exitosamente');
+            window.location.reload();*/
         }
     });
 }
@@ -185,10 +184,7 @@ function registrarDeposito() {
             } else {
                 alert('Depósito registrado exitosamente');
             }
-            var tipoUsuario = localStorage.getItem('tipoUsuario');
-            if (tipoUsuario == "Ventas") {
-                load(localStorage.getItem('user'));
-            }
+            window.location.reload();
         }
     });
 }
@@ -224,3 +220,14 @@ $("#referencia").keydown(function(e) {
         e.preventDefault();
     }
 });
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}

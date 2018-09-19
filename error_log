@@ -1,0 +1,192 @@
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_empresas - assumed 'id_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_empresas - assumed 'nombre_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_empresas - assumed 'id_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_empresas - assumed 'nombre_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_empresas - assumed 'id_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_empresas - assumed 'nombre_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:00 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:00 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:00 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:00 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_empresas - assumed 'id_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_empresas - assumed 'nombre_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_empresas - assumed 'id_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_empresas - assumed 'nombre_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_empresas - assumed 'id_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_empresas - assumed 'nombre_empresas' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_clientes.php on line 92
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:45
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant id_categorias - assumed 'id_categorias' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46
+[19-Sep-2018 14:16:15 UTC] PHP Warning:  Use of undefined constant nombre_categoria - assumed 'nombre_categoria' (this will throw an Error in a future version of PHP) in /home/proco389/public_html/SGB_Flacsotest/modal/registro_productos.php on line 63
+[19-Sep-2018 14:16:15 UTC] PHP Stack trace:
+[19-Sep-2018 14:16:15 UTC] PHP   1. {main}() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:0
+[19-Sep-2018 14:16:15 UTC] PHP   2. include() /home/proco389/public_html/SGB_Flacsotest/nueva_factura.php:46

@@ -2,15 +2,15 @@
 
 
 
-	session_start();
+	//session_start();
 
-	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
+	/*if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
 
         header("location: login.php");
 
 		exit;
 
-        }
+        }*/
 
 	
 
@@ -28,7 +28,8 @@
 	$active_bodega = "";
 	$active_reportes = "";
 	$title="Caja | SGB";
-	$usuario = $_SESSION['user_id'];
+	$usuario = $_COOKIE['user_id'];
+	
 
 ?>
 
@@ -50,12 +51,7 @@
 	include("modal/apertura_caja.php");
 	include("modal/cierre_caja.php");
 	include("modal/depositar_caja.php");
-    if ($_SESSION['user_perfil'] == 'Administrador') {
-		echo "<script>
-			var tipo = 'Administrador';
-			localStorage.setItem('tipoUsuario', tipo); 
-			localStorage.setItem('user', ".$usuario."); 
-		</script>";
+    if ($_COOKIE['user_perfil']== 'Administrador') {
 	?>
 	
 
@@ -75,12 +71,6 @@
     <?php
 
     } else {
-
-		echo "<script>
-			var tipo = 'Ventas';
-			localStorage.setItem('tipoUsuario', tipo); 
-			localStorage.setItem('user', ".$usuario."); 
-		</script>";
 
     ?>
 

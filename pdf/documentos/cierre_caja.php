@@ -1,9 +1,9 @@
 <?php
-	session_start();
+	/*session_start();
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
         header("location: ../../login.php");
 		exit;
-    }
+    }*/
 	/* Connect To Database*/
 	include("../../config/db.php");
 	include("../../config/conexion.php");

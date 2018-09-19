@@ -34,16 +34,16 @@
                     FROM `cxc` as cxc
                     JOIN `facturas` as fac ON (cxc.`factura_id` = fac.`id_factura`)
                     JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-                    WHERE fac.`estado_factura` = 1
-                    AND fac.`fecha_factura` >= '".$fecha_ini."' AND fac.`fecha_factura` <= '".$fecha_fin."'";
+                    WHERE fac.`estado_factura` = 1 AND cli.`nombre_cliente` != 'CONSUMIDOR FINAL'
+                    AND fac.`fecha_factura` >= '".$fecha_ini." 00:00:01' AND fac.`fecha_factura` <= '".$fecha_fin." 23:59:59'";
     } else {
         $sql = "SELECT cxc.`id_cxc`, cxc.`factura_id`, cxc.`estado_cxc`, fac.`numero_factura`, fac.`fecha_factura`, fac.`id_cliente`, 
                     fac.`total_venta`, cli.`documento_cliente`, cli.`nombre_cliente`
                     FROM `cxc` as cxc
                     JOIN `facturas` as fac ON (cxc.`factura_id` = fac.`id_factura`)
                     JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-                    WHERE fac.`estado_factura` = 1
-                    AND cxc.`estado_cxc` = ".$estado." AND fac.`fecha_factura` >= '".$fecha_ini."' AND fac.`fecha_factura` <= '".$fecha_fin."'";
+                    WHERE fac.`estado_factura` = 1 AND cli.`nombre_cliente` != 'CONSUMIDOR FINAL'
+                    AND cxc.`estado_cxc` = ".$estado. "AND fac.`fecha_factura` >= '".$fecha_ini." 00:00:01' AND fac.`fecha_factura` <= '".$fecha_fin." 23:59:59'";
     }    
 
     $cxc = array();

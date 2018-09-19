@@ -2,7 +2,7 @@
 
 
 
-	session_start();
+	/*session_start();
 
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
 
@@ -10,7 +10,7 @@
 
 		exit;
 
-        }
+        }*/
 
 	
 
@@ -84,7 +84,7 @@
 
 			<?php
 
-				include("modal/editar_clientes.php");
+			//include("modal/editar_clientes.php");
 
 			?>
 

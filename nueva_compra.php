@@ -1,16 +1,18 @@
 <?php
 
-   session_start();
+   //session_start();
 
    date_default_timezone_set('America/Bogota');
+   $fecha = date('Y-m-d H:i:s');
 
-   if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
+
+   /*if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
 
           header("location: login.php");
 
    	exit;
 
-          }
+   }*/
 
     $active_administracion = "";
 	$active_ingresos = "";
@@ -30,7 +32,7 @@
 
    
 
-   $session_id= session_id();	
+   $session_id= $_COOKIE["PHPSESSID"];	
 
    
 
@@ -84,7 +86,7 @@
 
                            <?php
 
-                              $sql_vendedor=mysqli_query($con,"select * from users where user_id = ".$_SESSION['user_id']." order by lastname");
+                              $sql_vendedor=mysqli_query($con,"select * from users where user_id = ".$_COOKIE['user_id']." order by lastname");
 
                               while ($rw=mysqli_fetch_array($sql_vendedor)){
 
@@ -92,7 +94,7 @@
 
                               	$nombre_vendedor=$rw["firstname"]." ".$rw["lastname"];
 
-                              	if ($id_usuario==$_SESSION['user_id']){
+                              	if ($id_usuario==$_COOKIE['user_id']){
 
                               		$selected="selected";
 

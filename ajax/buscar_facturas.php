@@ -2,7 +2,7 @@
 
 
 
-	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+	//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 
 	/* Connect To Database*/
 
@@ -10,7 +10,7 @@
 
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 
-	$user_id = $_SESSION['user_id'];
+	$user_id = $_COOKIE['user_id'];	
     $query_usuario2=mysqli_query($con,"select * from users where user_id='".$user_id."'");
 	$row_user=mysqli_fetch_array($query_usuario2);		
 
@@ -18,70 +18,95 @@
 
 	if (isset($_GET['id'])){
 
+		
+
 		//Para devolver el saldo al cliente
+
 		$numero_factura=intval($_GET['id']);
-				
-		$query_factura=mysqli_query($con,"select * from facturas, detalle_factura, clientes
-										where facturas.numero_factura = detalle_factura.numero_factura
-										and clientes.id_cliente = facturas.id_cliente
-										and facturas.numero_factura='".$numero_factura."'");
-		while ($rowfac=mysqli_fetch_array($query_factura)){
 
-			$id_cliente = $rowfac['id_cliente'];
-			$id_detalle = $rowfac['id_detalle'];
-			$id_producto = $rowfac['id_producto'];
-			$valor_factura = number_format($rowfac['total_venta'],2);
-			//$fecha_factura=date("d/m/Y", strtotime($rowfac['fecha_factura']));
-			$fecha_factura=$rowfac['fecha_factura'];
-			$valor_devuelto = $rowfac['precio_venta'] + $rowfac['saldo_cliente'];
-			$cantidad = $rowfac['cantidad'];
-			$precio_venta = $rowfac['precio_venta'];
-			$user_borra = $_SESSION['user_id'];
+		
 
-			$log_borrado="INSERT INTO log_borrado(fecha_borrado,numero_factura,fecha_factura,id_producto,cantidad,precio_venta,usuario) 
-			VALUES (now(),$numero_factura,'$fecha_factura',$id_producto,$cantidad,$precio_venta,$user_borra)";
-			if ($ejecuta_borrado=mysqli_query($con,$log_borrado)){
-				//Borro el registro correspondiente del Detalle_Factura
-				$del2="delete from detalle_factura where id_detalle ='".$id_detalle."'";
-				$delete2=mysqli_query($con,$del2);
+		$query_factura=mysqli_query($con,"select * from facturas where numero_factura='".$numero_factura."'");
 
-				//Devuelvo Saldo
-				$sql_saldo="UPDATE clientes SET saldo_cliente='".$valor_devuelto."' WHERE id_cliente='".$id_cliente."'";
-				$query_saldo = mysqli_query($con,$sql_saldo);
+		$rowfac=mysqli_fetch_array($query_factura);
 
-				//Devuelvo stock al Producto
-				$sql_inventario="UPDATE inventario SET cantidad_inventario=cantidad_inventario + '".$cantidad."' WHERE producto_inventario='".$id_producto."'";
-				$query_inventario = mysqli_query($con,$sql_inventario);
+		$id_clientefac = $rowfac['id_cliente'];
 
-				//Registro movimiento en Log_Inventario
-				$log_inventario = mysqli_query($con,"INSERT INTO `log_inventario`(`fecha_loginv`, `producto_loginv`, 
-                    `cantidad_loginv`, `tipo_loginv`, `motivo`) VALUES (
-                        NOW(),".$id_producto.",".$cantidad.",'Incremento','Elimina Consumo')");
-			}	
-		}
-		//Elimino Registro de Facturas y de Detalle_Factura
+		$id_consumo = $rowfac['id_factura'];
+
+		$valor_factura = number_format($rowfac['total_venta'],2);
+
+		$fecha_factura=date("d/m/Y", strtotime($rowfac['fecha_factura']));
+
+		
+
+		$query_cliente=mysqli_query($con,"select * from clientes where id_cliente='".$id_clientefac."'");
+
+		$rowcliente=mysqli_fetch_array($query_cliente);
+
+		
+
+		$valor_devuelto = $rowfac['total_venta'] + $rowcliente['saldo_cliente'];
+
+		$email_cliente = $rowcliente['email_cliente'];
+
+		$nombre_cliente = $rowcliente['nombre_cliente'];
+
+		
+
 		$del1="delete from facturas where numero_factura='".$numero_factura."'";
 
+		$del2="delete from detalle_factura where numero_factura='".$numero_factura."'";
 
-		if ($delete1=mysqli_query($con,$del1)){
-			//Envio correo de devolución
-			//require_once "correo_reverso.php";
-			?>
-			<div class="alert alert-success alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Aviso!</strong> Datos eliminados exitosamente
-			</div>
-			<?php 
-		}else {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Error!</strong> No se puedo eliminar los datos
-			</div>
-			<?php
+		if ($delete1=mysqli_query($con,$del1) and $delete2=mysqli_query($con,$del2)){
+
 			
+
+			//Devuelvo Saldo
+
+			$sql="UPDATE clientes SET saldo_cliente='".$valor_devuelto."' WHERE id_cliente='".$id_clientefac."'";
+
+			$query_update = mysqli_query($con,$sql);
+
+			
+
+			//Envio correo de devolución
+
+			//require_once "correo_reverso.php";
+
+
+
+			?>
+
+			<div class="alert alert-success alert-dismissible" role="alert">
+
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+			  <strong>Aviso!</strong> Datos eliminados exitosamente
+
+			</div>
+
+			<?php 
+
+		}else {
+
+			?>
+
+			<div class="alert alert-danger alert-dismissible" role="alert">
+
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+			  <strong>Error!</strong> No se puedo eliminar los datos
+
+			</div>
+
+			<?php
+
+			
+
 		}
-		}
+
+	}
 
 	if($action == 'ajax'){
 

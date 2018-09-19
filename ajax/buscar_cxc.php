@@ -6,7 +6,7 @@
 
 
 
-	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
+	//include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 
 
 
@@ -288,7 +288,7 @@
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
 						<td ><span class="pull-right">
 						<?php
-							if ($_SESSION['user_perfil'] == 'Administrador') {
+							if ($_COOKIE['user_perfil'] == 'Administrador') {
 						?>
 							<a href="#" class='btn btn-default' title='Descargar' onclick="descargar('<?php echo $id_cliente;?>');" >
 								<i class="glyphicon glyphicon-download"></i>
@@ -299,7 +299,7 @@
 							<a href="#" class='btn btn-default' title='Detalles' onclick="detalle_cxc('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#modDetalle_CXC">
 								<i class="glyphicon glyphicon-eye-open"></i>
 							</a> 
-							<a href="#" class='btn btn-default' title='Abonar' onclick="modal_abonar('<?php echo $id_cliente; ?>', '<?php echo $_SESSION['user_id']; ?>')" data-toggle="modal" data-target="#modAbonarCXC">
+							<a href="#" class='btn btn-default' title='Abonar' onclick="modal_abonar('<?php echo $id_cliente; ?>', '<?php echo $_COOKIE['user_id']; ?>')" data-toggle="modal" data-target="#modAbonarCXC">
 								<i class="glyphicon glyphicon-credit-card"></i> 
 							</a>
 						</span></td>
